@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Sakura        Momoko</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://dummerfu.top/"/>
+  <updated>2021-07-16T00:00:00.000Z</updated>
+  <id>https://dummerfu.top/</id>
+  
+  <author>
+    <name>dummerfu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>markdown公式记录</title>
+    <link href="https://dummerfu.top/p/21773.html"/>
+    <id>https://dummerfu.top/p/21773.html</id>
+    <published>2021-07-16T00:00:00.000Z</published>
+    <updated>2021-07-16T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      markdown公式太难记了啊啊啊
+    
+    </summary>
+    
+      <category term="转载" scheme="https://dummerfu.top/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="转载" scheme="https://dummerfu.top/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基本无约束最优化实现代码</title>
+    <link href="https://dummerfu.top/p/51816.html"/>
+    <id>https://dummerfu.top/p/51816.html</id>
+    <published>2021-07-15T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.696Z</updated>
+    
+    <summary type="html">
+    
+      最优化上机代码
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="https://dummerfu.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【转载】Tag Plugins Plus</title>
+    <link href="https://dummerfu.top/p/41070.html"/>
+    <id>https://dummerfu.top/p/41070.html</id>
+    <published>2021-07-15T00:00:00.000Z</published>
+    <updated>2021-07-15T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      本文档为🧊Akilarの糖果屋🍭出品。为butterfly主题添加大量外挂标签样式。
+    
+    </summary>
+    
+      <category term="转载" scheme="https://dummerfu.top/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="转载" scheme="https://dummerfu.top/tags/%E8%BD%AC%E8%BD%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数模从入门到入土</title>
+    <link href="https://dummerfu.top/p/50102.html"/>
+    <id>https://dummerfu.top/p/50102.html</id>
+    <published>2021-07-07T00:00:00.000Z</published>
+    <updated>2021-07-15T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      培训知识点总结，reference 司首奎
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="技术" scheme="https://dummerfu.top/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Git Action 自动部署hexo</title>
+    <link href="https://dummerfu.top/p/15888.html"/>
+    <id>https://dummerfu.top/p/15888.html</id>
+    <published>2021-07-04T22:51:58.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      git action 是个好东西
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="主题美化" scheme="https://dummerfu.top/tags/%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>内网穿透工具测评</title>
+    <link href="https://dummerfu.top/p/23841.html"/>
+    <id>https://dummerfu.top/p/23841.html</id>
+    <published>2021-06-06T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;为什么要内网穿透&quot;&gt;&lt;a href=&quot;#为什么要内网穿透&quot; class=&quot;headerlink&quot; title=&quot;为什么要内网穿透&quot;&gt;&lt;/a&gt;为什么要内网穿透&lt;/h1&gt;&lt;p&gt;​   
+        
+      
+    
+    </summary>
+    
+      <category term="杂集" scheme="https://dummerfu.top/categories/%E6%9D%82%E9%9B%86/"/>
+    
+    
+      <category term="杂集" scheme="https://dummerfu.top/tags/%E6%9D%82%E9%9B%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Colab 实现本地连接</title>
+    <link href="https://dummerfu.top/p/64572.html"/>
+    <id>https://dummerfu.top/p/64572.html</id>
+    <published>2021-06-01T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      jupyter的奇淫技巧
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>YoloV3 介绍</title>
+    <link href="https://dummerfu.top/p/3028.html"/>
+    <id>https://dummerfu.top/p/3028.html</id>
+    <published>2021-06-01T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      Yolo网络学习,zzy主笔 ヾ(≧▽≦*)o
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="python" scheme="https://dummerfu.top/tags/python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 文件传输</title>
+    <link href="https://dummerfu.top/p/14426.html"/>
+    <id>https://dummerfu.top/p/14426.html</id>
+    <published>2021-05-27T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      文件传输痛点终于解决了
+    
+    </summary>
+    
+      <category term="杂集" scheme="https://dummerfu.top/categories/%E6%9D%82%E9%9B%86/"/>
+    
+    
+      <category term="Linux" scheme="https://dummerfu.top/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>信号之谜</title>
+    <link href="https://dummerfu.top/p/22895.html"/>
+    <id>https://dummerfu.top/p/22895.html</id>
+    <published>2021-05-10T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;‘信号’之谜&quot;&gt;&lt;a href=&quot;#‘信号’之谜&quot; class=&quot;headerlink&quot; title=&quot;‘信号’之谜&quot;&gt;&lt;/a&gt;‘信号’之谜&lt;/h1&gt;&lt;p&gt;​   
+        
+      
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>美多商城</title>
+    <link href="https://dummerfu.top/p/6015.html"/>
+    <id>https://dummerfu.top/p/6015.html</id>
+    <published>2021-04-21T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.696Z</updated>
+    
+    <summary type="html">
+    
+      熟悉一下远古毕业设计难度
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="python基础" scheme="https://dummerfu.top/tags/python%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>深拷贝与浅拷贝</title>
+    <link href="https://dummerfu.top/p/12139.html"/>
+    <id>https://dummerfu.top/p/12139.html</id>
+    <published>2021-04-08T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.696Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;深拷贝与浅拷贝&quot;&gt;&lt;a href=&quot;#深拷贝与浅拷贝&quot; class=&quot;headerlink&quot; title=&quot;深拷贝与浅拷贝&quot;&gt;&lt;/a&gt;深拷贝与浅拷贝&lt;/h1&gt;&lt;div class=&#39;tip warning&#39;&gt;python的赋值与c++不同&lt;/div&gt;
+
+&lt;h2
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="python基础" scheme="https://dummerfu.top/tags/python%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>退役流水账</title>
+    <link href="https://dummerfu.top/p/11997.html"/>
+    <id>https://dummerfu.top/p/11997.html</id>
+    <published>2021-04-05T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.696Z</updated>
+    
+    <summary type="html">
+    
+      流水账，不要看
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【转载】初探docker</title>
+    <link href="https://dummerfu.top/p/21866.html"/>
+    <id>https://dummerfu.top/p/21866.html</id>
+    <published>2021-03-15T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;div class=&quot;tip warning&quot;&gt;本文转载于http://www.ruanyifeng.com/blog/2018/02/docker-tutorial.html&lt;/div&gt;
+
+&lt;p&gt;2013年发布至今， &lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="转载" scheme="https://dummerfu.top/categories/%E8%BD%AC%E8%BD%BD/"/>
+    
+    
+      <category term="docker" scheme="https://dummerfu.top/tags/docker/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线程与进程</title>
+    <link href="https://dummerfu.top/p/52642.html"/>
+    <id>https://dummerfu.top/p/52642.html</id>
+    <published>2021-03-03T17:08:12.000Z</published>
+    <updated>2021-07-19T08:17:58.696Z</updated>
+    
+    <summary type="html">
+    
+      Here&#39;s something encrypted, password is required to continue reading.
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>经典网络实现</title>
+    <link href="https://dummerfu.top/p/35344.html"/>
+    <id>https://dummerfu.top/p/35344.html</id>
+    <published>2021-02-20T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.696Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;div class=&quot;tip error&quot;&gt;看不懂别人的代码,自己实现一遍经典网络,熟悉keras api&lt;/div&gt;
+
+ &lt;div
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="机器学习" scheme="https://dummerfu.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>pyecharts模板</title>
+    <link href="https://dummerfu.top/p/57635.html"/>
+    <id>https://dummerfu.top/p/57635.html</id>
+    <published>2021-01-18T17:08:12.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h1 id=&quot;pyecharts-Theme&quot;&gt;&lt;a href=&quot;#pyecharts-Theme&quot; class=&quot;headerlink&quot; title=&quot;pyecharts Theme&quot;&gt;&lt;/a&gt;pyecharts Theme&lt;/h1&gt;&lt;figure
+        
+      
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="pyecharts" scheme="https://dummerfu.top/tags/pyecharts/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>北斗文献综述</title>
+    <link href="https://dummerfu.top/p/60871.html"/>
+    <id>https://dummerfu.top/p/60871.html</id>
+    <published>2021-01-18T00:00:00.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      文献综述怎么写啊/(ㄒoㄒ)/~~
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="杂项" scheme="https://dummerfu.top/tags/%E6%9D%82%E9%A1%B9/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-sakura 安装twikoo</title>
+    <link href="https://dummerfu.top/p/64378.html"/>
+    <id>https://dummerfu.top/p/64378.html</id>
+    <published>2021-01-08T22:51:58.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      twikoo--国产评论之光
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="主题美化" scheme="https://dummerfu.top/tags/%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo-sakura踩坑记</title>
+    <link href="https://dummerfu.top/p/52131.html"/>
+    <id>https://dummerfu.top/p/52131.html</id>
+    <published>2021-01-08T22:51:58.000Z</published>
+    <updated>2021-07-19T08:17:58.692Z</updated>
+    
+    <summary type="html">
+    
+      主题美化踩坑记
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="主题美化" scheme="https://dummerfu.top/tags/%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,564 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Linux 文件传输 | Sakura        Momoko</title><meta name="keywords" content="Linux"><meta name="author" content="dummerfu"><meta name="copyright" content="dummerfu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="文件传输痛点终于解决了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux 文件传输">
+<meta property="og:url" content="https://dummerfu.top/p/14426.html">
+<meta property="og:site_name" content="Sakura        Momoko">
+<meta property="og:description" content="文件传输痛点终于解决了">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://dummerfu.top/img/lazyload.svg">
+<meta property="article:published_time" content="2021-05-27T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-07-19T08:17:58.692Z">
+<meta property="article:author" content="dummerfu">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://dummerfu.top/img/lazyload.svg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummerfu.top/p/14426"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="ul2nhVj6HNaI1d3xtFc7_eYD8Shq0bCu53fkA7a_7Bc"/><meta name="baidu-site-verification" content="code-584WEbZyly"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="apple-touch-icon" sizes="180x180" href="/assets/siteicon/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/assets/siteicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/assets/siteicon/favicon-16x16.png"/><link rel="mask-icon" href="/assets/siteicon/safari-pinned-tab.svg" color="#5bbad5"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":"70vh"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-07-19 08:17:58'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><link rel="stylesheet" href="/css/mycss.css"><script src='https://cdn.jsdelivr.net/npm/butterfly-friend@1.0.4/dist/friend.min.js'></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://at.alicdn.com/t/font_2134734_qu549vixs5f.css?spm=a313x.7781069.1998910419.60&file=font_2134734_qu549vixs5f.css" medis="defer" onload="this.media='all'"><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tags faa-tada"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/shuoshuo/"><i class="fa-fw fas fa-bullhorn faa-tada"></i><span> 说说</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed02@image_bed_001/img/20210507235146.jpg')"><nav id="nav"><span id="blog_name"> <a id="site-name" onclick="btf.scrollToDest(0, 500)" data-title="文件传输痛点终于解决了">Linux 文件传输</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/tags/"><i class="fa-fw fas fa-tags faa-tada"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/shuoshuo/"><i class="fa-fw fas fa-bullhorn faa-tada"></i><span> 说说</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Linux 文件传输</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-05-27T00:00:00.000Z" title="Created 2021-05-27 00:00:00">2021-05-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-07-19T08:17:58.692Z" title="Updated 2021-07-19 08:17:58">2021-07-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%9D%82%E9%9B%86/">杂集</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Linux 文件传输"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="杂谈"><a href="#杂谈" class="headerlink" title="杂谈"></a>杂谈</h1><p>​    昨日去实验室，发现电脑又换了<del>每次去都要配次环境，佛了</del>，在解压数据集的时候发现数据集损坏…</p>
+<p>四处找工具传输，不得不吐槽Linuxqq页面和06年qq一样，qq是指望不上了。<del>最后还是靠的U盘</del></p>
+<p>​    现在发现一个好用的传输工具python包？，无需下载安装，可以跑满带宽，支持多下载方式，只需要提供数据源有python环境并且处在<strong>一个局域网下</strong>即可，它就是—— <strong>http.server</strong>！！</p>
+<p><del>这不比网上的fps，scp便捷？？？感觉是解决了U盘不够大的问题</del></p>
+<p>​    废话不多说直接上操作</p>
+<h1 id="共享文件"><a href="#共享文件" class="headerlink" title="共享文件"></a>共享文件</h1><h2 id="http-server-的基本操作"><a href="#http-server-的基本操作" class="headerlink" title="http.server 的基本操作"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lmg-jie/p/9564608.html">http.server 的基本操作</a></h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 简单使用:</span></span><br><span class="line"><span class="comment"># 关闭终端或ctrl C就会停止服务</span></span><br><span class="line">python http.server 端口号</span><br><span class="line"></span><br><span class="line"><span class="comment"># 后台挂载</span></span><br><span class="line"><span class="comment"># 在上述命令的最后加一个 &amp; ，则该命令产生的进程在后台运行，不会影响当前终端的使用（我们在只有一个bash的环境下）。</span></span><br><span class="line">python -m http.server 8000 &amp;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在命令的开头加一个nohup，忽略所有的挂断信号，如果当前bash关闭，则当前进程会挂载到init进程下，成为其子进程，这样即使退出当前bash，其8000端口也可以使用。</span></span><br><span class="line"><span class="comment"># windows 下无法这样，无论是start还是nohup都不行</span></span><br><span class="line">nohup python -m http.server 8000 &amp;</span><br></pre></td></tr></table></figure>
+<div tips="warning">python2 要将http.server 修改为 SimpleHTTPServer</div>
+
+<h2 id="Windows"><a href="#Windows" class="headerlink" title="　Windows"></a>　Windows</h2><h3 id="快速上手"><a href="#快速上手" class="headerlink" title="快速上手"></a>快速上手</h3><p>打开cmd，cd到需要的共享文件夹的<strong>上一级目录</strong>，python -m http.server 9393</p>
+<h3 id="高级进阶"><a href="#高级进阶" class="headerlink" title="高级进阶"></a>高级进阶</h3><p>查看端口是否开放</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看端口是否占用，无返回则未被占用</span></span><br><span class="line">netstat -ano |findstr <span class="string">&quot;端口号&quot;</span></span><br><span class="line"><span class="comment"># 若占用找到PID，查看谁占用</span></span><br><span class="line">tasklist |findstr <span class="string">&quot;PID&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 若无关紧要，终止进程</span></span><br><span class="line">taskkill /f /t /pid <span class="string">&quot;PID&quot;</span> -t -f</span><br><span class="line"><span class="comment"># 也可以用name终止,比如python.exe</span></span><br><span class="line">taskkill /f /t /im python.exe</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/lazyload.svg" data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed02@image_bed_001/img/20210527123936.png" alt="image-20210527123936242">    </p>
+<h2 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 查看ip</span></span><br><span class="line">ifconfig -a</span><br><span class="line"><span class="comment"># 查看端口</span></span><br><span class="line">netstat -nlt</span><br><span class="line"><span class="comment"># 查看进程</span></span><br><span class="line">ps -ef</span><br><span class="line"><span class="comment"># 杀死进程(-9强制杀死)</span></span><br><span class="line"><span class="built_in">kill</span> -9 PID</span><br><span class="line"><span class="comment"># 通过名字精确杀死</span></span><br><span class="line">killall firefox</span><br><span class="line"><span class="comment"># 模糊查找，杀死所有包含firefox的进程</span></span><br><span class="line">pkill firefox</span><br></pre></td></tr></table></figure>
+<h2 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h2><p>浏览器中输入：你的ip:9393就可以访问了，类似下面的样子，但是这样只能可以直接下载压缩文件</p>
+<p><img src= "/img/lazyload.svg" data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed02@image_bed_001/img/20210527122842.png" alt="image-20210527122842821"></p>
+<p>缺点就是只能同一个局域网访问，但是也可以做端口映射达到公网访问的效果（不建议办公网络使用</p>
+<p><del>反正家庭网络也没什么值得攻击的，只要不设置80，3389，443这种端口映射就行</del></p>
+<h2 id="使用wget下载文件"><a href="#使用wget下载文件" class="headerlink" title="使用wget下载文件"></a>使用wget下载文件</h2><p>为什么用wget呢？<del><a target="_blank" rel="noopener" href="https://www.cnblogs.com/sx66/p/11887022.html">因为wget什么都能下</a></del> 就省去打包压缩这一步了</p>
+<p>今天我才发现window也可以使用wget <a target="_blank" rel="noopener" href="https://sourceforge.net/projects/gnuwin32/">download is here!</a></p>
+<p>因为可能会文件名字乱码出现invaid argument奇怪bug，所以建议文件夹不要用中文命名</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget -c -r -np -nH -nc -k --restrict-file-names=nocontrol <span class="string">&quot;url&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 参数可以wget -h查看</span></span><br><span class="line"><span class="comment"># 常用参数如下</span></span><br><span class="line"><span class="comment"># 注意 -O 只能在下载单个文件的时候才能起到重命名的作用</span></span><br><span class="line"><span class="comment"># -O newname 将文档写入newname</span></span><br><span class="line"><span class="comment"># -c 断点续传</span></span><br><span class="line"><span class="comment"># -r 递归下载</span></span><br><span class="line"><span class="comment"># -t 设置重试次数</span></span><br><span class="line"><span class="comment"># -np noparent</span></span><br><span class="line"><span class="comment"># -nH 不要创建主目录。</span></span><br><span class="line"><span class="comment"># -nc 不下载已经下载的文件</span></span><br><span class="line"><span class="comment"># -k 修复相对链接为绝对链接</span></span><br><span class="line"><span class="comment"># --restrict-file-names=nocontrol 网上都说能解决中文乱码问题（我没有解决/(ㄒoㄒ)/~~</span></span><br></pre></td></tr></table></figure>
+<p><del>发现还是打包压缩再下载方便，弄什么文件夹递归下载，不好使</del></p>
+</article><div class="essaySuffix-box"> <div class="essaySuffix-box-left"> <img src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"></div><div class="essaySuffix-box-right"> <span class="essaySuffix-right-title">本文作者：</span><strong> <span><a href="https:dummerfu.top" target="_blank" one-link-mark="yes">dummerfu</a></span></strong><br><span class="essaySuffix-right-title">本文链接：</span><a href="https://dummerfu.top/p/14426.html">https://dummerfu.top/p/14426.html</a><br><span class="essaySuffix-right-title">版权声明: </span>
+本博客所有文章除特别声明外，均采用<a rel="noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>
+转载请注明出处！</div></div><div class="tag_share"><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/p/22895.html"><img class="prev-cover" data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/5.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">信号之谜</div></div></a></div><div class="next-post pull-right"><a href="/p/3028.html"><img class="next-cover" data-lazy-src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">YoloV3 介绍</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/><div class="author-info__name">dummerfu</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">25</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">13</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">4</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummerchen"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/dummerchen" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rat"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">本博客由博客园<a href="https://www.cnblogs.com/cherrypill/" target=" _blank">cherrypill</a>迁移</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9D%82%E8%B0%88"><span class="toc-number">1.</span> <span class="toc-text">杂谈</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%B1%E4%BA%AB%E6%96%87%E4%BB%B6"><span class="toc-number">2.</span> <span class="toc-text">共享文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#http-server-%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.1.</span> <span class="toc-text">http.server 的基本操作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Windows"><span class="toc-number">2.2.</span> <span class="toc-text">　Windows</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B"><span class="toc-number">2.2.1.</span> <span class="toc-text">快速上手</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E7%BA%A7%E8%BF%9B%E9%98%B6"><span class="toc-number">2.2.2.</span> <span class="toc-text">高级进阶</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux"><span class="toc-number">2.3.</span> <span class="toc-text">Linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AE%BF%E9%97%AE"><span class="toc-number">2.4.</span> <span class="toc-text">访问</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8wget%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="toc-number">2.5.</span> <span class="toc-text">使用wget下载文件</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/p/21773.html" title="markdown公式记录"><img data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20210712095058.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="markdown公式记录"/></a><div class="content"><a class="title" href="/p/21773.html" title="markdown公式记录">markdown公式记录</a><time datetime="2021-07-16T00:00:00.000Z" title="Created 2021-07-16 00:00:00">2021-07-16</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/51816.html" title="基本无约束最优化实现代码"><img data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20210712095248.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="基本无约束最优化实现代码"/></a><div class="content"><a class="title" href="/p/51816.html" title="基本无约束最优化实现代码">基本无约束最优化实现代码</a><time datetime="2021-07-15T00:00:00.000Z" title="Created 2021-07-15 00:00:00">2021-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/41070.html" title="【转载】Tag Plugins Plus"><img data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20210712095249.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【转载】Tag Plugins Plus"/></a><div class="content"><a class="title" href="/p/41070.html" title="【转载】Tag Plugins Plus">【转载】Tag Plugins Plus</a><time datetime="2021-07-15T00:00:00.000Z" title="Created 2021-07-15 00:00:00">2021-07-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/50102.html" title="数模从入门到入土"><img data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed02@image_bed_001/img/20210704165107.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数模从入门到入土"/></a><div class="content"><a class="title" href="/p/50102.html" title="数模从入门到入土">数模从入门到入土</a><time datetime="2021-07-07T00:00:00.000Z" title="Created 2021-07-07 00:00:00">2021-07-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/15888.html" title="Git Action 自动部署hexo"><img data-lazy-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed02@image_bed_001/img/20210704165106.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Git Action 自动部署hexo"/></a><div class="content"><a class="title" href="/p/15888.html" title="Git Action 自动部署hexo">Git Action 自动部署hexo</a><time datetime="2021-07-04T22:51:58.000Z" title="Created 2021-07-04 22:51:58">2021-07-04</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By dummerfu</div><p id="ghbdages"></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script></div><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai'
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: false, 
+    user: 'dummerchen',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'github-calendar-api.vercel.app' ? 'https://github-calendar-api.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox") && (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500)) {
+  gitcalendar.simplemode = false
+}
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script defer src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="/js/moments.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '0');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/custom/wow_init.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 糖果屋上新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 糖果屋上新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
