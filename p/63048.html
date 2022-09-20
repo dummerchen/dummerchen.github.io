@@ -1,0 +1,698 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>图像理解与计算机视觉笔记 | Sakura        Momoko</title><meta name="keywords" content="随笔"><meta name="author" content="dummerfu"><meta name="copyright" content="dummerfu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="水博客">
+<meta property="og:type" content="article">
+<meta property="og:title" content="图像理解与计算机视觉笔记">
+<meta property="og:url" content="https://dummerfu.top/p/63048.html">
+<meta property="og:site_name" content="Sakura        Momoko">
+<meta property="og:description" content="水博客">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg">
+<meta property="article:published_time" content="2022-06-18T00:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-18T00:00:00.000Z">
+<meta property="article:author" content="dummerfu">
+<meta property="article:tag" content="随笔">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummerfu.top/p/63048"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="ul2nhVj6HNaI1d3xtFc7_eYD8Shq0bCu53fkA7a_7Bc"/><meta name="baidu-site-verification" content="code-584WEbZyly"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7cb70c60ee4da7f272c0d8059de063b7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":"70vh"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2022-06-18 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link rel="stylesheet" href="/css/mycss.css"><script src='https://cdn.jsdelivr.net/npm/butterfly-friend@1.0.4/dist/friend.min.js'></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://at.alicdn.com/t/font_2134734_qu549vixs5f.css?spm=a313x.7781069.1998910419.60&file=font_2134734_qu549vixs5f.css" medis="defer" onload="this.media='all'"><script src="/js/lazyload.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145212.jpg')"><nav id="nav"><span id="blog_name"> <a id="site-name" onclick="btf.scrollToDest(0, 500)" data-title="水博客">图像理解与计算机视觉笔记</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">图像理解与计算机视觉笔记</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2022-06-18T00:00:00.000Z" title="Created 2022-06-18 00:00:00">2022-06-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2022-06-18T00:00:00.000Z" title="Updated 2022-06-18 00:00:00">2022-06-18</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.3k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>7min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="图像理解与计算机视觉笔记"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="一、图像信号分析基础"><a href="#一、图像信号分析基础" class="headerlink" title="一、图像信号分析基础"></a>一、图像信号分析基础</h2><h3 id="灰度与灰度级"><a href="#灰度与灰度级" class="headerlink" title="灰度与灰度级"></a>灰度与灰度级</h3><p>每个像素的取值为灰度，所有灰度的种类成为灰度级。通常有2、8、256、65536灰度级。</p>
+<p>色彩包括亮度、色调、饱和度。</p>
+<h3 id="邻域与邻接"><a href="#邻域与邻接" class="headerlink" title="邻域与邻接"></a>邻域与邻接</h3><ul>
+<li>四邻域：上下左右，四个像素相邻。</li>
+<li>八邻域：上下左右，斜边八像素相邻。</li>
+<li>D邻域：只有斜边的四个像素相邻。</li>
+<li>m-连接：两个像素的四邻域没有相交且是D邻域或八邻域连接则为m连接（就是只有斜着的两个像素）</li>
+</ul>
+<h3 id="边缘线"><a href="#边缘线" class="headerlink" title="边缘线"></a>边缘线</h3><p>对于不同的联通方式会有不同的边缘线，比如四联通和八联通就不一样。求的都是最长的边缘线。</p>
+<p>对于一个边缘线可以用链码来描述，按逆时针方向分别标注为0~7，七个方向。对链码进行差分则得到的是方向的相对位置，所以对平移、旋转变换很鲁棒。注意，差分是当前点减去前一个点。</p>
+<h3 id="卷积运算"><a href="#卷积运算" class="headerlink" title="卷积运算"></a>卷积运算</h3><p>这里都默认是Same，所以要在外面填充0，然后需要注意的是模板要旋转180度。</p>
+<h2 id="二、图像增强与恢复"><a href="#二、图像增强与恢复" class="headerlink" title="二、图像增强与恢复"></a>二、图像增强与恢复</h2><h3 id="直方图均衡化"><a href="#直方图均衡化" class="headerlink" title="直方图均衡化"></a>直方图均衡化</h3><p>通过修改像素种类的分布，使图片对比度增加，注意映射函数是向上取整。</p>
+<h3 id="图像平滑"><a href="#图像平滑" class="headerlink" title="图像平滑"></a>图像平滑</h3><h4 id="空域平滑"><a href="#空域平滑" class="headerlink" title="空域平滑"></a>空域平滑</h4><ul>
+<li>平滑模板</li>
+<li>多帧图片求平均</li>
+</ul>
+<h4 id="频域平滑"><a href="#频域平滑" class="headerlink" title="频域平滑"></a>频域平滑</h4><ul>
+<li>低通滤波</li>
+<li>高通滤波</li>
+</ul>
+<h4 id="中值滤波"><a href="#中值滤波" class="headerlink" title="中值滤波"></a>中值滤波</h4><p>个人觉得这应该算是空域平滑的平滑模板类里面。</p>
+<p>也就是分不同的平滑模板，但是只是求中值而不是平均值。</p>
+<h3 id="图像锐化"><a href="#图像锐化" class="headerlink" title="图像锐化"></a>图像锐化</h3><p>感觉和求边缘很相似，都是求梯度这种，也是拉普拉斯算子之类的。拉普拉斯模板就是拉普拉斯算子求出来后再加原图片，所以中间都会比拉普拉斯算子多1。</p>
+<h3 id="图像复原"><a href="#图像复原" class="headerlink" title="图像复原"></a>图像复原</h3><p>类似图像超分，先对图像进行退化再学习一个函数对图像进行复原，如果无约束就是一个梯度下降，有约束加一个拉格朗日算子。</p>
+<p>图像退化分为:</p>
+<ul>
+<li>简单退化：直接图像加噪声</li>
+<li>通用退化：退化函数+噪声</li>
+<li>变形退化：也是退化函数+噪声</li>
+<li>频域退化：频域退化函数+频域噪声</li>
+</ul>
+<p>现在gan都是用类通用退化，用不同的退化函数多次退化但是不加噪声，因为退化函数本身就会携带噪声进去，比如jpeg压缩会带有伪影。使用多次退化函数也能让模型学习的函数不是简单的逆函数。</p>
+<h2 id="三、图像边缘检测"><a href="#三、图像边缘检测" class="headerlink" title="三、图像边缘检测"></a>三、图像边缘检测</h2><p>图像边缘是一个区域的终结到另一个区域的开始，是图像局部特征不连续的表现，由导数可以很明显的判断。</p>
+<h3 id="一阶导数"><a href="#一阶导数" class="headerlink" title="一阶导数"></a>一阶导数</h3><p>不同方法就是计算水平梯度和垂直梯度的区别。</p>
+<ul>
+<li><p>正交梯度：</p>
+<p>  对图片分别求水平梯度和垂直梯度，然后按不同的梯度幅值规则，合称为梯度图像，然后设定阈值对图片进行分割。</p>
+</li>
+<li><p>robert算子：</p>
+<p>  对斜方向计算梯度，剩下步骤与正交梯度相同。但是对噪声更敏感</p>
+<script type="math/tex; mode=display">
+  W_h= \left[ \begin{matrix}
+  -1&0& 0\\
+  0&1&0\\
+  0&0&0
+  \end{matrix} \right]
+  \quad
+  W_v= \left[ \begin{matrix}
+  0&-1& 0\\
+  1&0&0\\
+  0&0&0
+  \end{matrix} \right]</script></li>
+<li><p>prewitt算子：使用了平均，能减少噪声的影响，但是会使边缘也更模糊</p>
+<script type="math/tex; mode=display">
+  W_h=\frac{1}{3} \left[ \begin{matrix}
+  -1&0&1\\
+  -1&0&1\\
+  -1&0&1
+  \end{matrix} \right]
+  \quad
+  W_v=\frac{1}{3}\left[ \begin{matrix}
+  -1&-1&-1\\
+  0&0&0\\
+  1&1&1
+  \end{matrix} \right]</script></li>
+<li><p>sobel算子：使用加权平均，比prewitt边缘更清晰</p>
+<script type="math/tex; mode=display">
+  W_h=\frac{1}{4} \left[ \begin{matrix}
+  -1&0&1\\
+  -2&0&2\\
+  -1&0&1
+  \end{matrix} \right]
+  \quad
+  W_v=\frac{1}{4}\left[ \begin{matrix}
+  -1&-2&-1\\
+  0&0&0\\
+  1&2&1
+  \end{matrix} \right]</script></li>
+</ul>
+<h3 id="二阶导数"><a href="#二阶导数" class="headerlink" title="二阶导数"></a>二阶导数</h3><ul>
+<li><p>拉普拉斯算子：对独立点和线效果很好，但是对噪声不耐受，所以一般先平滑处理，有四近邻模板，八近邻模板等。</p>
+<script type="math/tex; mode=display">
+  W_4=\left[ \begin{matrix}
+  0&-1&0\\
+  -1&4&-1\\
+  0&-1&0
+  \end{matrix} \right]</script></li>
+<li><p>LoG算子(高斯拉普拉斯算子)：实际上就是先高斯滤波平滑处理后再使用拉普拉斯算子。</p>
+</li>
+<li><p>canny算子：</p>
+<p>  先高斯模糊，再计算梯度，采用非极大值抑制删掉不需要的梯度（将当前像素点与其梯度方向的像素点梯度对比，最大才保留），然后用双阈值法连接边缘（阈值高部分轮廓丢失，阈值低有假边缘，消失轮廓就用低阈值的边缘填充更有效）</p>
+</li>
+</ul>
+<p>​    拉普拉斯算子增强了图像中的灰度不连续边缘，而减弱了对应图像中灰度值缓慢变化区域的对比度，将这样的结果叠加到原始图像上就能得到锐化后的图像。</p>
+<h3 id="霍夫变换"><a href="#霍夫变换" class="headerlink" title="霍夫变换"></a>霍夫变换</h3><p>挺麻烦的，基本上就是将点通过映射到极坐标系确定线。广义霍夫变换还能检测物体位置（利用模板边缘和目标图片）。</p>
+<h2 id="四、图像分割"><a href="#四、图像分割" class="headerlink" title="四、图像分割"></a>四、图像分割</h2><h3 id="基于阈值分割"><a href="#基于阈值分割" class="headerlink" title="基于阈值分割"></a>基于阈值分割</h3><p>都是比较针对于单一目标，对于多目标难以奏效。</p>
+<ul>
+<li><p>直方图均值法：</p>
+<p>  对于双峰直方图，选取峰值间的最低点作为分割阈值，对于多峰灰度直方图，分别选取峰值最低点作为分割阈值。</p>
+</li>
+<li><p>最佳阈值法：</p>
+<p>  类似最小错误率的贝叶斯决策，通过求两个分布的交点来求出阈值。</p>
+</li>
+<li><p>均值迭代法：</p>
+<p>  初始选取双峰的最低点作为分割阈值，然后每次选择两个区域的均值再求平均得到新的阈值，直至阈值不再改变。</p>
+</li>
+<li><p>类间方差法（OTSU）阈值分割：</p>
+<p>  和LDA类似，要求类间方差大，类内方差小，遍历一个阈值T，分别计算两个区域的均值，然后在计算类间加权方差，求出最大方差对应的T。</p>
+</li>
+</ul>
+<h3 id="基于区域的分割"><a href="#基于区域的分割" class="headerlink" title="基于区域的分割"></a>基于区域的分割</h3><ul>
+<li><p>区域生长法：</p>
+<p>  遍历每一个像素与其邻域，如果规定的距离小于规定的阈值则合并，否则不合并。</p>
+<p>  对于不同规定的距离，分为不同的生长法：简单生长法（当前点与邻域像素值求abs），质心生长法（当前点与邻域区域平均值求abs），混合生长法（两个区域间的平均值求abs）</p>
+</li>
+<li><p>分裂合并法：</p>
+<p>  ​    利用均方差MSE，可计算区域间和区域内的loss，当一个区域间的loss大于阈值，则说明该区域不是一类，分割为4个区域，当区域间的loss小于阈值，说明区域相似，合并为一个区域。</p>
+<p>  ​    初始将图片分割为四个区域，然后遍历四个区域进行分裂合并（分裂和合并是互不影响的）。并且不同规定的最小分裂块对结果也不同。</p>
+</li>
+</ul>
+<h3 id="分水岭分割"><a href="#分水岭分割" class="headerlink" title="分水岭分割"></a>分水岭分割</h3><p>就是用洪水填充得到最后的边界，边界像素宽度必定是为1。计算简单但是容易过度分割，产生细小的区域。</p>
+<h2 id="五、形态学数字图像处理"><a href="#五、形态学数字图像处理" class="headerlink" title="五、形态学数字图像处理"></a>五、形态学数字图像处理</h2><ul>
+<li><p>腐蚀：</p>
+<p>  给定一个模板B，遍历原图A每一个像素，与模板B匹配，当B中的全部1都在A中也为1则新像素为1。与卷积相同，新图大小会改变，所以一般在外围填充0，二值图表现为图像变暗，小白点消失。 </p>
+</li>
+<li><p>膨胀：</p>
+<p>  给定一个模板B，遍历原图A每一个像素，与模板B匹配，当B中存在1在A中也为1则新像素为1。与腐蚀相同，新图大小会改变，所以一般在外围填充0，二值图表现为图像变亮，小黑点消失。</p>
+</li>
+<li><p>开操作：</p>
+<p>  先对原图进行腐蚀，再膨胀的操作称为开操作，能够去掉噪声，二值图中表现为小白点消失，暗效果不变化。</p>
+<p>  $A\circ B=(A\ominus B)\oplus B$。</p>
+</li>
+<li><p>闭操作：</p>
+<p>  先对原图进行膨胀再腐蚀的操作称为闭操作，能够去掉细小空洞，填补断裂，二值图中表现为小黑点消失，亮效果不变化。</p>
+<p>  $A\bullet B=(A\oplus B)\ominus B$</p>
+</li>
+<li><p>击中击不中变换：寻找形状的位置，B为需要找的形状，则$A*B=(A\ominus B)\and(A^C\ominus B^C) $，注意这里$B^C$是对一个任意大于B的窗口求补集。</p>
+</li>
+</ul>
+<p>应用：</p>
+<ul>
+<li><p>边界提取：A与AB腐蚀相减，$A-A\ominus B$。</p>
+</li>
+<li><p>区域填充：A的补中所有区域像素分别与B膨胀得到的结果。</p>
+</li>
+<li><p>细化：用于提取骨架特征，使用八个方向的模板B<strong>分别</strong>对A求击中击不中变换求补集再与A求交集。</p>
+<p>  $A\otimes B=A\and (A*B)^C \quad B={B0,B1…B7} $</p>
+</li>
+</ul>
+</article><div class="essaySuffix-box"> <div class="essaySuffix-box-left"> <img src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"></div><div class="essaySuffix-box-right"> <span class="essaySuffix-right-title">本文作者：</span><strong> <span><a href="https:dummerfu.top" target="_blank" one-link-mark="yes">dummerfu</a></span></strong><br><span class="essaySuffix-right-title">本文链接：</span><a href="https://dummerfu.top/p/63048.html">https://dummerfu.top/p/63048.html</a><br><span class="essaySuffix-right-title">版权声明: </span>
+本博客所有文章除特别声明外，均采用<a rel="noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>
+转载请注明出处！</div></div><div class="tag_share"><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/p/42559.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/5.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">代码审计工具</div></div></a></div><div class="next-post pull-right"><a href="/p/3640.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/5.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">【论文复现】SwinIR</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/p/33310.html" title="最巧妙的算法之一--快速傅里叶变换"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-12-01</div><div class="title">最巧妙的算法之一--快速傅里叶变换</div></div></a></div><div><a href="/p/61367.html" title="Unity 基本属性（占坑）"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/6.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-11-15</div><div class="title">Unity 基本属性（占坑）</div></div></a></div><div><a href="/p/64572.html" title="Colab 实现本地连接"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-06-01</div><div class="title">Colab 实现本地连接</div></div></a></div><div><a href="/p/42559.html" title="代码审计工具"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/5.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2022-05-20</div><div class="title">代码审计工具</div></div></a></div><div><a href="/p/22895.html" title="信号之谜"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-05-10</div><div class="title">信号之谜</div></div></a></div><div><a href="/p/15308.html" title="今天我就是马克思"><img class="cover" data-src="/img/lazyload.svg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-01-06</div><div class="title">今天我就是马克思</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/><div class="author-info__name">dummerfu</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummerchen"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/dummerchen" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rat"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">本博客由博客园<a href="https://www.cnblogs.com/cherrypill/" target=" _blank">cherrypill</a>迁移</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%9B%BE%E5%83%8F%E4%BF%A1%E5%8F%B7%E5%88%86%E6%9E%90%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">一、图像信号分析基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%B0%E5%BA%A6%E4%B8%8E%E7%81%B0%E5%BA%A6%E7%BA%A7"><span class="toc-number">1.1.</span> <span class="toc-text">灰度与灰度级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%82%BB%E5%9F%9F%E4%B8%8E%E9%82%BB%E6%8E%A5"><span class="toc-number">1.2.</span> <span class="toc-text">邻域与邻接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%B9%E7%BC%98%E7%BA%BF"><span class="toc-number">1.3.</span> <span class="toc-text">边缘线</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%B7%E7%A7%AF%E8%BF%90%E7%AE%97"><span class="toc-number">1.4.</span> <span class="toc-text">卷积运算</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%BC%BA%E4%B8%8E%E6%81%A2%E5%A4%8D"><span class="toc-number">2.</span> <span class="toc-text">二、图像增强与恢复</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96"><span class="toc-number">2.1.</span> <span class="toc-text">直方图均衡化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%B9%B3%E6%BB%91"><span class="toc-number">2.2.</span> <span class="toc-text">图像平滑</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%A9%BA%E5%9F%9F%E5%B9%B3%E6%BB%91"><span class="toc-number">2.2.1.</span> <span class="toc-text">空域平滑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A2%91%E5%9F%9F%E5%B9%B3%E6%BB%91"><span class="toc-number">2.2.2.</span> <span class="toc-text">频域平滑</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%AD%E5%80%BC%E6%BB%A4%E6%B3%A2"><span class="toc-number">2.2.3.</span> <span class="toc-text">中值滤波</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E9%94%90%E5%8C%96"><span class="toc-number">2.3.</span> <span class="toc-text">图像锐化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%BE%E5%83%8F%E5%A4%8D%E5%8E%9F"><span class="toc-number">2.4.</span> <span class="toc-text">图像复原</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%9B%BE%E5%83%8F%E8%BE%B9%E7%BC%98%E6%A3%80%E6%B5%8B"><span class="toc-number">3.</span> <span class="toc-text">三、图像边缘检测</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E9%98%B6%E5%AF%BC%E6%95%B0"><span class="toc-number">3.1.</span> <span class="toc-text">一阶导数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E9%98%B6%E5%AF%BC%E6%95%B0"><span class="toc-number">3.2.</span> <span class="toc-text">二阶导数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%8D%E5%A4%AB%E5%8F%98%E6%8D%A2"><span class="toc-number">3.3.</span> <span class="toc-text">霍夫变换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%9B%BE%E5%83%8F%E5%88%86%E5%89%B2"><span class="toc-number">4.</span> <span class="toc-text">四、图像分割</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E9%98%88%E5%80%BC%E5%88%86%E5%89%B2"><span class="toc-number">4.1.</span> <span class="toc-text">基于阈值分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E5%8C%BA%E5%9F%9F%E7%9A%84%E5%88%86%E5%89%B2"><span class="toc-number">4.2.</span> <span class="toc-text">基于区域的分割</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E6%B0%B4%E5%B2%AD%E5%88%86%E5%89%B2"><span class="toc-number">4.3.</span> <span class="toc-text">分水岭分割</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E5%BD%A2%E6%80%81%E5%AD%A6%E6%95%B0%E5%AD%97%E5%9B%BE%E5%83%8F%E5%A4%84%E7%90%86"><span class="toc-number">5.</span> <span class="toc-text">五、形态学数字图像处理</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/p/49081.html" title="【论文复现】Restormer"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】Restormer"/></a><div class="content"><a class="title" href="/p/49081.html" title="【论文复现】Restormer">【论文复现】Restormer</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/3640.html" title="【论文复现】SwinIR"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145155.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】SwinIR"/></a><div class="content"><a class="title" href="/p/3640.html" title="【论文复现】SwinIR">【论文复现】SwinIR</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/63048.html" title="图像理解与计算机视觉笔记"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145212.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图像理解与计算机视觉笔记"/></a><div class="content"><a class="title" href="/p/63048.html" title="图像理解与计算机视觉笔记">图像理解与计算机视觉笔记</a><time datetime="2022-06-18T00:00:00.000Z" title="Created 2022-06-18 00:00:00">2022-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/42559.html" title="代码审计工具"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码审计工具"/></a><div class="content"><a class="title" href="/p/42559.html" title="代码审计工具">代码审计工具</a><time datetime="2022-05-20T00:00:00.000Z" title="Created 2022-05-20 00:00:00">2022-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212120605.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"/></a><div class="content"><a class="title" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation">【论文复现】卷积网络可视化Grad-cam和Guide backpropagation</a><time datetime="2022-05-16T00:00:00.000Z" title="Created 2022-05-16 00:00:00">2022-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By dummerfu</div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo"/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender"/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub"/></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script></div><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai'
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.15/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: false, 
+    user: 'dummerchen',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'github-calendar-api.vercel.app' ? 'https://github-calendar-api.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox") && (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500)) {
+  gitcalendar.simplemode = false
+}
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script defer src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="/js/moments.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '0');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/custom/wow_init.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 有文章更新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 有文章更新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

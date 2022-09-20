@@ -1,0 +1,582 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>pyecharts模板 | Sakura        Momoko</title><meta name="keywords" content="pyecharts"><meta name="author" content="dummerfu"><meta name="copyright" content="dummerfu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="pyecharts ThemeLIGHT &#x3D; &quot;light&quot;DARK &#x3D; &quot;dark&quot;WHITE &#x3D; &quot;white&quot;CHALK: str &#x3D; &quot;chalk&quot;ESSOS: str &#x3D; &quot;essos&quot;INFOGRAPHIC: str &#x3D; &quot;infographic&quot;MACARONS:">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pyecharts模板">
+<meta property="og:url" content="https://dummerfu.top/p/57635.html">
+<meta property="og:site_name" content="Sakura        Momoko">
+<meta property="og:description" content="pyecharts ThemeLIGHT &#x3D; &quot;light&quot;DARK &#x3D; &quot;dark&quot;WHITE &#x3D; &quot;white&quot;CHALK: str &#x3D; &quot;chalk&quot;ESSOS: str &#x3D; &quot;essos&quot;INFOGRAPHIC: str &#x3D; &quot;infographic&quot;MACARONS:">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/2.jpg">
+<meta property="article:published_time" content="2021-01-18T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-24T00:00:00.000Z">
+<meta property="article:author" content="dummerfu">
+<meta property="article:tag" content="pyecharts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/2.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummerfu.top/p/57635"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="ul2nhVj6HNaI1d3xtFc7_eYD8Shq0bCu53fkA7a_7Bc"/><meta name="baidu-site-verification" content="code-584WEbZyly"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7cb70c60ee4da7f272c0d8059de063b7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":"70vh"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-08-24 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link rel="stylesheet" href="/css/mycss.css"><script src='https://cdn.jsdelivr.net/npm/butterfly-friend@1.0.4/dist/friend.min.js'></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://at.alicdn.com/t/font_2134734_qu549vixs5f.css?spm=a313x.7781069.1998910419.60&file=font_2134734_qu549vixs5f.css" medis="defer" onload="this.media='all'"><script src="/js/lazyload.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed01@master/img/20210105114659.jpg')"><nav id="nav"><span id="blog_name"> <a id="site-name" onclick="btf.scrollToDest(0, 500)" data-title="HI 这里是dummefu">pyecharts模板</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">pyecharts模板</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-01-18T00:00:00.000Z" title="Created 2021-01-18 00:00:00">2021-01-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-08-24T00:00:00.000Z" title="Updated 2021-08-24 00:00:00">2021-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">2.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>14min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="pyecharts模板"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="pyecharts-Theme"><a href="#pyecharts-Theme" class="headerlink" title="pyecharts Theme"></a>pyecharts Theme</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">LIGHT = <span class="string">&quot;light&quot;</span></span><br><span class="line">DARK = <span class="string">&quot;dark&quot;</span></span><br><span class="line">WHITE = <span class="string">&quot;white&quot;</span></span><br><span class="line">CHALK: <span class="built_in">str</span> = <span class="string">&quot;chalk&quot;</span></span><br><span class="line">ESSOS: <span class="built_in">str</span> = <span class="string">&quot;essos&quot;</span></span><br><span class="line">INFOGRAPHIC: <span class="built_in">str</span> = <span class="string">&quot;infographic&quot;</span></span><br><span class="line">MACARONS: <span class="built_in">str</span> = <span class="string">&quot;macarons&quot;</span></span><br><span class="line">PURPLE_PASSION: <span class="built_in">str</span> = <span class="string">&quot;purple-passion&quot;</span></span><br><span class="line">ROMA: <span class="built_in">str</span> = <span class="string">&quot;roma&quot;</span></span><br><span class="line">ROMANTIC: <span class="built_in">str</span> = <span class="string">&quot;romantic&quot;</span></span><br><span class="line">SHINE: <span class="built_in">str</span> = <span class="string">&quot;shine&quot;</span></span><br><span class="line">VINTAGE: <span class="built_in">str</span> = <span class="string">&quot;vintage&quot;</span></span><br><span class="line">WALDEN: <span class="built_in">str</span> = <span class="string">&quot;walden&quot;</span></span><br><span class="line">WESTEROS: <span class="built_in">str</span> = <span class="string">&quot;westeros&quot;</span></span><br><span class="line">WONDERLAND: <span class="built_in">str</span> = <span class="string">&quot;wonderland&quot;</span></span><br><span class="line">HALLOWEEN: <span class="built_in">str</span> = <span class="string">&quot;halloween&quot;</span></span><br></pre></td></tr></table></figure>
+<p>个人比较喜欢chalk，infographic，purple-passion</p>
+<h1 id="常用配置项"><a href="#常用配置项" class="headerlink" title="常用配置项"></a>常用配置项</h1><p><a target="_blank" rel="noopener" href="https://pyecharts.org/#/zh-cn/">官网文档</a></p>
+<h2 id="初始化配置项"><a href="#初始化配置项" class="headerlink" title="初始化配置项"></a>初始化配置项</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">InitOpts</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 图表画布宽度，css 长度单位。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    width: <span class="built_in">str</span> = <span class="string">&quot;900px&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 图表画布高度，css 长度单位。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    height: <span class="built_in">str</span> = <span class="string">&quot;500px&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 图表 ID，图表唯一标识，用于在多图表时区分。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    chart_id: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 渲染风格，可选 &quot;canvas&quot;, &quot;svg&quot;</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># # 参考 `全局变量` 章节</span></span></span></span><br><span class="line"><span class="params"><span class="class">    renderer: <span class="built_in">str</span> = RenderType.CANVAS,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 网页标题</span></span></span></span><br><span class="line"><span class="params"><span class="class">    page_title: <span class="built_in">str</span> = <span class="string">&quot;Awesome-pyecharts&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 图表主题</span></span></span></span><br><span class="line"><span class="params"><span class="class">    theme: <span class="built_in">str</span> = <span class="string">&quot;white&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 图表背景颜色</span></span></span></span><br><span class="line"><span class="params"><span class="class">    bg_color: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 远程 js host，如不设置默认为 https://assets.pyecharts.org/assets/&quot;</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 参考 `全局变量` 章节</span></span></span></span><br><span class="line"><span class="params"><span class="class">    js_host: <span class="built_in">str</span> = <span class="string">&quot;&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 画图动画初始化配置，参考 `global_options.AnimationOpts`</span></span></span></span><br><span class="line"><span class="params"><span class="class">    animation_opts: <span class="type">Union</span>[AnimationOpts, <span class="built_in">dict</span>] = AnimationOpts(<span class="params"></span>),</span></span></span><br><span class="line"><span class="params"><span class="class"></span>)</span></span><br></pre></td></tr></table></figure>
+<h2 id="工具箱配置项"><a href="#工具箱配置项" class="headerlink" title="工具箱配置项"></a>工具箱配置项</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ToolboxOpts</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 是否显示工具栏组件</span></span></span></span><br><span class="line"><span class="params"><span class="class">    is_show: <span class="built_in">bool</span> = <span class="literal">True</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 工具栏 icon 的布局朝向。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 可选：&#x27;horizontal&#x27;, &#x27;vertical&#x27;</span></span></span></span><br><span class="line"><span class="params"><span class="class">    orient: <span class="built_in">str</span> = <span class="string">&quot;horizontal&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 工具栏组件离容器左侧的距离。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># left 的值可以是像 20 这样的具体像素值，可以是像 &#x27;20%&#x27; 这样相对于容器高宽的百分比，</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 也可以是 &#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 如果 left 的值为&#x27;left&#x27;, &#x27;center&#x27;, &#x27;right&#x27;，组件会根据相应的位置自动对齐</span></span></span></span><br><span class="line"><span class="params"><span class="class">    pos_left: <span class="built_in">str</span> = <span class="string">&quot;80%&quot;</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 工具栏组件离容器右侧的距离。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># right 的值可以是像 20 这样的具体像素值，可以是像 &#x27;20%&#x27; 这样相对于容器高宽的百分比。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    pos_right: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 工具栏组件离容器上侧的距离。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># top 的值可以是像 20 这样的具体像素值，可以是像 &#x27;20%&#x27; 这样相对于容器高宽的百分比，</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 也可以是 &#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 如果 top 的值为&#x27;top&#x27;, &#x27;middle&#x27;, &#x27;bottom&#x27;，组件会根据相应的位置自动对齐。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    pos_top: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 工具栏组件离容器下侧的距离。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># bottom 的值可以是像 20 这样的具体像素值，可以是像 &#x27;20%&#x27; 这样相对于容器高宽的百分比。</span></span></span></span><br><span class="line"><span class="params"><span class="class">    pos_bottom: <span class="type">Optional</span>[<span class="built_in">str</span>] = <span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="class"></span></span></span><br><span class="line"><span class="params"><span class="class">    <span class="comment"># 各工具配置项，参考 `global_options.ToolBoxFeatureOpts`</span></span></span></span><br><span class="line"><span class="params"><span class="class">    feature: <span class="type">Union</span>[ToolBoxFeatureOpts, <span class="built_in">dict</span>] = ToolBoxFeatureOpts(<span class="params"></span>),</span></span></span><br><span class="line"><span class="params"><span class="class"></span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"># 通常只用一个</span></span><br><span class="line"><span class="class">.<span class="title">set_global_opts</span>(<span class="params">toolbox_opts=opts.ToolboxOpts(<span class="params">is_show=<span class="literal">True</span></span>)</span>)</span></span><br></pre></td></tr></table></figure>
+<h2 id="visualmap-opts"><a href="#visualmap-opts" class="headerlink" title="visualmap_opts"></a>visualmap_opts</h2><p>可以实现某一段一种颜色，相比较markline更简洁，在不连续数据中更常用。</p>
+<ul>
+<li>max, min在自定义颜色可以不用</li>
+<li>如果要自定义颜色，需要is_piecewise=True，并且每一段都要设置颜色</li>
+<li>也可以自定义颜色和透明度，range_color,range_opacity</li>
+</ul>
+<p>附上颜色渐变的好网站<a target="_blank" rel="noopener" href="https://webgradients.com/">webgradients</a>和<a target="_blank" rel="noopener" href="https://mycolor.space/?hex=%23E7E750&amp;sub=1">mycolor</a></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">visualmap_opts=opts.VisualMapOpts(</span><br><span class="line">    <span class="comment"># type_=&quot;color&quot;, max_=220, min_=0, dimension=1,</span></span><br><span class="line">    <span class="comment"># range_color=[&#x27;#F2FEDC&#x27;,&#x27;#E7E750&#x27;],</span></span><br><span class="line">    is_piecewise=<span class="literal">True</span>,</span><br><span class="line">    pieces=[&#123;<span class="string">&#x27;min&#x27;</span>:<span class="number">80</span>,<span class="string">&#x27;max&#x27;</span>:<span class="number">120</span>,<span class="string">&#x27;color&#x27;</span>:<span class="string">&#x27;black&#x27;</span>&#125;]</span><br><span class="line">),</span><br></pre></td></tr></table></figure>
+<h1 id="Graph"><a href="#Graph" class="headerlink" title="Graph"></a>Graph</h1><p><strong>graph的点必须唯一，不然会报index的错误</strong></p>
+<p>模板：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">links=[]</span><br><span class="line">nodes=[]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_graph_node</span>(<span class="params">nodename, position, category,symbol_size,symbol</span>):</span></span><br><span class="line">    one_node=opts.GraphNode(</span><br><span class="line">        name=nodename,</span><br><span class="line">        x=position[<span class="number">0</span>],</span><br><span class="line">        y=position[<span class="number">1</span>],</span><br><span class="line">        category=category,</span><br><span class="line">        symbol_size=symbol_size,</span><br><span class="line">        symbol=symbol,</span><br><span class="line">        label_opts=opts.LabelOpts(is_show=<span class="literal">True</span>,position=<span class="string">&#x27;inside&#x27;</span>,color=<span class="string">&#x27;white&#x27;</span>),</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> one_node</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_graph_link</span>(<span class="params">source,target,value,width</span>):</span></span><br><span class="line">    node_link=opts.GraphLink(</span><br><span class="line">        source=source,target=target,value=<span class="built_in">int</span>(value),</span><br><span class="line">        linestyle_opts=opts.LineStyleOpts(</span><br><span class="line">            <span class="comment"># 线宽</span></span><br><span class="line">            width=<span class="built_in">int</span>(width),</span><br><span class="line">            <span class="comment"># 线的弯曲程度</span></span><br><span class="line">            curve=<span class="number">0.3</span>,</span><br><span class="line">            <span class="comment"># 线的透明度</span></span><br><span class="line">            opacity=<span class="string">&quot;0.7&quot;</span>,</span><br><span class="line">            <span class="comment"># 线的颜色</span></span><br><span class="line">            color=<span class="string">&#x27;grey&#x27;</span>,</span><br><span class="line">        ),</span><br><span class="line">        label_opts=opts.LabelOpts(</span><br><span class="line">            is_show=<span class="literal">False</span>,</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">    <span class="keyword">return</span> node_link</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">graph=(</span><br><span class="line">    ct.Graph(</span><br><span class="line">        init_opts=opts.InitOpts(</span><br><span class="line">            bg_color=<span class="string">&#x27;white&#x27;</span>,</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">    )</span><br><span class="line">    .add(</span><br><span class="line">            <span class="string">&quot;&quot;</span>,nodes,links,</span><br><span class="line">            categories=category,</span><br><span class="line">            repulsion=<span class="number">800</span>,</span><br><span class="line">            edge_symbol=[<span class="string">&#x27;circle&#x27;</span>,<span class="string">&#x27;arrow&#x27;</span>],</span><br><span class="line">            layout=<span class="string">&#x27;none&#x27;</span>,</span><br><span class="line">            edge_length=<span class="number">500</span>,</span><br><span class="line">            </span><br><span class="line">            itemstyle_opts=opts.ItemStyleOpts(opacity=<span class="number">0.7</span>)</span><br><span class="line">        )</span><br><span class="line">    .set_global_opts(toolbox_opts=opts.ToolboxOpts(is_show=<span class="literal">True</span>))</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">graph.render_notebook()</span><br><span class="line"><span class="comment"># graph.render(&#x27;1.html&#x27;)</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h1 id="Radar"><a href="#Radar" class="headerlink" title="Radar"></a>Radar</h1><p>模板</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">radar=(</span><br><span class="line">    ct.Radar(init_opts=opts.InitOpts(width=<span class="string">&quot;860px&quot;</span>, height=<span class="string">&quot;720px&quot;</span>,bg_color=<span class="string">&quot;white&quot;</span>))</span><br><span class="line">    .add_schema(</span><br><span class="line">        schema=[</span><br><span class="line">            opts.RadarIndicatorItem(name=<span class="string">&quot;主因子1&quot;</span>, max_=<span class="number">2</span>,min_=-<span class="number">2</span>),</span><br><span class="line">            opts.RadarIndicatorItem(name=<span class="string">&quot;主因子2&quot;</span>, max_=<span class="number">3</span>,min_=-<span class="number">2</span>),</span><br><span class="line">            opts.RadarIndicatorItem(name=<span class="string">&quot;主因子3&quot;</span>, max_=<span class="number">0</span>,min_=-<span class="number">2</span>),</span><br><span class="line">            opts.RadarIndicatorItem(name=<span class="string">&quot;主因子4&quot;</span>, max_=<span class="number">0</span>,min_=-<span class="number">1</span>),</span><br><span class="line">            opts.RadarIndicatorItem(name=<span class="string">&quot;主因子5&quot;</span>, max_=<span class="number">0</span>,min_=-<span class="number">0.1</span>),</span><br><span class="line">        ],</span><br><span class="line">        <span class="comment"># 改变位置，但是有Page的话可以去掉</span></span><br><span class="line">        center=[<span class="string">&quot;50%&quot;</span>, <span class="string">&quot;50%&quot;</span>],</span><br><span class="line">        <span class="comment"># 分隔线设置，感觉对雷达图没用</span></span><br><span class="line">        splitarea_opt=opts.SplitAreaOpts(</span><br><span class="line">            is_show=<span class="literal">True</span>, areastyle_opts=opts.AreaStyleOpts(opacity=<span class="number">1</span>)</span><br><span class="line">        ),</span><br><span class="line">        <span class="comment"># 文本设置</span></span><br><span class="line">        textstyle_opts=opts.TextStyleOpts(color=<span class="string">&quot;black&quot;</span>),</span><br><span class="line">    )</span><br><span class="line">    .add(</span><br><span class="line">        series_name=<span class="string">&quot;Huskies15&quot;</span>,</span><br><span class="line">        data=hus15,</span><br><span class="line">        <span class="comment"># 线型设置</span></span><br><span class="line">        linestyle_opts=opts.LineStyleOpts(color=<span class="string">&quot;#CD0000&quot;</span>,width=<span class="number">2</span>,opacity=<span class="number">0.5</span>),</span><br><span class="line">        <span class="comment"># 区域颜色设置</span></span><br><span class="line">        areastyle_opts=opts.AreaStyleOpts(opacity=<span class="number">0.5</span>,color=<span class="string">&#x27;#CD0000&#x27;</span>),</span><br><span class="line">    )</span><br><span class="line">    .add(</span><br><span class="line">        series_name=<span class="string">&quot;Oppen15&quot;</span>,</span><br><span class="line">        data=opp15,</span><br><span class="line">        linestyle_opts=opts.LineStyleOpts(color=<span class="string">&quot;#5CACEE&quot;</span>,width=<span class="number">2</span>,opacity=<span class="number">0.5</span>),</span><br><span class="line">        areastyle_opts=opts.AreaStyleOpts(opacity=<span class="number">0.5</span>,color=<span class="string">&#x27;#5CACEE&#x27;</span>),</span><br><span class="line">    )</span><br><span class="line">    .set_series_opts(label_opts=opts.LabelOpts(is_show=<span class="literal">True</span>,color=<span class="string">&#x27;black&#x27;</span>))</span><br><span class="line">    .set_global_opts(</span><br><span class="line">        title_opts=opts.TitleOpts(title=<span class="string">&quot;队伍能力比较&quot;</span>), legend_opts=opts.LegendOpts()</span><br><span class="line">    )</span><br><span class="line">    .render(<span class="string">&quot;radar_chart.html&quot;</span>)</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="Line"><a href="#Line" class="headerlink" title="Line"></a>Line</h1><p>要注意的是x轴的type，不光是list，list里面还必须是<strong>有序的python int类型</strong>或<strong>string类型</strong></p>
+<p><del>numpy.int32都识别不了</del></p>
+<p>如果x是数字，要指定type_=value(默认是category)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> options <span class="keyword">as</span> opts</span><br><span class="line"><span class="keyword">from</span> pyecharts <span class="keyword">import</span> charts <span class="keyword">as</span> ct</span><br><span class="line">y=[<span class="number">6.106</span>,<span class="number">6.037</span>,<span class="number">5.934</span>,<span class="number">5.967</span>,<span class="number">5.955</span>,<span class="number">6.024</span>,<span class="number">6.031</span>,<span class="number">5.825</span>,<span class="number">5.740</span>,<span class="number">5.700</span>]</span><br><span class="line">year=[<span class="string">&#x27;1920&#x27;</span>,<span class="string">&#x27;1930&#x27;</span>,<span class="string">&#x27;1940&#x27;</span>,<span class="string">&#x27;1950&#x27;</span>,<span class="string">&#x27;1960&#x27;</span>,<span class="string">&#x27;1970&#x27;</span>,<span class="string">&#x27;1980&#x27;</span>,<span class="string">&#x27;1990&#x27;</span>,<span class="string">&#x27;2000&#x27;</span>,<span class="string">&#x27;2010&#x27;</span>]</span><br><span class="line">line=(</span><br><span class="line">    ct.Line(init_opts=opts.InitOpts(bg_color=<span class="string">&#x27;white&#x27;</span>))</span><br><span class="line">    .add_xaxis(xaxis_data=year)</span><br><span class="line">    .add_yaxis(</span><br><span class="line">            series_name=i,</span><br><span class="line">            y_axis=y,</span><br><span class="line">            <span class="comment"># 连线是否平滑</span></span><br><span class="line">            is_smooth=<span class="literal">False</span>,</span><br><span class="line">            <span class="comment"># 是否显示点</span></span><br><span class="line">            is_symbol_show=<span class="literal">True</span>,</span><br><span class="line">            <span class="comment"># 点的形状样式</span></span><br><span class="line">            symbol=<span class="string">&quot;circle&quot;</span>,</span><br><span class="line">            <span class="comment"># 大小</span></span><br><span class="line">            symbol_size=<span class="number">10</span>,</span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 点上方标签的样式</span></span><br><span class="line">            label_opts=opts.LabelOpts(is_show=<span class="literal">True</span>,font_size=<span class="number">13</span>,position=<span class="string">&quot;top&quot;</span>, color=<span class="string">&quot;#2F4858&quot;</span>),</span><br><span class="line">            <span class="comment"># 点的风格样式</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment"># 放上去是否显示坐标</span></span><br><span class="line">            tooltip_opts=opts.TooltipOpts(is_show=<span class="literal">True</span>),</span><br><span class="line">    )</span><br><span class="line">    .set_global_opts(</span><br><span class="line">            title_opts=opts.TitleOpts(</span><br><span class="line">                title=<span class="string">&quot;1920-2020 music score trend &quot;</span>,</span><br><span class="line">                pos_top=<span class="string">&quot;5%&quot;</span>,</span><br><span class="line">                pos_left=<span class="string">&quot;center&quot;</span>,</span><br><span class="line">                title_textstyle_opts=opts.TextStyleOpts(font_size=<span class="number">16</span>,color=<span class="string">&#x27;#2F4858&#x27;</span>),</span><br><span class="line">            ),</span><br><span class="line">            xaxis_opts=opts.AxisOpts(</span><br><span class="line">                boundary_gap=<span class="literal">True</span>,</span><br><span class="line">                axisline_opts=opts.AxisLineOpts(is_show=<span class="literal">False</span>),</span><br><span class="line">                <span class="comment"># axistick_opts=opts.AxisTickOpts(</span></span><br><span class="line">                <span class="comment">#     is_show=True,</span></span><br><span class="line">                <span class="comment">#     length=25,</span></span><br><span class="line">                <span class="comment"># ),</span></span><br><span class="line">                splitline_opts=opts.SplitLineOpts(</span><br><span class="line">                    is_show=<span class="literal">True</span></span><br><span class="line">                ),</span><br><span class="line">            ),</span><br><span class="line">            yaxis_opts=opts.AxisOpts(</span><br><span class="line">                type_=<span class="string">&quot;value&quot;</span>,</span><br><span class="line">                position=<span class="string">&quot;left&quot;</span>,</span><br><span class="line">                <span class="comment"># max_=6.2,</span></span><br><span class="line">                <span class="comment">#min_=5.5,</span></span><br><span class="line">            ),</span><br><span class="line">            toolbox_opts=opts.ToolboxOpts(is_show=<span class="literal">True</span>),</span><br><span class="line">            legend_opts=opts.LegendOpts(is_show=<span class="literal">False</span>),</span><br><span class="line">        )</span><br><span class="line">)</span><br><span class="line">line.render_notebook()</span><br></pre></td></tr></table></figure>
+<h1 id="Scatter"><a href="#Scatter" class="headerlink" title="Scatter"></a>Scatter</h1><p>和line差不多，就少了几个配置项（linestyle,areastyle..)</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">scatter=(</span><br><span class="line">         ct.Scatter(init_opts=opts.InitOpts(bg_color=<span class="string">&#x27;white&#x27;</span> ,theme=ThemeType.LIGHT))</span><br><span class="line">        .add_xaxis(</span><br><span class="line">            xaxis_data=pinf_list[:<span class="number">3500</span>],</span><br><span class="line">        )</span><br><span class="line">        </span><br><span class="line">        .add_yaxis(</span><br><span class="line">            series_name=<span class="string">&quot;&quot;</span>,</span><br><span class="line">            y_axis=artist_list[:<span class="number">3500</span>],</span><br><span class="line">            symbol_size=<span class="number">10</span>,</span><br><span class="line">            label_opts=opts.LabelOpts(is_show=<span class="literal">False</span>),</span><br><span class="line">            tooltip_opts=opts.TooltipOpts(is_show=<span class="literal">True</span>),</span><br><span class="line">            markline_opts=opts.MarkLineOpts(</span><br><span class="line">                data=[</span><br><span class="line">                    opts.MarkLineItem(x=<span class="number">0.5</span>,symbol=[<span class="string">&#x27;None&#x27;</span>,<span class="string">&#x27;None&#x27;</span>])],</span><br><span class="line">                linestyle_opts=opts.LineStyleOpts(width=<span class="number">2</span>,type_=<span class="string">&#x27;dashed&#x27;</span>,color=<span class="string">&#x27;#2F4858&#x27;</span>),</span><br><span class="line">                ),</span><br><span class="line">                </span><br><span class="line">        )</span><br><span class="line">        .set_global_opts(</span><br><span class="line">            title_opts=opts.TitleOpts(</span><br><span class="line">                title=<span class="string">&quot;Influencer and Genre affect&quot;</span>,</span><br><span class="line">                pos_left=<span class="string">&quot;center&quot;</span>,</span><br><span class="line">                title_textstyle_opts=opts.TextStyleOpts(color=<span class="string">&quot;#ED6087&quot;</span>, font_size=<span class="number">16</span>),</span><br><span class="line">            ),</span><br><span class="line">            xaxis_opts=opts.AxisOpts(</span><br><span class="line">                type_=<span class="string">&quot;value&quot;</span>, splitline_opts=opts.SplitLineOpts(is_show=<span class="literal">True</span>),</span><br><span class="line">                boundary_gap=<span class="literal">False</span>,</span><br><span class="line">            ),</span><br><span class="line">            yaxis_opts=opts.AxisOpts(</span><br><span class="line">                type_=<span class="string">&quot;value&quot;</span>,</span><br><span class="line">                position=<span class="string">&quot;left&quot;</span>,</span><br><span class="line">                axislabel_opts=opts.LabelOpts(is_show=<span class="literal">False</span>),</span><br><span class="line">                axistick_opts=opts.AxisTickOpts(is_show=<span class="literal">False</span>),</span><br><span class="line">                splitline_opts=opts.SplitLineOpts(is_show=<span class="literal">False</span>),</span><br><span class="line">            ),</span><br><span class="line">            toolbox_opts=opts.ToolboxOpts(is_show=<span class="literal">True</span>),</span><br><span class="line">            legend_opts=opts.LegendOpts(is_show=<span class="literal">False</span>),</span><br><span class="line">        )</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="Bar"><a href="#Bar" class="headerlink" title="Bar"></a>Bar</h1><h2 id="2DBar"><a href="#2DBar" class="headerlink" title="2DBar"></a>2DBar</h2><figure class="highlight routeros"><table><tr><td class="code"><pre><span class="line">bar=(</span><br><span class="line">    ct.Bar(<span class="attribute">init_opts</span>=opts.InitOpts(bg_color=&#x27;white&#x27;))</span><br><span class="line">    .add_xaxis(<span class="attribute">xaxis_data</span>=idx)</span><br><span class="line">    .add_yaxis(</span><br><span class="line">            <span class="string">&#x27;进港航班数&#x27;</span>,</span><br><span class="line">            jg,</span><br><span class="line">            </span><br><span class="line">            # 点上方标签的样式</span><br><span class="line">            <span class="attribute">label_opts</span>=opts.LabelOpts(is_show=True,font_size=13,position=&quot;top&quot;),</span><br><span class="line">            # 放上去是否显示坐标</span><br><span class="line">            <span class="attribute">tooltip_opts</span>=opts.TooltipOpts(is_show=True),</span><br><span class="line">    )</span><br><span class="line">    .set_global_opts(</span><br><span class="line">            <span class="attribute">title_opts</span>=opts.TitleOpts(</span><br><span class="line">                <span class="attribute">title</span>=<span class="string">&quot;8.22 日进港航班数&quot;</span>,</span><br><span class="line">                <span class="attribute">pos_top</span>=<span class="string">&quot;5%&quot;</span>,</span><br><span class="line">                <span class="attribute">pos_left</span>=<span class="string">&quot;center&quot;</span>,</span><br><span class="line">                <span class="attribute">title_textstyle_opts</span>=opts.TextStyleOpts(font_size=16),</span><br><span class="line">            ),</span><br><span class="line">            <span class="attribute">xaxis_opts</span>=opts.AxisOpts(</span><br><span class="line">                <span class="attribute">boundary_gap</span>=<span class="literal">True</span>,</span><br><span class="line">                <span class="attribute">axisline_opts</span>=opts.AxisLineOpts(is_show=False),</span><br><span class="line">                <span class="attribute">splitline_opts</span>=opts.SplitLineOpts(</span><br><span class="line">                    <span class="attribute">is_show</span>=<span class="literal">True</span></span><br><span class="line">                ),</span><br><span class="line">            ),</span><br><span class="line">            <span class="attribute">toolbox_opts</span>=opts.ToolboxOpts(is_show=True),</span><br><span class="line">            <span class="attribute">legend_opts</span>=opts.LegendOpts(is_show=False),</span><br><span class="line">        )</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">bar.render_notebook()</span><br></pre></td></tr></table></figure>
+<h2 id="3Dbar"><a href="#3Dbar" class="headerlink" title="3Dbar"></a>3Dbar</h2><figure class="highlight python"><table><tr><td class="code"><pre><span class="line">bar3d=(</span><br><span class="line">    ct.Bar3D(init_opts=opts.InitOpts(bg_color=<span class="string">&#x27;white&#x27;</span>))</span><br><span class="line">    .add(</span><br><span class="line">        series_name=<span class="string">&quot;&quot;</span>,</span><br><span class="line">        data=data,</span><br><span class="line">        xaxis3d_opts=opts.Axis3DOpts(name=<span class="string">&#x27;xxx&#x27;</span>,type_=<span class="string">&quot;value&quot;</span>, data=v0),</span><br><span class="line">        yaxis3d_opts=opts.Axis3DOpts(name=<span class="string">&#x27;xxx&#x27;</span>,type_=<span class="string">&quot;value&quot;</span>, data=d),</span><br><span class="line">        zaxis3d_opts=opts.Axis3DOpts(type_=<span class="string">&quot;value&quot;</span>),</span><br><span class="line">    )</span><br><span class="line">    .set_global_opts(</span><br><span class="line">        visualmap_opts=opts.VisualMapOpts(</span><br><span class="line">            max_=<span class="number">1</span>,</span><br><span class="line">            range_color=[</span><br><span class="line">                <span class="string">&quot;#313695&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#4575b4&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#74add1&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#abd9e9&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#e0f3f8&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#ffffbf&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#fee090&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#fdae61&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#f46d43&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#d73027&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#a50026&quot;</span>,</span><br><span class="line">            ],</span><br><span class="line">        )</span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">bar3d.render_notebook()</span><br></pre></td></tr></table></figure>
+<h1 id="Heatmap"><a href="#Heatmap" class="headerlink" title="Heatmap"></a>Heatmap</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">heatmap=(</span><br><span class="line">    ct.HeatMap(init_opts=opts.InitOpts(bg_color=<span class="string">&#x27;white&#x27;</span>))</span><br><span class="line">    .add_xaxis(t)</span><br><span class="line">    .add_yaxis(</span><br><span class="line">        series_name=<span class="string">&quot;&quot;</span>,</span><br><span class="line">        yaxis_data=[<span class="built_in">str</span>(i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">150</span>)],</span><br><span class="line">        value=y,</span><br><span class="line">        <span class="comment"># label_opts=opts.LabelOpts(is_show=True,font_size=13,position=&quot;top&quot;),</span></span><br><span class="line"></span><br><span class="line">    )</span><br><span class="line">    .set_global_opts(</span><br><span class="line">        title_opts=opts.TitleOpts(title=<span class="string">&quot;蓄车池数量对决策的影响&quot;</span>,pos_left=<span class="string">&#x27;40%&#x27;</span>),</span><br><span class="line">        xaxis_opts=opts.AxisOpts(</span><br><span class="line">            name=<span class="string">&#x27;时间&#x27;</span>,</span><br><span class="line">            type_=<span class="string">&quot;category&quot;</span>,</span><br><span class="line">            splitarea_opts=opts.SplitAreaOpts(</span><br><span class="line">                is_show=<span class="literal">True</span>, areastyle_opts=opts.AreaStyleOpts(opacity=<span class="number">1</span>)</span><br><span class="line">            ),</span><br><span class="line">        ),</span><br><span class="line">        yaxis_opts=opts.AxisOpts(</span><br><span class="line">            name=<span class="string">&#x27;蓄车池数量&#x27;</span>,</span><br><span class="line">            type_=<span class="string">&quot;category&quot;</span>,</span><br><span class="line">            splitarea_opts=opts.SplitAreaOpts(</span><br><span class="line">                is_show=<span class="literal">True</span>, areastyle_opts=opts.AreaStyleOpts(opacity=<span class="number">0.5</span>)</span><br><span class="line">            ),</span><br><span class="line">        ),</span><br><span class="line">        visualmap_opts=opts.VisualMapOpts(</span><br><span class="line">            max_=<span class="number">1</span>,</span><br><span class="line">            range_color=[</span><br><span class="line">                <span class="string">&quot;#e0f3f8&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#ffffbf&quot;</span>,</span><br><span class="line">                <span class="string">&quot;#fee090&quot;</span>,</span><br><span class="line">            ],</span><br><span class="line">        ),</span><br><span class="line">        toolbox_opts=opts.ToolboxOpts(is_show=<span class="literal">True</span>)</span><br><span class="line">        </span><br><span class="line">    )</span><br><span class="line">)</span><br><span class="line">heatmap.render(<span class="string">&#x27;./pic/question2.html&#x27;</span>)s</span><br></pre></td></tr></table></figure>
+<h1 id="Sunshine"><a href="#Sunshine" class="headerlink" title="Sunshine"></a>Sunshine</h1><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># data是这种json格式</span></span><br><span class="line">color=[<span class="string">&quot;#f89a80&quot;</span>,<span class="string">&quot;#f37674&quot;</span>,<span class="string">&quot;#e75b68&quot;</span>,<span class="string">&quot;#ef5a78&quot;</span>,<span class="string">&quot;#03a653&quot;</span>,<span class="string">&quot;#9ea718&quot;</span>,<span class="string">&quot;#d0b24f&quot;</span>,<span class="string">&quot;#8eb646&quot;</span>,<span class="string">&quot;#faef07&quot;</span></span><br><span class="line">           <span class="string">&quot;#8f1c53&quot;</span>,<span class="string">&quot;#b34039&quot;</span>,<span class="string">&quot;#8b6439&quot;</span>,<span class="string">&quot;#a2b029&quot;</span>,<span class="string">&quot;#718933&quot;</span>]</span><br><span class="line">data=[</span><br><span class="line">            &#123;<span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;star Five&#x27;</span>,</span><br><span class="line">             <span class="string">&quot;itemStyle&quot;</span>: &#123;<span class="string">&quot;color&quot;</span>: <span class="string">&quot;#da0d68&quot;</span>&#125;,</span><br><span class="line">             <span class="string">&#x27;children&#x27;</span>:[</span><br><span class="line">                 &#123;</span><br><span class="line">                     <span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;helpful_votes&#x27;</span>,</span><br><span class="line">                     <span class="comment"># itemstyle</span></span><br><span class="line">                     <span class="comment">#&#x27;value&#x27;</span></span><br><span class="line">                     <span class="string">&#x27;children&#x27;</span>:[]</span><br><span class="line">                 &#125;,</span><br><span class="line">                 &#123;</span><br><span class="line">                     <span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;unhelpful_votes&#x27;</span>,</span><br><span class="line">                     <span class="string">&#x27;children&#x27;</span>:[]</span><br><span class="line">                 &#125;</span><br><span class="line">                ]</span><br><span class="line">             &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;star Four&#x27;</span>,</span><br><span class="line">                <span class="string">&quot;itemStyle&quot;</span>: &#123;<span class="string">&quot;color&quot;</span>: <span class="string">&quot;#da1d23&quot;</span>&#125;,</span><br><span class="line">                <span class="string">&#x27;children&#x27;</span>:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;helpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="comment"># itemstyle</span></span><br><span class="line">                        <span class="comment"># &#x27;value&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;unhelpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">             &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;star Three&#x27;</span>,</span><br><span class="line">                <span class="string">&quot;itemStyle&quot;</span>: &#123;<span class="string">&quot;color&quot;</span>: <span class="string">&quot;#c94a44&quot;</span>&#125;,</span><br><span class="line">                <span class="string">&#x27;children&#x27;</span>:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;helpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="comment"># itemstyle</span></span><br><span class="line">                        <span class="comment"># &#x27;value&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;unhelpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;star Two&#x27;</span>,</span><br><span class="line">                <span class="string">&quot;itemStyle&quot;</span>: &#123;<span class="string">&quot;color&quot;</span>: <span class="string">&quot;#f7a128&quot;</span>&#125;,</span><br><span class="line">                <span class="string">&#x27;children&#x27;</span>:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;helpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="comment"># itemstyle</span></span><br><span class="line">                        <span class="comment"># &#x27;value&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;unhelpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&#x27;name&#x27;</span>:<span class="string">&#x27;star One&#x27;</span>,</span><br><span class="line">                <span class="string">&quot;itemStyle&quot;</span>: &#123;<span class="string">&quot;color&quot;</span>: <span class="string">&quot;#ad213e&quot;</span>&#125;,</span><br><span class="line">                <span class="string">&#x27;children&#x27;</span>:[</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;helpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="comment"># itemstyle</span></span><br><span class="line">                        <span class="comment"># &#x27;value&#x27;</span></span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;,</span><br><span class="line">                    &#123;</span><br><span class="line">                        <span class="string">&#x27;name&#x27;</span>: <span class="string">&#x27;unhelpful_votes&#x27;</span>,</span><br><span class="line">                        <span class="string">&#x27;children&#x27;</span>: []</span><br><span class="line">                    &#125;</span><br><span class="line">                ]</span><br><span class="line">            &#125;,</span><br><span class="line">          ]</span><br><span class="line"></span><br><span class="line">c = (</span><br><span class="line">        ct.Sunburst(</span><br><span class="line">            init_opts=opts.InitOpts(width=<span class="string">&quot;1000px&quot;</span>, height=<span class="string">&quot;600px&quot;</span>,bg_color=<span class="string">&#x27;white&#x27;</span>) )</span><br><span class="line">            .add(</span><br><span class="line">            <span class="string">&quot;&quot;</span>,</span><br><span class="line">            data_pair=data,</span><br><span class="line">            highlight_policy=<span class="string">&quot;ancestor&quot;</span>,</span><br><span class="line">            radius=[<span class="number">0</span>, <span class="string">&quot;95%&quot;</span>],</span><br><span class="line">            sort_=<span class="string">&quot;null&quot;</span>,</span><br><span class="line">            levels=[</span><br><span class="line">                &#123;&#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;r0&quot;</span>: <span class="string">&quot;15%&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;r&quot;</span>: <span class="string">&quot;35%&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;itemStyle&quot;</span>: &#123;<span class="string">&quot;borderWidth&quot;</span>: <span class="number">2</span>&#125;,</span><br><span class="line">                    <span class="string">&quot;label&quot;</span>: &#123;<span class="string">&quot;rotate&quot;</span>: <span class="string">&quot;tangential&quot;</span>&#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">                &#123;<span class="string">&quot;r0&quot;</span>: <span class="string">&quot;35%&quot;</span>, <span class="string">&quot;r&quot;</span>: <span class="string">&quot;70%&quot;</span>, <span class="string">&quot;label&quot;</span>: &#123;<span class="string">&quot;align&quot;</span>: <span class="string">&quot;right&quot;</span>&#125;&#125;,</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;r0&quot;</span>: <span class="string">&quot;70%&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;r&quot;</span>: <span class="string">&quot;72%&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;label&quot;</span>: &#123;<span class="string">&quot;position&quot;</span>: <span class="string">&quot;outside&quot;</span>, <span class="string">&quot;padding&quot;</span>: <span class="number">3</span>, <span class="string">&quot;silent&quot;</span>: <span class="literal">False</span>&#125;,</span><br><span class="line">                    <span class="string">&quot;itemStyle&quot;</span>: &#123;<span class="string">&quot;borderWidth&quot;</span>: <span class="number">3</span>&#125;,</span><br><span class="line">                &#125;,</span><br><span class="line">            ],</span><br><span class="line">        )</span><br><span class="line">            .set_global_opts(title_opts=opts.TitleOpts(title=<span class="string">&quot;Sunburst-官方示例&quot;</span>))</span><br><span class="line">            .set_series_opts(label_opts=opts.LabelOpts(formatter=<span class="string">&quot;&#123;b&#125;&quot;</span>))</span><br><span class="line">            .set_global_opts(toolbox_opts=opts.ToolboxOpts(is_show=<span class="literal">True</span>))</span><br><span class="line">            .render(<span class="string">&quot;hairdryer.html&quot;</span>)</span><br><span class="line">    )</span><br></pre></td></tr></table></figure>
+<h1 id="页面布局"><a href="#页面布局" class="headerlink" title="页面布局"></a>页面布局</h1><h2 id="Page"><a href="#Page" class="headerlink" title="Page"></a>Page</h2><p>本来只能垂直叠加，但是根据初始化的width，height也可以达到水平布局的效果，但是通过<strong>Page.DraggablePageLayout布局可以实现任意位置、大小布局</strong>，简称神器。</p>
+<p>但是如果有背景色图表重叠时会相互覆盖，此时效果不如grid，背景透明时，图表覆盖则不会产生问题，优于grid。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 使用浏览器打开渲染后的 .html 文件，默认为 render.html。拖拉/调整图表位置和大小，当调整到一个适合</span></span><br><span class="line"><span class="comment"># 的布局时，点击左上方的 `Save Config` 按钮，下载 chart_config.json 配置文件，假设存放位置为</span></span><br><span class="line"><span class="comment"># ~/chart_config.json。再次渲染图表并指定其布局配置</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Warning: 请注释掉上面的的所有渲染代码，就是以下三行。因为 html 已经生成，并不需要再重新渲染一遍。</span></span><br><span class="line">page=ct.Page(layout=ct.Page.DraggablePageLayout)</span><br><span class="line">page.add(Radar15(),Radar9())</span><br><span class="line">page.render(<span class="string">&#x27;render.html&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># render.html：第一步生成的原 html 文件</span></span><br><span class="line"><span class="comment"># chart_config.json：第二步下载的配置文件</span></span><br><span class="line"><span class="comment"># my_new_charts.html：新 html 文件路径</span></span><br><span class="line">Page.save_resize_html(<span class="string">&quot;render.html&quot;</span>, cfg_file=<span class="string">&quot;path/chart_config.json&quot;</span>, dest=<span class="string">&quot;my_new_charts.html&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 或者可以使用 json 数据</span></span><br><span class="line"><span class="comment"># cfg_dict 为 json 文件里面的内容</span></span><br><span class="line">Page.save_resize_html(<span class="string">&quot;render.html&quot;</span>, cfg_dict=cfg_dict, dest=<span class="string">&quot;my_new_charts.html&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># Question：能否复用渲染模板？</span></span><br><span class="line"><span class="comment"># Answer: 可以的，渲染配置 json 数据中是以 chart_id 来作为一个图形的唯一标识符的，所以只需要在</span></span><br><span class="line"><span class="comment"># 第一次渲染的时候指定 chart_id 就可以啦。</span></span><br><span class="line"><span class="comment"># example:</span></span><br><span class="line"><span class="comment"># bar = bar_datazoom_slider()</span></span><br><span class="line"><span class="comment"># bar.chart_id = &quot;1&quot;</span></span><br><span class="line"><span class="comment"># line = line_markpoint()</span></span><br><span class="line"><span class="comment"># line.chart_id = &quot;2&quot;</span></span><br><span class="line"><span class="comment"># pie = pie_rosetype()</span></span><br><span class="line"><span class="comment"># pie.chart_id = &quot;3&quot;</span></span><br><span class="line"><span class="comment"># 然后只要以后都按这个 chart_id 来渲染图表的时候，你的布局配置就可以复用啦。</span></span><br><span class="line"><span class="comment"># cat chart_config.json，会发现 chart_id 是固定的啦。</span></span><br></pre></td></tr></table></figure>
+<h2 id="Grid"><a href="#Grid" class="headerlink" title="Grid"></a>Grid</h2><p>​    grid布局一定需要一个有坐标轴的图，如果都没有坐标轴，比如玫瑰图，可以通过设置center参数实现布局</p>
+<p>对于不需要初始就显示完美图的可以使用Page.DraggablePageLayout手动调整位置，更为方便。</p>
+</article><div class="essaySuffix-box"> <div class="essaySuffix-box-left"> <img src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"></div><div class="essaySuffix-box-right"> <span class="essaySuffix-right-title">本文作者：</span><strong> <span><a href="https:dummerfu.top" target="_blank" one-link-mark="yes">dummerfu</a></span></strong><br><span class="essaySuffix-right-title">本文链接：</span><a href="https://dummerfu.top/p/57635.html">https://dummerfu.top/p/57635.html</a><br><span class="essaySuffix-right-title">版权声明: </span>
+本博客所有文章除特别声明外，均采用<a rel="noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>
+转载请注明出处！</div></div><div class="tag_share"><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/p/64378.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/3.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">hexo-sakura 安装twikoo</div></div></a></div><div class="next-post pull-right"><a href="/p/60871.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">北斗文献综述</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/><div class="author-info__name">dummerfu</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummerchen"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/dummerchen" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rat"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">本博客由博客园<a href="https://www.cnblogs.com/cherrypill/" target=" _blank">cherrypill</a>迁移</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#pyecharts-Theme"><span class="toc-number">1.</span> <span class="toc-text">pyecharts Theme</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-number">2.</span> <span class="toc-text">常用配置项</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-number">2.1.</span> <span class="toc-text">初始化配置项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E5%85%B7%E7%AE%B1%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-number">2.2.</span> <span class="toc-text">工具箱配置项</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#visualmap-opts"><span class="toc-number">2.3.</span> <span class="toc-text">visualmap_opts</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Graph"><span class="toc-number">3.</span> <span class="toc-text">Graph</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Radar"><span class="toc-number">4.</span> <span class="toc-text">Radar</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Line"><span class="toc-number">5.</span> <span class="toc-text">Line</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Scatter"><span class="toc-number">6.</span> <span class="toc-text">Scatter</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Bar"><span class="toc-number">7.</span> <span class="toc-text">Bar</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2DBar"><span class="toc-number">7.1.</span> <span class="toc-text">2DBar</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3Dbar"><span class="toc-number">7.2.</span> <span class="toc-text">3Dbar</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Heatmap"><span class="toc-number">8.</span> <span class="toc-text">Heatmap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Sunshine"><span class="toc-number">9.</span> <span class="toc-text">Sunshine</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%B8%83%E5%B1%80"><span class="toc-number">10.</span> <span class="toc-text">页面布局</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Page"><span class="toc-number">10.1.</span> <span class="toc-text">Page</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Grid"><span class="toc-number">10.2.</span> <span class="toc-text">Grid</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/p/49081.html" title="【论文复现】Restormer"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】Restormer"/></a><div class="content"><a class="title" href="/p/49081.html" title="【论文复现】Restormer">【论文复现】Restormer</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/3640.html" title="【论文复现】SwinIR"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145155.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】SwinIR"/></a><div class="content"><a class="title" href="/p/3640.html" title="【论文复现】SwinIR">【论文复现】SwinIR</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/63048.html" title="图像理解与计算机视觉笔记"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145212.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图像理解与计算机视觉笔记"/></a><div class="content"><a class="title" href="/p/63048.html" title="图像理解与计算机视觉笔记">图像理解与计算机视觉笔记</a><time datetime="2022-06-18T00:00:00.000Z" title="Created 2022-06-18 00:00:00">2022-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/42559.html" title="代码审计工具"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码审计工具"/></a><div class="content"><a class="title" href="/p/42559.html" title="代码审计工具">代码审计工具</a><time datetime="2022-05-20T00:00:00.000Z" title="Created 2022-05-20 00:00:00">2022-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212120605.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"/></a><div class="content"><a class="title" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation">【论文复现】卷积网络可视化Grad-cam和Guide backpropagation</a><time datetime="2022-05-16T00:00:00.000Z" title="Created 2022-05-16 00:00:00">2022-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By dummerfu</div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo"/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender"/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub"/></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script></div><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai'
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.15/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: false, 
+    user: 'dummerchen',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'github-calendar-api.vercel.app' ? 'https://github-calendar-api.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox") && (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500)) {
+  gitcalendar.simplemode = false
+}
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script defer src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="/js/moments.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '0');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/custom/wow_init.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 有文章更新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 有文章更新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

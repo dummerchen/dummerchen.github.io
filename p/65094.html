@@ -1,0 +1,793 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>时间序列 | Sakura        Momoko</title><meta name="keywords" content="数模"><meta name="author" content="dummerfu"><meta name="copyright" content="dummerfu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="数模知识点总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="时间序列">
+<meta property="og:url" content="https://dummerfu.top/p/65094.html">
+<meta property="og:site_name" content="Sakura        Momoko">
+<meta property="og:description" content="数模知识点总结">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg">
+<meta property="article:published_time" content="2020-12-19T00:00:00.000Z">
+<meta property="article:modified_time" content="2020-12-19T00:00:00.000Z">
+<meta property="article:author" content="dummerfu">
+<meta property="article:tag" content="数模">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummerfu.top/p/65094"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="ul2nhVj6HNaI1d3xtFc7_eYD8Shq0bCu53fkA7a_7Bc"/><meta name="baidu-site-verification" content="code-584WEbZyly"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7cb70c60ee4da7f272c0d8059de063b7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":"70vh"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2020-12-19 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link rel="stylesheet" href="/css/mycss.css"><script src='https://cdn.jsdelivr.net/npm/butterfly-friend@1.0.4/dist/friend.min.js'></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://at.alicdn.com/t/font_2134734_qu549vixs5f.css?spm=a313x.7781069.1998910419.60&file=font_2134734_qu549vixs5f.css" medis="defer" onload="this.media='all'"><script src="/js/lazyload.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed02@image_bed_001/img/20210317004707.jpg')"><nav id="nav"><span id="blog_name"> <a id="site-name" onclick="btf.scrollToDest(0, 500)" data-title="数模知识点总结">时间序列</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">时间序列</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-12-19T00:00:00.000Z" title="Created 2020-12-19 00:00:00">2020-12-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-12-19T00:00:00.000Z" title="Updated 2020-12-19 00:00:00">2020-12-19</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">863</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>2min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="时间序列"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="时间序列"><a href="#时间序列" class="headerlink" title="时间序列"></a>时间序列</h1><p>时间序列是按<strong>时间顺序排列</strong>的、<strong>随时间变化且相互关联</strong>的数据序列。分析时间序 列的方法构成数据分析的一个重要领域，即时间序列分析。 时间序列根据所研究的依据不同，可有不同的分类。</p>
+<p>1．按所<strong>研究的对象的多少</strong>分，有一元时间序列和多元时间序列。</p>
+<p>2．按<strong>时间的连续性</strong>可将时间序列分为<strong>离散</strong>时间序列和<strong>连续</strong>时间序列两种。</p>
+<p>3．按<strong>序列的统计特性</strong>分，有<strong>平稳</strong>时间序列和<strong>非平稳</strong>时间序列。如果一个<strong>时间序列的概率分布与时间t无关</strong>，则称该序列为<strong>严格的（狭义的）平稳</strong>时间序列。如果序列的 <strong>一、二阶矩存在</strong>，而且对任意时刻t满足：</p>
+<p>（1）均值为常数</p>
+<p>（2）协方差为时间间隔 <img src= "/img/lazyload.svg" data-src="https://private.codecogs.com/gif.latex?\dpi{150} \small \tau" alt="\small \tau"> 的函数。 则称该序列为宽平稳时间序列，也叫广义平稳时间序列。我们以后所研究的时间序列主 要是<strong>宽平稳</strong>时间序列。 </p>
+<p>4．按时间序列的分布规律来分，有高斯型时间序列和非高斯型时间序列。 （1）均值为常数</p>
+<p>（2）协方差为时间间隔$\tau$的函数。 则称该序列为宽平稳时间序列，也叫广义平稳时间序列。我们以后所研究的时间序列主要是<strong>宽平稳</strong>时间序列。 </p>
+<h2 id="时间序列的组成部分"><a href="#时间序列的组成部分" class="headerlink" title="时间序列的组成部分"></a>时间序列的组成部分</h2><p>时间序列预测技术就是通过对预测目标自身时间序列的处理，来研究其变化趋势 的。一个时间序列往往是以下几类变化形式的叠加或耦合。 我们<strong>常认为一个时间序列可以分解为以下四大部分</strong>：</p>
+<p>（1）<strong>长期趋势变动</strong>。它是指时间序列朝着一定的方向持续上升或下降，或停留在 某一水平上的倾向，它反映了客观事物的主要变化趋势。</p>
+<p>（2）<strong>季节变动</strong>。</p>
+<p>（3）<strong>循环变动</strong>。通常是指周期为一年以上，由非季节因素引起的涨落起伏波形相 似的波动。</p>
+<p>（4）<strong>不规则变动</strong>。通常它分为突然变动和随机变动。 </p>
+<h2 id="三种时间序列模型"><a href="#三种时间序列模型" class="headerlink" title="　三种时间序列模型"></a>　三种时间序列模型</h2><p>设 </p>
+<script type="math/tex; mode=display">
+设:\\
+\begin{cases}
+T_t &长期趋势项\\
+S_t &季节变动趋势项\\
+C_t &循环变动趋势项\\
+R_t &随机干扰项
+\end{cases}</script><ul>
+<li>加法模型</li>
+</ul>
+<script type="math/tex; mode=display">
+y_t=T_t+S_t+R_t+C_t</script><ul>
+<li>乘法模型</li>
+</ul>
+<script type="math/tex; mode=display">
+Y_t=T_t*S_t*C_t*R_t</script><ul>
+<li>混合模型</li>
+</ul>
+<script type="math/tex; mode=display">
+\begin{cases}
+Y_t=T_t*S_t+R_t\\
+Y_t=S_t+T_t*C_t*R_t\\
+\end{cases}
+
+\\
+Y_y是观测目标的观测记录,\ E(R_t)=0 \quad E(R_t^2)=\sigma^2</script><p>可以说这三个模型是适用于所有时间序列的</p>
+<h2 id="移动平均法"><a href="#移动平均法" class="headerlink" title="移动平均法"></a>移动平均法</h2><p>​    移动平均法是根据时间序列资料逐渐推移，依次计算包含一定项数的时序平均数，以反映长期趋势的方法。当时间序列的数值由于受周期变动和不规则变动的影响，起伏较大，不易显示出发展趋势时，可用移动平均法，消除这些因素的影响，分析、预测序列的长期趋势。移动平均法有简单移动平均法，加权移动平均法，趋势移动平均法等。</p>
+<h3 id="简单移动平均法"><a href="#简单移动平均法" class="headerlink" title="简单移动平均法"></a>简单移动平均法</h3><script type="math/tex; mode=display">
+设观测序列 y_1..y_T,取移动平均项N<T,一次简单移动平均值计算公式为：\\
+
+M_t^{(1)}=\frac{1}{N}(y_t+...+y_{t-N+1})=\frac{1}{N}(y_{t-1}+...+y_{t-N})+\frac{1}{N}(y_t-y_{t-N})=M_{t-1}^{(1)}+\frac{1}{N}(y_t-y_{t-N})</script><p>当预测目标的基本趋势是在某一水平上下波动时，可用一次简单移动平均方法建立预测模型</p>
+<p>$ \hat y<em>{t+1}=M_t^{(1)}=\frac{1}{N}(y_t+…+y</em>{t-N+1}),t\in[N,T] $</p>
+<p>其预测标准误差为$S=\sqrt{\frac{\sum_{t=N+1}^{T}(\hat y_t-y_t)^2}{T-N}}$</p>
+<p>​    最近 <em>N</em> 期序列值的平均值作为未来各期的预测结果。一般 <em>N</em> 取值范围：5 ≤ <em>N</em> ≤ 200 。当历史序列的基本趋势变化不大且序列中随机变动成分较多时， <em>N</em> 的取值应较大一些。否则 <em>N</em> 的取值应小一些。在有确定的季节变动周期的资料中，移动平均的项数应取周期长度。选择最佳 <em>N</em> 值的一个有效方法是，比较若干模型的预测误差。预测标准误差最小者为好。</p>
+<h3 id="加权移动平均法"><a href="#加权移动平均法" class="headerlink" title="加权移动平均法"></a>加权移动平均法</h3><p>​    在简单移动平均公式中，每期数据在求平均时的作用是等同的。但是，每期数据所包含的信息量不一样，近期数据包含着更多关于未来情况的信息。因此，把各期数据等同看待是不尽合理的，应考虑各期数据的重要性，对近期数据给予较大的权重，这就是加权移动平均法的基本思想。</p>
+<p>​    在加权移动平均法中， w*t 的选择，同样具有一定的经验性。一般的原则是：近期数据的权数大，远期数据的权数小。至于大到什么程度和小到什么程度，则需要按照预测者对序列的了解和分析来确定。</p>
+<h2 id="指数平滑法"><a href="#指数平滑法" class="headerlink" title="指数平滑法"></a>指数平滑法</h2><p>一次移动平均实际上认为最近 <em>N</em> 期数据对未来值影响相同，都加权$\frac{1}{N}$ ；而 <em>N</em> 期以前的数据对未来值没有影响，加权为 0。但是，二次及更高次移动平均数的权数却不是 $\frac{1}{N}$ ，且次数越高，权数的结构越复杂，但永远保持对称的权数，即两端项权数小，中间项权数大，不符合一般系统的动态性。一般说来历史数据对未来值的影响是随时间间隔的增长而递减的。所以，更切合实际的方法应是对各期观测值依时间顺序进行加权平均作为预测值。指数平滑法可满足这一要求，而且具有简单的递推形式。指数平滑法根据平滑次数的不同，又分为一次指数平滑法、二次指数平滑法和三次指数平滑法等。</p>
+<h3 id="一次指数平滑法（SES）"><a href="#一次指数平滑法（SES）" class="headerlink" title="一次指数平滑法（SES）"></a>一次指数平滑法（SES）</h3><script type="math/tex; mode=display">
+设时间序列y_1,y_2...y_t,\alpha 为加权系数，\alpha \in[0,1] 一次指数平滑公式为\\
+S_t^{(1)}=\alpha y_t+(1-\alpha)S_{t-1}^{(1)}=S_{t-1}^{(1)}+\alpha(y_t-S_{t-1}^{(1)})  \quad (13)</script><p>上式（13）是由移动平均公式改进而来的。由式（1）知，移动平均数的递推公式为$M<em>{t-1}^{(1)}+\frac{1}{N}(y_t-y</em>{t-N})$</p>
+<p>以$M<em>{t-1}^{(1)}$作为$y</em>{t-N}$的最佳估计，则有$M<em>{t-1}^{(1)}=\frac{y_t}{N}+(1-\frac{1}{N})M</em>{t-1}^{(1)} 令\alpha=\frac{1}{N},S<em>{t}^{(1)}$代替$M</em>{t}^{(1)}$则可得(13)</p>
+<p>$S<em>t^{(1)}=\alpha\sum</em>{j=0}^{\infty} (1-\alpha)^j y<em>{j-1}$ 此式表明 $S_t^{(1)}$是全部历史数据的加权平均，加权系数分别为$α,α(1−α),α(1−α)^2$ ；显然有$\sum</em>{j=0}^{\infty} \alpha(1-\alpha)^j=1$  由于加权系数符合指数规律，又具有平滑数据的功能，故称为指数平滑。以这种平滑值进行预测，就是一次指数平滑法。预测模型为:</p>
+<p>$\hat y<em>{t+1}=S</em>{t}^{(1)} \ \hat y_1=S_0^{(1)}$         即</p>
+<p>$\hat y_{t+1}=\alpha y_t+(1-\alpha)\hat y_t$ ！！！<strong>最终式子</strong></p>
+<p>预测模型$\hat y_{n+1}=\alpha y_n+(1-\alpha)\hat y_n$</p>
+<h4 id="加权系数选择"><a href="#加权系数选择" class="headerlink" title="加权系数选择"></a>加权系数选择</h4><p>在进行指数平滑时，加权系数的选择是很重要的。<em>α</em> 值应根据时间序列的具体性质在 0～1 之间选择。具体如何选择一般可遵循下列原则：①如果时间序列波动不大，比较平稳，则<em>α</em> 应取小一点，如（0.1～0.5）。以减少修正幅度，使预测模型能包含较长时间序列的信息；②如果时间序列具有迅速且明显的变动倾向，则<em>α</em> 应取大一点，如（0.6～0.8）。使预测模型灵敏度高一些，以便迅速跟上数据的变化。<strong>在实用上，类似移动平均法，多取几个<em>α</em> 值进行试算，看哪个预测误差小，就采用哪个。</strong></p>
+<h4 id="初始值设定"><a href="#初始值设定" class="headerlink" title="初始值设定"></a>初始值设定</h4><p>用一次指数平滑法进行预测，除了选择合适的<em>α</em> 外，还要确定初始值 $S_0^{(1)}$。初始值是由预测者估计或指定的。当时间序列的数据较多，比如在 20 个以上时，初始值对以后的预测值影响很少，可选用第一期数据为初始值。如果时间序列的数据较少，在 20个以下时，初始值对以后的预测值影响很大，这时，就必须认真研究如何正确确定初始值，<strong>一般以最初几期实际值的平均值作为初始值</strong>。</p>
+<h3 id="二次指数平滑法"><a href="#二次指数平滑法" class="headerlink" title="二次指数平滑法"></a>二次指数平滑法</h3><p>​    一次指数平滑法虽然克服了移动平均法的缺点。但当时间序列的变动出现<strong>直线趋势</strong>时，用一次指数平滑法进行预测，<strong>仍存在明显的滞后偏差</strong>。因此，也必须加以修正。修正的方法与趋势移动平均法相同，即再作二次指数平滑，利用滞后偏差的规律建立直线趋势模型。这就是二次指数平滑法。二次指数平滑考虑了序列的baseline和趋势，相当于加强版的一阶指数平滑法</p>
+<script type="math/tex; mode=display">
+S_{t}^{(1)}=\alpha y_t+(1-\alpha)S_{t-1}^{(1)}\\
+S_{t}^{(2)}=\alpha S_t^{(1)}+(1-\alpha)S_t^{(2)}\\</script><p>式中$S_{t}^{(1)}$ 为一次指数的平滑值； $S_t^{(2)}$ 为二次指数的平滑值。当时间序列$y_t$ ，从某时期开始具有直线趋势时，类似趋势移动平均法，可用<strong>直线趋势模型</strong>进行预测。还有一个趋势模型</p>
+<script type="math/tex; mode=display">
+\hat y_{t+m}=a_t+b_tm\\
+\begin{cases}
+a_t=2S_t^{(1)}-S_t^{(2)}\\
+b_t=\frac{\alpha}{1-\alpha}(S_t^{(1)}-S_t^{(2)})
+\end{cases}</script><p>同理可得三次指数平滑法（Holt’s Winters方法）</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+S_{t}^{(1)}=\alpha y_t+(1-\alpha)S_{t-1}^{(1)}\\
+S_{t}^{(2)}=\alpha S_t^{(1)}+(1-\alpha)S_t^{(2)}\\
+S_{t}^{(3)}=\alpha S_t^{(2)}+(1-\alpha)S_t^{(3)}\\
+\end{cases}</script><p>预测模型为</p>
+<script type="math/tex; mode=display">
+\hat y_{t+m}=a_t+b_tm+C_tm^2\\
+\begin{cases}
+a_t=3S_t^{(1)}-3S_t^{(2)}+S_t^{(3)}\\
+b_t=\frac{\alpha}{2(1-\alpha)^2}((6-5\alpha )S_t^{(1)}-2(5-4\alpha)S_t^{(2)}+(4-3\alpha )S_t^{(3)})\\
+
+C_t=\frac{\alpha}{2(1-\alpha)^2}(S_t^{(1)}-2S_t^{(2)}+S_t^{(3)})
+\end{cases}</script><p>​    但是三阶指数平滑法可以针对有趋势也有季节性的序列。当一个序列在每个固定的时间间隔中都出现某种重复的模式，就称之具有季节性特征，而这样的一个时间间隔称为一个季节(理解：比如说在一个周内，销量呈现出重复的模式)。一个季节的长度k为它所包含的序列点个数。    </p>
+<h3 id="Holt特性曲线趋势法"><a href="#Holt特性曲线趋势法" class="headerlink" title="Holt特性曲线趋势法"></a>Holt特性曲线趋势法</h3><script type="math/tex; mode=display">
+\begin{cases}
+Forecast\ eq:\hat y_{t+h|t}=\zeta_t+hb_t\\
+Level\ eq:\zeta_t=ay_t+(1-a)(\zeta_{t-1}+b_{t-1})\\
+Trend\ eq:b_t=\beta(\zeta_t-\zeta_{t-1}+(1-\beta)b_{t-1})
+\end{cases}</script><p>当曲线趋势成指数级增加或下降则可选择相乘模型。</p>
+<h3 id="Holt-winters-季节性预测模型"><a href="#Holt-winters-季节性预测模型" class="headerlink" title="Holt-winters 季节性预测模型"></a>Holt-winters 季节性预测模型</h3><p>​    Holt-winter线性趋势方法的问题在于，趋势在未来是恒定的，无限增加或减少。对于长期预测视野，这可能会有问题。因此，阻尼趋势法是一种增加阻尼参数的方法，以使趋势在未来收敛到恒定值（它使趋势变平）。参数由φ代替。</p>
+<script type="math/tex; mode=display">
+\begin{cases}
+Seasonal\ eq: S_t=\gamma (y_t-L_t)+(1-\gamma)S_{t-s} \\
+Level\ eq:\zeta_t=ay_t+(1-a)(\zeta_{t-1}+b_{t-1})\\
+Trend\ eq:b_t=\beta(\zeta_t-\zeta_{t-1}+(1-\beta)b_{t-1})\\
+Forecast\ eq:\hat y_{t+h|t}=\zeta_t+hb_t\\
+\end{cases}</script><h3 id="指数平滑法功能解析"><a href="#指数平滑法功能解析" class="headerlink" title="指数平滑法功能解析"></a>指数平滑法功能解析</h3><p>具体可参考<a target="_blank" rel="noopener" href="https://www.cnblogs.com/harrylyx/p/11852149.html">model</a><del>是书上讲的不全吗</del></p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center">trend</th>
+<th style="text-align:center">Seasonlity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">SES</td>
+<td style="text-align:center">×</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:center">Hlot</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">×</td>
+</tr>
+<tr>
+<td style="text-align:center">Hlot-Winter</td>
+<td style="text-align:center">√</td>
+<td style="text-align:center">√</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>平滑方法中不同分量的平滑参数</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>level</th>
+<th>trend</th>
+<th>damping</th>
+<th>seasonality</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\alpha$</td>
+<td>$\beta$</td>
+<td>$\varphi$</td>
+<td>$\gamma$</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><p>​    <strong>通过某市1976~1987年电器销售额来预测1988年电器销售额。</strong></p>
+<p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201216214938.png" alt="image-20201216214938121"></p>
+<p><strong>code</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Author : Dummerfu</span></span><br><span class="line"><span class="comment"># @Contact : https://github.com/dummerchen </span></span><br><span class="line"><span class="comment"># @Time : 2020/12/16 21:59</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa <span class="keyword">import</span> holtwinters <span class="keyword">as</span> ht</span><br><span class="line"><span class="keyword">import</span> statsmodels <span class="keyword">as</span> sm</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = <span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exponential_smoothing</span>(<span class="params">data,alpha</span>):</span></span><br><span class="line">    s=[]</span><br><span class="line">    s.append((data[<span class="number">0</span>]+data[<span class="number">1</span>]+data[<span class="number">2</span>]+data[<span class="number">3</span>])/<span class="number">4</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(data)):</span><br><span class="line">        s.append((alpha*data[i-<span class="number">1</span>]+(<span class="number">1</span>-alpha)*s[i-<span class="number">1</span>]))</span><br><span class="line">    <span class="keyword">return</span> s</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">second_exponential_smoothing</span>(<span class="params">data,alpha</span>):</span></span><br><span class="line">    s1=exponential_smoothing(data,alpha)</span><br><span class="line">    s2=exponential_smoothing(s1,alpha)</span><br><span class="line"></span><br><span class="line">    a=[]</span><br><span class="line">    b=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="built_in">len</span>(s1)+<span class="number">1</span>):</span><br><span class="line">        a.append(<span class="number">2</span>*s1[i]-s2[i])</span><br><span class="line">        b.append((s1[i]-s2[i])*alpha/(<span class="number">1</span>-alpha))</span><br><span class="line">    <span class="keyword">return</span> a,b</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cubic_index_exponential_smoothing</span>(<span class="params">data,alpha</span>):</span></span><br><span class="line">    s1=exponential_smoothing(data,alpha)</span><br><span class="line">    s2=exponential_smoothing(s1,alpha)</span><br><span class="line">    s3=exponential_smoothing(s2,alpha)</span><br><span class="line"></span><br><span class="line">    a=[]</span><br><span class="line">    b=[]</span><br><span class="line">    c=[]</span><br><span class="line">    pre=[]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="built_in">len</span>(data)):</span><br><span class="line">        a.append(<span class="number">3</span>*s1[i]-<span class="number">3</span>*s2[i]+s3[i])</span><br><span class="line">        b.append(((<span class="number">6</span>-<span class="number">5</span>*alpha)*s1[i]-(<span class="number">10</span>-<span class="number">8</span>*alpha)*s2[i]+(<span class="number">4</span>-<span class="number">3</span>*alpha)*s3[i]*alpha)/(<span class="number">2</span>*(<span class="number">1</span>-alpha)**<span class="number">2</span>))</span><br><span class="line">        c.append(s1[i]-<span class="number">2</span>*s2[i]+s3[i])</span><br><span class="line"></span><br><span class="line">    pre.append(a[<span class="number">0</span>])</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(a)):</span><br><span class="line">        pre.append(a[i]+b[i]+c[i])</span><br><span class="line"></span><br><span class="line">    plt.plot(t,pre,marker=<span class="string">&#x27;o&#x27;</span>,label=<span class="string">&#x27;cubic_index_exponential_smoothing&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> a,b,c</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line"></span><br><span class="line">    data2 = [<span class="number">253993</span>,<span class="number">275396.2</span>,<span class="number">315229.5</span>,<span class="number">356949.6</span>,<span class="number">400158.2</span>,<span class="number">442431.7</span>,<span class="number">495102.9</span>,<span class="number">570164.8</span>,<span class="number">640993.1</span>,<span class="number">704250.4</span>,<span class="number">767455.4</span>,<span class="number">781807.8</span>,<span class="number">776332.3</span>,<span class="number">794161.7</span>,<span class="number">834177.7</span>,<span class="number">931651.5</span>,<span class="number">1028390</span>,<span class="number">1114914</span>]</span><br><span class="line"></span><br><span class="line">    data=[<span class="number">20.4</span>,<span class="number">20.6</span>,<span class="number">25.72</span>,<span class="number">34.61</span>,<span class="number">51.77</span>,<span class="number">55.92</span>,<span class="number">80.65</span>,<span class="number">131.11</span>,<span class="number">148.58</span>,<span class="number">162.67</span>,<span class="number">232.26</span>]</span><br><span class="line">    t_ = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)):</span><br><span class="line">        t_.append(i)</span><br><span class="line"></span><br><span class="line">    f=plt.figure(<span class="string">&#x27;exponential_smoothing&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    t=t_+[i <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(data)+<span class="number">1</span>,<span class="built_in">len</span>(data)+<span class="number">5</span>)]</span><br><span class="line">    <span class="built_in">print</span>(t)</span><br><span class="line">    ses=ht.SimpleExpSmoothing(data).fit()</span><br><span class="line">    plt.plot(t,<span class="built_in">list</span>(ses.fittedvalues)+<span class="built_in">list</span>(ses.forecast(<span class="number">4</span>)),color=<span class="string">&#x27;y&#x27;</span>,marker=<span class="string">&#x27;o&#x27;</span>,label=<span class="string">&#x27;SES&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">#有加法模型和指数模型，这里用指数模型</span></span><br><span class="line">    holt=ht.Holt(data,exponential=<span class="literal">True</span>).fit(smoothing_level=<span class="number">0.8</span>,smoothing_trend=<span class="number">0.2</span>,optimized=<span class="literal">False</span>)</span><br><span class="line">    plt.plot(t,<span class="built_in">list</span>(holt.fittedvalues)+<span class="built_in">list</span>(holt.forecast(<span class="number">4</span>)),color=<span class="string">&#x27;r&#x27;</span>,marker=<span class="string">&#x27;o&#x27;</span>,label=<span class="string">&#x27;holt&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    holt_winter=ht.ExponentialSmoothing(data,seasonal_periods=<span class="number">4</span>,trend=<span class="string">&#x27;add&#x27;</span>,seasonal=<span class="string">&#x27;add&#x27;</span>).fit(use_boxcox=<span class="literal">True</span>)</span><br><span class="line">    plt.plot(t,<span class="built_in">list</span>(holt_winter.fittedvalues)+<span class="built_in">list</span>(holt_winter.forecast(<span class="number">4</span>)),color=<span class="string">&#x27;g&#x27;</span>,marker=<span class="string">&#x27;o&#x27;</span>,label=<span class="string">&#x27;holt_winter&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    plt.plot(t_, data, color=<span class="string">&#x27;b&#x27;</span>, label=<span class="string">&#x27;raw&#x27;</span>, marker=<span class="string">&#x27;o&#x27;</span>)</span><br><span class="line">    plt.legend()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217135335.png" alt="image-20201217135335405"></p>
+<h3 id="指数平滑法总结"><a href="#指数平滑法总结" class="headerlink" title="指数平滑法总结"></a>指数平滑法总结</h3><p>指数平滑是当今行业中应用最广泛、最成功的预测方法之一。</p>
+<p>但是由各预测函数和图像可知：</p>
+<p>一次只能预测序列后<strong>一个值</strong>，二次只能预测直线，三次只能预测二次曲线，局限性极强。</p>
+<p>并且$\hat y<em>{t+m}对应的是y</em>{t+m-1} 而不是y_{t+m}$</p>
+<p>比如m=1时 $\hat y<em>{1+1}对应的是y</em>{1}而不是y_2$</p>
+<p>表示没看到差分指数平滑法的解析，是不常用吗❓</p>
+<h2 id="平稳时间序列模型"><a href="#平稳时间序列模型" class="headerlink" title="平稳时间序列模型"></a>平稳时间序列模型</h2><p>这里的平稳是指序列的统计特性不随时间平移而变化，即均值和协方差不随时间的平移变化。<del>简单点理解为图像看的有一种‘美感’</del></p>
+<p>这里对ARMA进行介绍，而ARIMA进行主要说明</p>
+<p>在此之前还需自行了解 <del>不了解也无妨</del></p>
+<ul>
+<li>ACF:自相关系数</li>
+<li>PACF:偏自相关系数</li>
+<li>白噪声检验</li>
+<li>单位根检验</li>
+</ul>
+<h4 id="AR-p-序列"><a href="#AR-p-序列" class="headerlink" title="AR(p)序列"></a>AR(p)序列</h4><p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201218233358.png" alt="image-20201217141133731"></p>
+<h4 id="MA-p-序列"><a href="#MA-p-序列" class="headerlink" title="MA(p)序列"></a>MA(p)序列</h4><p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217141107.png" alt="image-20201217141107449"></p>
+<h4 id="自回归移动平均序列（ARMA）"><a href="#自回归移动平均序列（ARMA）" class="headerlink" title="自回归移动平均序列（ARMA）"></a>自回归移动平均序列（ARMA）</h4><p>ARMA包括</p>
+<ul>
+<li>AR序列 自回归序列(Auto Regressive Model)</li>
+<li>MA序列 移动平均序列(Moving Average Model)</li>
+</ul>
+<h4 id="ARMA-p-序列"><a href="#ARMA-p-序列" class="headerlink" title="ARMA(p)序列"></a>ARMA(p)序列</h4><p>​    设{X~t~ ,t = 0,±1,±2…} 是零均值平稳序列，满足下列模型：$X<em>t-\varphi X</em>{t-1}-…-\varphi X<em>{t-p}=\epsilon_t-\theta_1\epsilon</em>{t-1}-…-\theta<em>q\epsilon</em>{t-q}$ （70）其中 <em>t</em> <em>ε</em> 是零均值、方差是 σ~ε~^2^ 的平稳白噪声，则称X~t~是阶数为p, q的自回归滑动平均序列，简记为ARMA( <em>p</em>, <em>q</em>) 序列。当 <em>q</em> = 0时，它是 AR( <em>p</em>) 序列；当 <em>p</em> = 0 时，它为MA(<em>q</em>) 序列。</p>
+<p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217165703.png" alt="image-20201217165703509"></p>
+<p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217165758.png" alt="image-20201217165758754"></p>
+<h4 id="差分自回归移动平均模型（ARIMA）"><a href="#差分自回归移动平均模型（ARIMA）" class="headerlink" title="差分自回归移动平均模型（ARIMA）"></a>差分自回归移动平均模型（ARIMA）</h4><p>ARIMA模型(包括ARMA模型、AR模型和MA模型)是预测平稳时间序列的一类通用模型。ARIMA模型由三部分组成:</p>
+<ul>
+<li>序列滞后值的加权和（自回归（AR）部分）</li>
+<li>序列滞后预测误差的加权和（移动平均值（MA）部分）</li>
+<li>时间序列的差分(Integrated (I)部分)</li>
+</ul>
+<p>ARIMA模型通常被标注为ARIMA（p，d，q），其中p表示AR部分的顺序，d表示差分的顺序（“ I”部分），q表示MA的顺序。ARIMA模型相对ARMA模型，仅多了差分操作，ARIMA模型几乎是所有时间序列软件都支持的，差分的实现与还原都非常方便。而statsmodel中，对差分的支持不是很好，它不支持高阶和多阶差分，为什么不支持，作者大概的意思是说预测方法中并没有解决高于2阶的差分，不过没关系，我们可以先用pandas将序列差分好，然后在对差分好的序列进行ARIMA拟合，只不过这样后面会多了一步人工还原的工作。</p>
+<p><strong>ARIMA步骤</strong></p>
+<p>因为ARMA不能差分所以说经常不使用（差分就变成ARIMA了)所以仅列出ARIMA的步骤，ARMA步骤类似就不再赘述了</p>
+<ul>
+<li><p>画出自相关图 ACF</p>
+</li>
+<li><p>画出偏自相关图 PACF</p>
+</li>
+<li><p>进行单位根检验：如果检验p值大于0.05则说明时间序列是非平稳的需要进行差分<del>下图是一阶差分后的adf 很接近于0了，画图也能看出来非常平稳</del>，否则是平稳的。</p>
+<p>  <img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217172654.png" alt="image-20201217172654298"></p>
+<p>  <img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217174156.png" alt="image-20201217174156369"></p>
+</li>
+<li><p>白噪声检： 验主要是检验p值是否大于0.05，大于0.05的时间序列是平稳的白噪声时间序列，<strong>p值小于0.05</strong>的是平稳的非白噪声的时间序列，<strong>是平稳的非白噪声的时间序列</strong>才可以进行下一步的ARMA分析(p&lt;0.05才能进行ARMA分析，否则应回到上一步继续差分)</p>
+<p>  <img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217174553.png" alt="image-20201217174553784"></p>
+<p>  <img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201217174531.png" alt="image-20201217174530922"></p>
+</li>
+<li><p>通过枚举进行参数分析求得最佳的p，q（类似灵敏度分析）</p>
+</li>
+<li><p>将参数带入模型，得到预测矩阵</p>
+</li>
+<li>forecas预测已有数据集，predict预测未知数据</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#-*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Author : Dummerfu</span></span><br><span class="line"><span class="comment"># @Contact : https://github.com/dummerchen </span></span><br><span class="line"><span class="comment"># @Time : 2020/12/17 16:58</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.arima_model <span class="keyword">import</span> ARIMA</span><br><span class="line"><span class="keyword">from</span> dataprocessing <span class="keyword">import</span> data_process</span><br><span class="line"><span class="keyword">from</span> statsmodels.tsa.stattools <span class="keyword">import</span>  adfuller <span class="keyword">as</span> adf</span><br><span class="line"><span class="keyword">from</span> statsmodels.stats.diagnostic <span class="keyword">import</span> acorr_ljungbox <span class="keyword">as</span> al</span><br><span class="line"><span class="keyword">from</span> statsmodels.graphics.tsaplots <span class="keyword">import</span> plot_pacf,plot_acf</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = <span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>, <span class="string">&#x27;statsmodels.tsa.arima_model.ARMA&#x27;</span>,</span><br><span class="line">                        FutureWarning)</span><br><span class="line">warnings.filterwarnings(<span class="string">&#x27;ignore&#x27;</span>, <span class="string">&#x27;statsmodels.tsa.arima_model.ARIMA&#x27;</span>,</span><br><span class="line">                        FutureWarning)</span><br><span class="line">warnings.filterwarnings(<span class="string">&quot;ignore&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bf_arima</span>(<span class="params">data</span>):</span></span><br><span class="line">    pq = [(<span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>), (<span class="number">0</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">0</span>, <span class="number">2</span>, <span class="number">2</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">0</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">0</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">1</span>), (<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>)]</span><br><span class="line">    best_acc = <span class="built_in">float</span>(<span class="string">&#x27;inf&#x27;</span>)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> pq:</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            model = ARIMA(data, order=i)</span><br><span class="line">            arima = model.fit(disp=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">            acc = arima.aic</span><br><span class="line">            <span class="keyword">if</span> acc &lt; best_acc:</span><br><span class="line">                best_acc = acc</span><br><span class="line">                best_model = arima</span><br><span class="line">                best_param = i</span><br><span class="line">        <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">            <span class="comment">#print(e)</span></span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">    <span class="built_in">print</span>(best_acc, best_param, best_model.summary())</span><br><span class="line">    <span class="keyword">return</span> best_param</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    data,raw_data=data_process()</span><br><span class="line">    <span class="comment">#print(len(data[&#x27;Count&#x27;]),data.head())</span></span><br><span class="line">    <span class="comment"># arima_param=bf_arima(data[&#x27;Count&#x27;])</span></span><br><span class="line">    arima=ARIMA(data,order=(<span class="number">2</span>,<span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line"></span><br><span class="line">    res=arima.fit(disp=<span class="number">0</span>)</span><br><span class="line">    <span class="built_in">print</span>(res.summary())</span><br><span class="line">    <span class="comment"># predict 得到的是序列内的预测值，最多向后只能预测1个（没有自动还原差分</span></span><br><span class="line">    <span class="comment"># forecast 是向后预测，自动还原差分值</span></span><br><span class="line">    fig,ax=plt.subplots(figsize=(<span class="number">10</span>,<span class="number">5</span>))</span><br><span class="line">    plt.plot(raw_data,label=<span class="string">&#x27;raw_data&#x27;</span>)</span><br><span class="line">    forecast=res.forecast(steps=<span class="built_in">len</span>(raw_data)-<span class="built_in">len</span>(data))</span><br><span class="line"></span><br><span class="line">    <span class="comment">#print(forecast[0],predict)</span></span><br><span class="line">    <span class="comment">#res.plot_predict(start=raw_data.index[4],end=raw_data.index[-1],plot_insample=False,dynamic=False,ax=ax)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># forecast[0].plot(ax=ax,label=&#x27;forecast&#x27;)</span></span><br><span class="line">    plt.plot(pd.to_datetime(raw_data.index[<span class="number">700</span>:]),forecast[<span class="number">0</span>],label=<span class="string">&#x27;forecast&#x27;</span>,color=<span class="string">&#x27;g&#x27;</span>)</span><br><span class="line">    plt.axvline(x=data.index[<span class="number">699</span>],ymin=<span class="number">0</span>,ymax=<span class="number">20000</span>, linestyle=<span class="string">&#x27;--&#x27;</span>, color=<span class="string">&#x27;r&#x27;</span>, label=<span class="string">&#x27;Start forecast&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    plt.legend(loc=<span class="string">&#x27;best&#x27;</span>)</span><br><span class="line">    plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201218145128.png" alt="image-20201218145127951"></p>
+<p>相同数据集下指数平滑法的比较：</p>
+<p><img src= "/img/lazyload.svg" data-src="https://gitee.com/dummerchen/MY_IMAGE_BED/raw/master/20201218145428.png" alt="image-20201218145428405"></p>
+<p>可以使用季节性的ARIMA-&gt;SARIMA 从而得到季节性特征</p>
+<h2 id="ARIMA和指数平滑法的优略"><a href="#ARIMA和指数平滑法的优略" class="headerlink" title="ARIMA和指数平滑法的优略"></a>ARIMA和指数平滑法的优略</h2><p>指数平滑方法适用于非平稳数据，ARIMA模型仅应用于平稳数据，因此应删除数据的趋势，然后查看序列。</p>
+<p><strong>简单指数平滑和线性指数平滑</strong></p>
+<ul>
+<li>少数数据点</li>
+<li>不规则数据</li>
+</ul>
+<p><strong>Holt-winter</strong></p>
+<ul>
+<li>数据具有趋势并且是季节性的</li>
+<li>使用乘法版本，除非数据之前已经logged过。在这种情况下，使用加法版本</li>
+</ul>
+<p><del>然而都只能预测一个点？</del></p>
+<h2 id="REFERENCE"><a href="#REFERENCE" class="headerlink" title="REFERENCE"></a>REFERENCE</h2><ul>
+<li><p>全部tsa模块功能可<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_43982642/article/details/106422538">参考</a></p>
+</li>
+<li><p>ARMA，ARIMA步骤<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33333002/article/details/106171234">参考</a></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.statsmodels.org/stable/index.html">statsmodel官网</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1uT4y1L7za?p=11">时间序列讲解视频</a></li>
+</ul>
+</li>
+</ul>
+</article><div class="essaySuffix-box"> <div class="essaySuffix-box-left"> <img src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"></div><div class="essaySuffix-box-right"> <span class="essaySuffix-right-title">本文作者：</span><strong> <span><a href="https:dummerfu.top" target="_blank" one-link-mark="yes">dummerfu</a></span></strong><br><span class="essaySuffix-right-title">本文链接：</span><a href="https://dummerfu.top/p/65094.html">https://dummerfu.top/p/65094.html</a><br><span class="essaySuffix-right-title">版权声明: </span>
+本博客所有文章除特别声明外，均采用<a rel="noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>
+转载请注明出处！</div></div><div class="tag_share"><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/p/13246.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">【翻译】基于时频分析和卷积神经网路的模式识别</div></div></a></div><div class="next-post pull-right"><a href="/p/466.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/2.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">分赌注问题</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/p/49629.html" title="2021数模国赛反思"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/3.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-17</div><div class="title">2021数模国赛反思</div></div></a></div><div><a href="/p/50102.html" title="【数模】从入门到入土"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/4.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-07-07</div><div class="title">【数模】从入门到入土</div></div></a></div><div><a href="/p/54346.html" title="【数模】2020B 穿越沙漠"><img class="cover" data-src="/img/lazyload.svg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-08-18</div><div class="title">【数模】2020B 穿越沙漠</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/><div class="author-info__name">dummerfu</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummerchen"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/dummerchen" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rat"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">本博客由博客园<a href="https://www.cnblogs.com/cherrypill/" target=" _blank">cherrypill</a>迁移</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97"><span class="toc-number">1.</span> <span class="toc-text">时间序列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E7%9A%84%E7%BB%84%E6%88%90%E9%83%A8%E5%88%86"><span class="toc-number">1.1.</span> <span class="toc-text">时间序列的组成部分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E7%A7%8D%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.2.</span> <span class="toc-text">　三种时间序列模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">移动平均法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E6%B3%95"><span class="toc-number">1.3.1.</span> <span class="toc-text">简单移动平均法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E6%9D%83%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E6%B3%95"><span class="toc-number">1.3.2.</span> <span class="toc-text">加权移动平均法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95"><span class="toc-number">1.4.</span> <span class="toc-text">指数平滑法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95%EF%BC%88SES%EF%BC%89"><span class="toc-number">1.4.1.</span> <span class="toc-text">一次指数平滑法（SES）</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8A%A0%E6%9D%83%E7%B3%BB%E6%95%B0%E9%80%89%E6%8B%A9"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">加权系数选择</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%80%BC%E8%AE%BE%E5%AE%9A"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">初始值设定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95"><span class="toc-number">1.4.2.</span> <span class="toc-text">二次指数平滑法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Holt%E7%89%B9%E6%80%A7%E6%9B%B2%E7%BA%BF%E8%B6%8B%E5%8A%BF%E6%B3%95"><span class="toc-number">1.4.3.</span> <span class="toc-text">Holt特性曲线趋势法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Holt-winters-%E5%AD%A3%E8%8A%82%E6%80%A7%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.4.4.</span> <span class="toc-text">Holt-winters 季节性预测模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95%E5%8A%9F%E8%83%BD%E8%A7%A3%E6%9E%90"><span class="toc-number">1.4.5.</span> <span class="toc-text">指数平滑法功能解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BE%8B%E9%A2%98"><span class="toc-number">1.4.6.</span> <span class="toc-text">例题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95%E6%80%BB%E7%BB%93"><span class="toc-number">1.4.7.</span> <span class="toc-text">指数平滑法总结</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B9%B3%E7%A8%B3%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.5.</span> <span class="toc-text">平稳时间序列模型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AR-p-%E5%BA%8F%E5%88%97"><span class="toc-number">1.5.0.1.</span> <span class="toc-text">AR(p)序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#MA-p-%E5%BA%8F%E5%88%97"><span class="toc-number">1.5.0.2.</span> <span class="toc-text">MA(p)序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%87%AA%E5%9B%9E%E5%BD%92%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E5%BA%8F%E5%88%97%EF%BC%88ARMA%EF%BC%89"><span class="toc-number">1.5.0.3.</span> <span class="toc-text">自回归移动平均序列（ARMA）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARMA-p-%E5%BA%8F%E5%88%97"><span class="toc-number">1.5.0.4.</span> <span class="toc-text">ARMA(p)序列</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%AE%E5%88%86%E8%87%AA%E5%9B%9E%E5%BD%92%E7%A7%BB%E5%8A%A8%E5%B9%B3%E5%9D%87%E6%A8%A1%E5%9E%8B%EF%BC%88ARIMA%EF%BC%89"><span class="toc-number">1.5.0.5.</span> <span class="toc-text">差分自回归移动平均模型（ARIMA）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ARIMA%E5%92%8C%E6%8C%87%E6%95%B0%E5%B9%B3%E6%BB%91%E6%B3%95%E7%9A%84%E4%BC%98%E7%95%A5"><span class="toc-number">1.6.</span> <span class="toc-text">ARIMA和指数平滑法的优略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REFERENCE"><span class="toc-number">1.7.</span> <span class="toc-text">REFERENCE</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/p/49081.html" title="【论文复现】Restormer"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】Restormer"/></a><div class="content"><a class="title" href="/p/49081.html" title="【论文复现】Restormer">【论文复现】Restormer</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/3640.html" title="【论文复现】SwinIR"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145155.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】SwinIR"/></a><div class="content"><a class="title" href="/p/3640.html" title="【论文复现】SwinIR">【论文复现】SwinIR</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/63048.html" title="图像理解与计算机视觉笔记"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145212.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图像理解与计算机视觉笔记"/></a><div class="content"><a class="title" href="/p/63048.html" title="图像理解与计算机视觉笔记">图像理解与计算机视觉笔记</a><time datetime="2022-06-18T00:00:00.000Z" title="Created 2022-06-18 00:00:00">2022-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/42559.html" title="代码审计工具"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码审计工具"/></a><div class="content"><a class="title" href="/p/42559.html" title="代码审计工具">代码审计工具</a><time datetime="2022-05-20T00:00:00.000Z" title="Created 2022-05-20 00:00:00">2022-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212120605.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"/></a><div class="content"><a class="title" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation">【论文复现】卷积网络可视化Grad-cam和Guide backpropagation</a><time datetime="2022-05-16T00:00:00.000Z" title="Created 2022-05-16 00:00:00">2022-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By dummerfu</div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo"/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender"/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub"/></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script></div><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai'
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.15/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: false, 
+    user: 'dummerchen',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'github-calendar-api.vercel.app' ? 'https://github-calendar-api.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox") && (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500)) {
+  gitcalendar.simplemode = false
+}
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script defer src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="/js/moments.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '0');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/custom/wow_init.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 有文章更新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 有文章更新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

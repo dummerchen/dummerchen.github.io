@@ -1,0 +1,578 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mosaic And Mixup 实现源码分析 | Sakura        Momoko</title><meta name="keywords" content="trick"><meta name="author" content="dummerfu"><meta name="copyright" content="dummerfu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="这大概是最细的Mosaic And Mixup 实现源码分析了吧">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mosaic And Mixup 实现源码分析">
+<meta property="og:url" content="https://dummerfu.top/p/45458.html">
+<meta property="og:site_name" content="Sakura        Momoko">
+<meta property="og:description" content="这大概是最细的Mosaic And Mixup 实现源码分析了吧">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/3.jpg">
+<meta property="article:published_time" content="2021-09-25T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-09-25T00:00:00.000Z">
+<meta property="article:author" content="dummerfu">
+<meta property="article:tag" content="trick">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://dummerfu.top/p/45458"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//hm.baidu.com"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="ul2nhVj6HNaI1d3xtFc7_eYD8Shq0bCu53fkA7a_7Bc"/><meta name="baidu-site-verification" content="code-584WEbZyly"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="#212121"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?7cb70c60ee4da7f272c0d8059de063b7";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.1.6/css/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"We didn't find any results for the search: ${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: {"limitDay":30,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":"70vh"},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#49b1f5","bgDark":"#121212","position":"top-center"},
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: true,
+  islazyload: true,
+  isanchor: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-09-25 00:00:00'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><link rel="stylesheet" href="/css/mycss.css"><script src='https://cdn.jsdelivr.net/npm/butterfly-friend@1.0.4/dist/friend.min.js'></script><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/l-lin/font-awesome-animation/dist/font-awesome-animation.min.css"  media="defer" onload="this.media='all'"><link rel="stylesheet" href="https://at.alicdn.com/t/font_2134734_qu549vixs5f.css?spm=a313x.7781069.1998910419.60&file=font_2134734_qu549vixs5f.css" medis="defer" onload="this.media='all'"><script src="/js/lazyload.js"></script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="loading-box"><div class="loading-left-bg"></div><div class="loading-right-bg"></div><div class="wizard-scene"><div class="wizard-objects"><div class="wizard-square"></div><div class="wizard-circle"></div><div class="wizard-triangle"></div></div><div class="wizard"><div class="wizard-body"></div><div class="wizard-right-arm"><div class="wizard-right-hand"></div></div><div class="wizard-left-arm"><div class="wizard-left-hand"></div></div><div class="wizard-head"><div class="wizard-beard"></div><div class="wizard-face"><div class="wizard-adds"></div></div><div class="wizard-hat"><div class="wizard-hat-of-the-hat"></div><div class="wizard-four-point-star --first"></div><div class="wizard-four-point-star --second"></div><div class="wizard-four-point-star --third"></div></div></div></div></div></div><div id="web_bg"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20210807115648.jpg')"><nav id="nav"><span id="blog_name"> <a id="site-name" onclick="btf.scrollToDest(0, 500)" data-title="这大概是最细的Mosaic And Mixup 实现源码分析了吧">Mosaic And Mixup 实现源码分析</a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/"><i class="fa-fw fas fa-home faa-tada"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/archives/"><i class="fa-fw fas fa-archive faa-tada"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/comment/"><i class="fa-fw fa fa-comments faa-tada"></i><span> 留言</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/links/"><i class="fa-fw fas fa-link faa-tada"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/circle/"><i class="fa-fw fas fa-user-friends faa-tada"></i><span> 朋友圈</span></a></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="fa-fw fa-fw fas fa-heart faa-tada"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">Mosaic And Mixup 实现源码分析</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2021-09-25T00:00:00.000Z" title="Created 2021-09-25 00:00:00">2021-09-25</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2021-09-25T00:00:00.000Z" title="Updated 2021-09-25 00:00:00">2021-09-25</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">3.8k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>19min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Mosaic And Mixup 实现源码分析"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>​    看了yolox后发现数据增强是真的nb，但是自己想如何实现的时候就感觉不太行了（不能简洁的实现）。又一想，数据增强这种trick肯定会用到其他网络的dataloader里面啊，所以仔细研究了一下代码复现一下。</p>
+<p>​    最后附上我自己封装的mosaic和mixup，不自己封装到时候现copy别人的都不知bug在哪 <del>虽然核心与原论文差不多</del></p>
+<h1 id="Mosaic"><a href="#Mosaic" class="headerlink" title="Mosaic"></a>Mosaic</h1><h2 id="源码分析"><a href="#源码分析" class="headerlink" title="源码分析"></a>源码分析</h2><p>下面根据yolox源码进行分析：</p>
+<p>yolox想法是先生成一个Dataset类，然后根据这个类可以进行iterater，故写了一个pull_item函数。</p>
+<p>基于以上，然后可以定义到MosaicDetection类</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MosaicDetection</span>(<span class="params">Dataset</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Detection dataset wrapper that performs mixup for normal dataset.&quot;&quot;&quot;</span></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">        self, dataset, img_size, mosaic=<span class="literal">True</span>, preproc=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        degrees=<span class="number">10.0</span>, translate=<span class="number">0.1</span>, mosaic_scale=(<span class="params"><span class="number">0.5</span>, <span class="number">1.5</span></span>),</span></span></span><br><span class="line"><span class="params"><span class="function">        mixup_scale=(<span class="params"><span class="number">0.5</span>, <span class="number">1.5</span></span>), shear=<span class="number">2.0</span>, perspective=<span class="number">0.0</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        enable_mixup=<span class="literal">True</span>, mosaic_prob=<span class="number">1.0</span>, mixup_prob=<span class="number">1.0</span>, *args</span></span></span><br><span class="line"><span class="params"><span class="function">    </span>):</span></span><br><span class="line">        <span class="built_in">super</span>().__init__(img_size, mosaic=mosaic)</span><br><span class="line">        self._dataset = dataset</span><br><span class="line">        self.preproc = preproc</span><br><span class="line">        self.degrees = degrees</span><br><span class="line">        self.translate = translate</span><br><span class="line">        self.scale = mosaic_scale</span><br><span class="line">        self.shear = shear</span><br><span class="line">        self.perspective = perspective</span><br><span class="line">        self.mixup_scale = mixup_scale</span><br><span class="line">        self.enable_mosaic = mosaic</span><br><span class="line">        self.enable_mixup = enable_mixup</span><br><span class="line">        self.mosaic_prob = mosaic_prob</span><br><span class="line">        self.mixup_prob = mixup_prob</span><br><span class="line">        self.local_rank = get_local_rank()</span><br></pre></td></tr></table></figure>
+<p>参数含义就不讲了，关键是self._dataset这个字段，可以看出Mosaic是在原先的Dataset基础上实现的。</p>
+<p>也就是说需要的只是重写getitem和len，下面开始讲解getitem</p>
+<h3 id="第一部分-图片拼接"><a href="#第一部分-图片拼接" class="headerlink" title="第一部分 图片拼接"></a>第一部分 图片拼接</h3><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, idx</span>):</span></span><br><span class="line">    <span class="keyword">if</span> self.enable_mosaic <span class="keyword">and</span> random.random() &lt; self.mosaic_prob:</span><br><span class="line">        mosaic_labels = []</span><br><span class="line">        input_dim = self._dataset.input_dim</span><br><span class="line">        input_h, input_w = input_dim[<span class="number">0</span>], input_dim[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="comment"># yc, xc = s, s  # mosaic center x, y</span></span><br><span class="line">        <span class="comment"># 画布大小为input_h,input_w</span></span><br><span class="line">        <span class="comment"># 拼接公共点位置</span></span><br><span class="line">        yc = <span class="built_in">int</span>(random.uniform(<span class="number">0.5</span> * input_h, <span class="number">1.5</span> * input_h))</span><br><span class="line">        xc = <span class="built_in">int</span>(random.uniform(<span class="number">0.5</span> * input_w, <span class="number">1.5</span> * input_w))</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 3 additional image indices</span></span><br><span class="line">        indices = [idx] + [random.randint(<span class="number">0</span>, <span class="built_in">len</span>(self._dataset) - <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> i_mosaic, index <span class="keyword">in</span> <span class="built_in">enumerate</span>(indices):</span><br><span class="line">            img, _labels, _, img_id = self._dataset.pull_item(index)</span><br><span class="line">            <span class="comment"># 得到的第一张图片的原始大小</span></span><br><span class="line">            h0, w0 = img.shape[:<span class="number">2</span>]  </span><br><span class="line">            </span><br><span class="line">            scale = <span class="built_in">min</span>(<span class="number">1.</span> * input_h / h0, <span class="number">1.</span> * input_w / w0)</span><br><span class="line">            <span class="comment"># 放大到input size</span></span><br><span class="line">            img = cv2.resize(</span><br><span class="line">                img, (<span class="built_in">int</span>(w0 * scale), <span class="built_in">int</span>(h0 * scale)), interpolation=cv2.INTER_LINEAR</span><br><span class="line">            )</span><br><span class="line">            <span class="comment"># generate output mosaic image</span></span><br><span class="line">            (h, w, c) = img.shape[:<span class="number">3</span>]</span><br><span class="line">            <span class="comment"># 生成一个新的画布，颜色是114</span></span><br><span class="line">            <span class="keyword">if</span> i_mosaic == <span class="number">0</span>:</span><br><span class="line">                mosaic_img = np.full((input_h * <span class="number">2</span>, input_w * <span class="number">2</span>, c), <span class="number">114</span>, dtype=np.uint8)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># suffix l means large image, while s means small image in mosaic aug.</span></span><br><span class="line">            <span class="comment"># 根据图片的先后顺序分别放入左上、右上、左下、右下四个方向。</span></span><br><span class="line">            <span class="comment"># 函数返回的是基于画布的新坐标 和 原图像的坐标（要注意由于0.5-1.5倍，原图像可能会超出画布范围</span></span><br><span class="line">            (l_x1, l_y1, l_x2, l_y2), (s_x1, s_y1, s_x2, s_y2) = get_mosaic_coordinate(</span><br><span class="line">                mosaic_img, i_mosaic, xc, yc, w, h, input_h, input_w</span><br><span class="line">            )</span><br><span class="line">  <span class="comment"># 赋值到画布</span></span><br><span class="line">            mosaic_img[l_y1:l_y2, l_x1:l_x2] = img[s_y1:s_y2, s_x1:s_x2]</span><br><span class="line">            plt.imshow(mosaic_img)</span><br><span class="line">            plt.show()</span><br><span class="line">            <span class="comment"># 坐标偏移量</span></span><br><span class="line">            padw, padh = l_x1 - s_x1, l_y1 - s_y1</span><br><span class="line"></span><br><span class="line">            labels = _labels.copy()</span><br><span class="line">            <span class="comment"># Normalized xywh to pixel xyxy format</span></span><br><span class="line">            <span class="comment"># 个人觉得这个注释意思有问题（可能我理解错了？下面细说</span></span><br><span class="line">            <span class="comment"># 这是转换到新坐标轴的坐标</span></span><br><span class="line">            <span class="keyword">if</span> _labels.size &gt; <span class="number">0</span>:</span><br><span class="line">                <span class="comment"># 左上角坐标</span></span><br><span class="line">                labels[:, <span class="number">0</span>] = scale * _labels[:, <span class="number">0</span>] + padw</span><br><span class="line">                labels[:, <span class="number">1</span>] = scale * _labels[:, <span class="number">1</span>] + padh</span><br><span class="line">                <span class="comment"># 右下</span></span><br><span class="line">                labels[:, <span class="number">2</span>] = scale * _labels[:, <span class="number">2</span>] + padw</span><br><span class="line">                labels[:, <span class="number">3</span>] = scale * _labels[:, <span class="number">3</span>] + padh</span><br><span class="line">            mosaic_labels.append(labels)</span><br><span class="line">        plt.imshow(mosaic_img)</span><br><span class="line">        plt.show()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>​    大概思路是先随机得到<strong>四张图片</strong>，然后创建一个大小为网络输入两倍的input，随机（0.5-1.5 scale）生成一个mosaic center（简单理解就是四张图片的公共点）。之后按照顺序拼接到左上、右上、左下、右下四个部分。</p>
+<p>​    当一张图片放入画布时，得到x，y的原偏移量（padw，padh），然后计算偏移后的bbox位置。</p>
+<p>​    有个问题是新bbox的坐标，注释写的是xywh转x1 y1 x2 y2，但是个人实现的时候发现输入是bbox的x1y1x2y2转换能正确框出，有无评论区大佬说明一下。</p>
+<p>第二部分：图像旋转与剪切</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(mosaic_labels):</span><br><span class="line">   	    <span class="comment"># 将bbox超出画布部分变为画布边缘</span></span><br><span class="line">           mosaic_labels = np.concatenate(mosaic_labels, <span class="number">0</span>)</span><br><span class="line">           np.clip(mosaic_labels[:, <span class="number">0</span>], <span class="number">0</span>, <span class="number">2</span> * input_w, out=mosaic_labels[:, <span class="number">0</span>])</span><br><span class="line">           np.clip(mosaic_labels[:, <span class="number">1</span>], <span class="number">0</span>, <span class="number">2</span> * input_h, out=mosaic_labels[:, <span class="number">1</span>])</span><br><span class="line">           np.clip(mosaic_labels[:, <span class="number">2</span>], <span class="number">0</span>, <span class="number">2</span> * input_w, out=mosaic_labels[:, <span class="number">2</span>])</span><br><span class="line">           np.clip(mosaic_labels[:, <span class="number">3</span>], <span class="number">0</span>, <span class="number">2</span> * input_h, out=mosaic_labels[:, <span class="number">3</span>])</span><br><span class="line"><span class="comment"># 顺时针旋转degree°，输出新的图像和新的bbox坐标</span></span><br><span class="line">       mosaic_img, mosaic_labels = random_perspective(</span><br><span class="line">           mosaic_img,</span><br><span class="line">           mosaic_labels,</span><br><span class="line">           degrees=self.degrees,</span><br><span class="line">           translate=self.translate,</span><br><span class="line">           scale=self.scale,</span><br><span class="line">           shear=self.shear,</span><br><span class="line">           perspective=self.perspective,</span><br><span class="line">           border=[-input_h // <span class="number">2</span>, -input_w // <span class="number">2</span>],</span><br><span class="line">       )  <span class="comment"># border to remove</span></span><br><span class="line"></span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+<p>​    这一部分就比较简单了，先是用clip函数处理好画布，然后旋转一个角度，旋转后bbox坐标变化其实可以不用关心，因为角度很小物体几乎超不出bbox的范围。细究旋转代码可以自己去看看<del>我不想看了</del>，<strong>最后还裁剪成了input size</strong>，所以这个最后输出还是input size而不是2*input size</p>
+<h1 id="Mix-up"><a href="#Mix-up" class="headerlink" title="Mix up"></a>Mix up</h1><p>论文mosaic后半部分还增加了mixup（可选，但默认使用</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -----------------------------------------------------------------</span></span><br><span class="line">       <span class="comment"># CopyPaste: https://arxiv.org/abs/2012.07177</span></span><br><span class="line">       <span class="comment"># -----------------------------------------------------------------</span></span><br><span class="line">       <span class="keyword">if</span> (</span><br><span class="line">           self.enable_mixup</span><br><span class="line">           <span class="keyword">and</span> <span class="keyword">not</span> <span class="built_in">len</span>(mosaic_labels) == <span class="number">0</span></span><br><span class="line">           <span class="keyword">and</span> random.random() &lt; self.mixup_prob</span><br><span class="line">           <span class="comment"># 如果mosaic_prob=0.5 mixup_prob=0.5这里0.5*0.5是0.25的概率mixup了</span></span><br><span class="line">       ):</span><br><span class="line">           mosaic_img, mosaic_labels = self.mixup(mosaic_img, mosaic_labels, self.input_dim)</span><br><span class="line">       <span class="comment"># 这里还增加了其他的预处理</span></span><br><span class="line">       mix_img, padded_labels = self.preproc(mosaic_img, mosaic_labels, self.input_dim)</span><br><span class="line">       img_info = (mix_img.shape[<span class="number">1</span>], mix_img.shape[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">       <span class="comment"># -----------------------------------------------------------------</span></span><br><span class="line">       <span class="comment"># img_info and img_id are not used for training.</span></span><br><span class="line">       <span class="comment"># They are also hard to be specified on a mosaic image.</span></span><br><span class="line">       <span class="comment"># -----------------------------------------------------------------</span></span><br><span class="line">       <span class="keyword">return</span> mix_img, padded_labels, img_info, img_id</span><br><span class="line"></span><br><span class="line">   <span class="keyword">else</span>:</span><br><span class="line">       <span class="comment"># 这个else是和mosaic的if对应的，不mosaic则默认只有预处理</span></span><br><span class="line">       self._dataset._input_dim = self.input_dim</span><br><span class="line">       img, label, img_info, img_id = self._dataset.pull_item(idx)</span><br><span class="line">       img, label = self.preproc(img, label, self.input_dim)</span><br><span class="line">       <span class="keyword">return</span> img, label, img_info, img_id</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># mixup函数    </span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mixup</span>(<span class="params">self, origin_img, origin_labels, input_dim</span>):</span></span><br><span class="line">        jit_factor = random.uniform(*self.mixup_scale)</span><br><span class="line">        <span class="comment"># 图像是否翻转</span></span><br><span class="line">        FLIP = random.uniform(<span class="number">0</span>, <span class="number">1</span>) &gt; <span class="number">0.5</span></span><br><span class="line">        cp_labels = []</span><br><span class="line">        <span class="comment"># 保证不是背景 load_anno函数不涉及图像读取会更快（coco类</span></span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(cp_labels) == <span class="number">0</span>:</span><br><span class="line">            cp_index = random.randint(<span class="number">0</span>, self.__len__() - <span class="number">1</span>)</span><br><span class="line">            cp_labels = self._dataset.load_anno(cp_index)</span><br><span class="line">        <span class="comment"># 确定不是背景后再载入img</span></span><br><span class="line">        img, cp_labels, _, _ = self._dataset.pull_item(cp_index)</span><br><span class="line">	    <span class="comment"># 创建画布</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(img.shape) == <span class="number">3</span>:</span><br><span class="line">            cp_img = np.ones((input_dim[<span class="number">0</span>], input_dim[<span class="number">1</span>], <span class="number">3</span>), dtype=np.uint8) * <span class="number">114</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cp_img = np.ones(input_dim, dtype=np.uint8) * <span class="number">114</span></span><br><span class="line">	    <span class="comment"># 计算scale</span></span><br><span class="line">        cp_scale_ratio = <span class="built_in">min</span>(input_dim[<span class="number">0</span>] / img.shape[<span class="number">0</span>], input_dim[<span class="number">1</span>] / img.shape[<span class="number">1</span>])</span><br><span class="line">        <span class="comment"># resize</span></span><br><span class="line">        resized_img = cv2.resize(</span><br><span class="line">            img,</span><br><span class="line">            (<span class="built_in">int</span>(img.shape[<span class="number">1</span>] * cp_scale_ratio), <span class="built_in">int</span>(img.shape[<span class="number">0</span>] * cp_scale_ratio)),</span><br><span class="line">            interpolation=cv2.INTER_LINEAR,</span><br><span class="line">        )</span><br><span class="line">	    <span class="comment"># 放入画布</span></span><br><span class="line">        cp_img[</span><br><span class="line">            : <span class="built_in">int</span>(img.shape[<span class="number">0</span>] * cp_scale_ratio), : <span class="built_in">int</span>(img.shape[<span class="number">1</span>] * cp_scale_ratio)</span><br><span class="line">        ] = resized_img</span><br><span class="line">	    <span class="comment"># 画布放大jit factor倍</span></span><br><span class="line">        cp_img = cv2.resize(</span><br><span class="line">            cp_img,</span><br><span class="line">            (<span class="built_in">int</span>(cp_img.shape[<span class="number">1</span>] * jit_factor), <span class="built_in">int</span>(cp_img.shape[<span class="number">0</span>] * jit_factor)),</span><br><span class="line">        )</span><br><span class="line">        cp_scale_ratio *= jit_factor</span><br><span class="line">		</span><br><span class="line">        <span class="keyword">if</span> FLIP:</span><br><span class="line">            cp_img = cp_img[:, ::-<span class="number">1</span>, :]</span><br><span class="line">	    <span class="comment"># 以上创建好了一个可以mix up的图像</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 下面开始mix up</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># 创建的画布向输入的图像上面叠加</span></span><br><span class="line">        origin_h, origin_w = cp_img.shape[:<span class="number">2</span>]</span><br><span class="line">        target_h, target_w = origin_img.shape[:<span class="number">2</span>]</span><br><span class="line">        <span class="comment"># 取最大面积然后全部padding 0 </span></span><br><span class="line">        padded_img = np.zeros(</span><br><span class="line">            (<span class="built_in">max</span>(origin_h, target_h), <span class="built_in">max</span>(origin_w, target_w), <span class="number">3</span>), dtype=np.uint8</span><br><span class="line">        )</span><br><span class="line">        <span class="comment"># 放入新画布（也只有新画布</span></span><br><span class="line">        padded_img[:origin_h, :origin_w] = cp_img</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="comment"># 随机偏移量</span></span><br><span class="line">        x_offset, y_offset = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> padded_img.shape[<span class="number">0</span>] &gt; target_h:</span><br><span class="line">            y_offset = random.randint(<span class="number">0</span>, padded_img.shape[<span class="number">0</span>] - target_h - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> padded_img.shape[<span class="number">1</span>] &gt; target_w:</span><br><span class="line">            x_offset = random.randint(<span class="number">0</span>, padded_img.shape[<span class="number">1</span>] - target_w - <span class="number">1</span>)</span><br><span class="line">        <span class="comment"># 裁剪画布</span></span><br><span class="line">        padded_cropped_img = padded_img[</span><br><span class="line">            y_offset: y_offset + target_h, x_offset: x_offset + target_w</span><br><span class="line">        ]</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">        <span class="comment"># 调整scale后画布中图像的bbox坐标</span></span><br><span class="line">        cp_bboxes_origin_np = adjust_box_anns(</span><br><span class="line">            cp_labels[:, :<span class="number">4</span>].copy(), cp_scale_ratio, <span class="number">0</span>, <span class="number">0</span>, origin_w, origin_h</span><br><span class="line">        )</span><br><span class="line">        <span class="comment"># 是否镜像翻转</span></span><br><span class="line">        <span class="keyword">if</span> FLIP:</span><br><span class="line">            cp_bboxes_origin_np[:, <span class="number">0</span>::<span class="number">2</span>] = (</span><br><span class="line">                origin_w - cp_bboxes_origin_np[:, <span class="number">0</span>::<span class="number">2</span>][:, ::-<span class="number">1</span>]</span><br><span class="line">            )</span><br><span class="line">           </span><br><span class="line">        <span class="comment"># 调整裁剪后bbox坐标（以裁剪左上角为新的原点</span></span><br><span class="line">        cp_bboxes_transformed_np = cp_bboxes_origin_np.copy()</span><br><span class="line">        cp_bboxes_transformed_np[:, <span class="number">0</span>::<span class="number">2</span>] = np.clip(</span><br><span class="line">            cp_bboxes_transformed_np[:, <span class="number">0</span>::<span class="number">2</span>] - x_offset, <span class="number">0</span>, target_w</span><br><span class="line">        )</span><br><span class="line">        cp_bboxes_transformed_np[:, <span class="number">1</span>::<span class="number">2</span>] = np.clip(</span><br><span class="line">            cp_bboxes_transformed_np[:, <span class="number">1</span>::<span class="number">2</span>] - y_offset, <span class="number">0</span>, target_h</span><br><span class="line">        )</span><br><span class="line">        <span class="comment"># 通过五个条件判断offset是否合理，下面细说</span></span><br><span class="line">        keep_list = box_candidates(cp_bboxes_origin_np.T, cp_bboxes_transformed_np.T, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 满足条件则合并label和image</span></span><br><span class="line">        <span class="keyword">if</span> keep_list.<span class="built_in">sum</span>() &gt;= <span class="number">1.0</span>:</span><br><span class="line">            cls_labels = cp_labels[keep_list, <span class="number">4</span>:<span class="number">5</span>].copy()</span><br><span class="line">            box_labels = cp_bboxes_transformed_np[keep_list]</span><br><span class="line">            labels = np.hstack((box_labels, cls_labels))</span><br><span class="line">            origin_labels = np.vstack((origin_labels, labels))</span><br><span class="line">            origin_img = origin_img.astype(np.float32)</span><br><span class="line">            origin_img = <span class="number">0.5</span> * origin_img + <span class="number">0.5</span> * padded_cropped_img.astype(np.float32)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> origin_img.astype(np.uint8), origin_labels</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>总体来说比较好理解，因为坐标变换方法和mosaic相同，而最头疼的就是坐标变换了。</p>
+<p>首先随机出一个非背景图像（必定有bbox的图像），然后缩放到input size，再放入input size（比如650*640）大小的画布。然后画布整体放大到jit facotr倍，在原图和新图中寻找最大的画布，在大画布中随机出裁剪偏移量，裁剪，检查没问题后mix up即可。</p>
+<p>大致流程如下（省略了寻找最大的画布过程）：</p>
+<p><img src= "/img/lazyload.svg" data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20210926210238.png" alt=""></p>
+<p>下面讲检查函数box_candidates：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">box_candidates</span>(<span class="params">box1, box2, wh_thr=<span class="number">2</span>, ar_thr=<span class="number">20</span>, area_thr=<span class="number">0.2</span></span>):</span></span><br><span class="line">    <span class="comment"># box1(4,n), box2(4,n)</span></span><br><span class="line">    <span class="comment"># Compute candidate boxes which include follwing 5 things:</span></span><br><span class="line">    <span class="comment"># box1 before augment, box2 after augment, wh_thr (pixels), aspect_ratio_thr, area_ratio</span></span><br><span class="line">    w1, h1 = box1[<span class="number">2</span>] - box1[<span class="number">0</span>], box1[<span class="number">3</span>] - box1[<span class="number">1</span>]</span><br><span class="line">    w2, h2 = box2[<span class="number">2</span>] - box2[<span class="number">0</span>], box2[<span class="number">3</span>] - box2[<span class="number">1</span>]</span><br><span class="line">    ar = np.maximum(w2 / (h2 + <span class="number">1e-16</span>), h2 / (w2 + <span class="number">1e-16</span>))  <span class="comment"># aspect ratio</span></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">        (w2 &gt; wh_thr)</span><br><span class="line">        &amp; (h2 &gt; wh_thr)</span><br><span class="line">        &amp; (w2 * h2 / (w1 * h1 + <span class="number">1e-16</span>) &gt; area_thr)</span><br><span class="line">        &amp; (ar &lt; ar_thr)</span><br><span class="line">    )  <span class="comment"># candidates</span></span><br></pre></td></tr></table></figure>
+<p>就是将偏移后的box和偏移前的box进行比较，四项指标分别是偏移后的box宽度，高度，面积，box长宽比</p>
+<p><del>注释里写的五个实现只有四个</del></p>
+<div class="img-wrap"><div class="img-bg"><img class="img" src= "/img/lazyload.svg" data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20210926215440.png" alt="最终结果，中间的那两个是mix up" style="height:60vh;"/></div><span class="image-caption">最终结果，中间的那两个是mix up</span></div>
+<h1 id="自用代码"><a href="#自用代码" class="headerlink" title="自用代码"></a>自用代码</h1><p>因为yolox等里面肯定是用了各种东西对dataloader加速比如pycoco类封装（这个包不是很懂）、preload等，一时半会也看不完。只好剥离了，loader的效率估计不会那么高 <del>以后变成大牛了再加吧</del></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="comment"># @Author : Dummerfu</span></span><br><span class="line"><span class="comment"># @Contact : https://github.com/dummerchen </span></span><br><span class="line"><span class="comment"># @Time : 2021/9/25 14:06</span></span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">from</span> draw_box_utli <span class="keyword">import</span> draw_box</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> Dataset</span><br><span class="line"><span class="keyword">from</span> VocDataset <span class="keyword">import</span> VocDataSet</span><br><span class="line"><span class="keyword">import</span> matplotlib <span class="keyword">as</span> mpl</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> cv2</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> matplotlib <span class="keyword">import</span> pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = <span class="string">&#x27;SimHei&#x27;</span></span><br><span class="line">mpl.rcParams[<span class="string">&#x27;axes.unicode_minus&#x27;</span>] = <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_mosaic_coordinate</span>(<span class="params">mosaic_image, mosaic_index, xc, yc, w, h, input_h, input_w</span>):</span></span><br><span class="line">    <span class="comment"># TODO update doc</span></span><br><span class="line">    <span class="comment"># index0 to top left part of image</span></span><br><span class="line">    <span class="keyword">if</span> mosaic_index == <span class="number">0</span>:</span><br><span class="line">        x1, y1, x2, y2 = <span class="built_in">max</span>(xc - w, <span class="number">0</span>), <span class="built_in">max</span>(yc - h, <span class="number">0</span>), xc, yc</span><br><span class="line">        small_coord = w - (x2 - x1), h - (y2 - y1), w, h</span><br><span class="line">    <span class="comment"># index1 to top right part of image</span></span><br><span class="line">    <span class="keyword">elif</span> mosaic_index == <span class="number">1</span>:</span><br><span class="line">        x1, y1, x2, y2 = xc, <span class="built_in">max</span>(yc - h, <span class="number">0</span>), <span class="built_in">min</span>(xc + w, input_w * <span class="number">2</span>), yc</span><br><span class="line">        small_coord = <span class="number">0</span>, h - (y2 - y1), <span class="built_in">min</span>(w, x2 - x1), h</span><br><span class="line">    <span class="comment"># index2 to bottom left part of image</span></span><br><span class="line">    <span class="keyword">elif</span> mosaic_index == <span class="number">2</span>:</span><br><span class="line">        x1, y1, x2, y2 = <span class="built_in">max</span>(xc - w, <span class="number">0</span>), yc, xc, <span class="built_in">min</span>(input_h * <span class="number">2</span>, yc + h)</span><br><span class="line">        small_coord = w - (x2 - x1), <span class="number">0</span>, w, <span class="built_in">min</span>(y2 - y1, h)</span><br><span class="line">    <span class="comment"># index2 to bottom right part of image</span></span><br><span class="line">    <span class="keyword">elif</span> mosaic_index == <span class="number">3</span>:</span><br><span class="line">        x1, y1, x2, y2 = xc, yc, <span class="built_in">min</span>(xc + w, input_w * <span class="number">2</span>), <span class="built_in">min</span>(input_h * <span class="number">2</span>, yc + h)  <span class="comment"># noqa</span></span><br><span class="line">        small_coord = <span class="number">0</span>, <span class="number">0</span>, <span class="built_in">min</span>(w, x2 - x1), <span class="built_in">min</span>(y2 - y1, h)</span><br><span class="line">    <span class="keyword">return</span> (x1, y1, x2, y2), small_coord</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_perspective</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">        img,</span></span></span><br><span class="line"><span class="params"><span class="function">        targets=(<span class="params"></span>),</span></span></span><br><span class="line"><span class="params"><span class="function">        degrees=<span class="number">10</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        translate=<span class="number">0.1</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        scale=<span class="number">0.1</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        shear=<span class="number">10</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        perspective=<span class="number">0.0</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        border=(<span class="params"><span class="number">0</span>, <span class="number">0</span></span>),</span></span></span><br><span class="line"><span class="params"><span class="function"></span>):</span></span><br><span class="line">    <span class="comment"># targets = [cls, xyxy]</span></span><br><span class="line">    height = img.shape[<span class="number">0</span>] + border[<span class="number">0</span>] * <span class="number">2</span>  <span class="comment"># shape(h,w,c)</span></span><br><span class="line">    width = img.shape[<span class="number">1</span>] + border[<span class="number">1</span>] * <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Center</span></span><br><span class="line">    C = np.eye(<span class="number">3</span>)</span><br><span class="line">    C[<span class="number">0</span>, <span class="number">2</span>] = -img.shape[<span class="number">1</span>] / <span class="number">2</span>  <span class="comment"># x translation (pixels)</span></span><br><span class="line">    C[<span class="number">1</span>, <span class="number">2</span>] = -img.shape[<span class="number">0</span>] / <span class="number">2</span>  <span class="comment"># y translation (pixels)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Rotation and Scale</span></span><br><span class="line">    R = np.eye(<span class="number">3</span>)</span><br><span class="line">    a = random.uniform(-degrees, degrees)</span><br><span class="line">    <span class="comment"># a += random.choice([-180, -90, 0, 90])  # add 90deg rotations to small rotations</span></span><br><span class="line">    s = random.uniform(scale[<span class="number">0</span>], scale[<span class="number">1</span>])</span><br><span class="line">    <span class="comment"># s = 2 ** random.uniform(-scale, scale)</span></span><br><span class="line">    R[:<span class="number">2</span>] = cv2.getRotationMatrix2D(angle=a, center=(<span class="number">0</span>, <span class="number">0</span>), scale=s)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Shear</span></span><br><span class="line">    S = np.eye(<span class="number">3</span>)</span><br><span class="line">    S[<span class="number">0</span>, <span class="number">1</span>] = math.tan(random.uniform(-shear, shear) * math.pi / <span class="number">180</span>)  <span class="comment"># x shear (deg)</span></span><br><span class="line">    S[<span class="number">1</span>, <span class="number">0</span>] = math.tan(random.uniform(-shear, shear) * math.pi / <span class="number">180</span>)  <span class="comment"># y shear (deg)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Translation</span></span><br><span class="line">    T = np.eye(<span class="number">3</span>)</span><br><span class="line">    T[<span class="number">0</span>, <span class="number">2</span>] = (</span><br><span class="line">            random.uniform(<span class="number">0.5</span> - translate, <span class="number">0.5</span> + translate) * width</span><br><span class="line">    )  <span class="comment"># x translation (pixels)</span></span><br><span class="line">    T[<span class="number">1</span>, <span class="number">2</span>] = (</span><br><span class="line">            random.uniform(<span class="number">0.5</span> - translate, <span class="number">0.5</span> + translate) * height</span><br><span class="line">    )  <span class="comment"># y translation (pixels)</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Combined rotation matrix</span></span><br><span class="line">    M = T @ S @ R @ C  <span class="comment"># order of operations (right to left) is IMPORTANT</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">###########################</span></span><br><span class="line">    <span class="comment"># For Aug out of Mosaic</span></span><br><span class="line">    <span class="comment"># s = 1.</span></span><br><span class="line">    <span class="comment"># M = np.eye(3)</span></span><br><span class="line">    <span class="comment">###########################</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (border[<span class="number">0</span>] != <span class="number">0</span>) <span class="keyword">or</span> (border[<span class="number">1</span>] != <span class="number">0</span>) <span class="keyword">or</span> (M != np.eye(<span class="number">3</span>)).<span class="built_in">any</span>():  <span class="comment"># image changed</span></span><br><span class="line">        <span class="keyword">if</span> perspective:</span><br><span class="line">            img = cv2.warpPerspective(</span><br><span class="line">                img, M, dsize=(width, height), borderValue=(<span class="number">114</span>, <span class="number">114</span>, <span class="number">114</span>)</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">else</span>:  <span class="comment"># affine</span></span><br><span class="line">            img = cv2.warpAffine(</span><br><span class="line">                img, M[:<span class="number">2</span>], dsize=(width, height), borderValue=(<span class="number">114</span>, <span class="number">114</span>, <span class="number">114</span>)</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Transform label coordinates</span></span><br><span class="line">    n = <span class="built_in">len</span>(targets)</span><br><span class="line">    <span class="keyword">if</span> n:</span><br><span class="line">        <span class="comment"># warp points</span></span><br><span class="line">        xy = np.ones((n * <span class="number">4</span>, <span class="number">3</span>))</span><br><span class="line">        xy[:, :<span class="number">2</span>] = targets[:, [<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]].reshape(</span><br><span class="line">            n * <span class="number">4</span>, <span class="number">2</span></span><br><span class="line">        )  <span class="comment"># x1y1, x2y2, x1y2, x2y1</span></span><br><span class="line">        xy = xy @ M.T  <span class="comment"># transform</span></span><br><span class="line">        <span class="keyword">if</span> perspective:</span><br><span class="line">            xy = (xy[:, :<span class="number">2</span>] / xy[:, <span class="number">2</span>:<span class="number">3</span>]).reshape(n, <span class="number">8</span>)  <span class="comment"># rescale</span></span><br><span class="line">        <span class="keyword">else</span>:  <span class="comment"># affine</span></span><br><span class="line">            xy = xy[:, :<span class="number">2</span>].reshape(n, <span class="number">8</span>)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># create new boxes</span></span><br><span class="line">        x = xy[:, [<span class="number">0</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>]]</span><br><span class="line">        y = xy[:, [<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>, <span class="number">7</span>]]</span><br><span class="line">        xy = np.concatenate((x.<span class="built_in">min</span>(<span class="number">1</span>), y.<span class="built_in">min</span>(<span class="number">1</span>), x.<span class="built_in">max</span>(<span class="number">1</span>), y.<span class="built_in">max</span>(<span class="number">1</span>))).reshape(<span class="number">4</span>, n).T</span><br><span class="line"></span><br><span class="line">        <span class="comment"># clip boxes</span></span><br><span class="line">        xy[:, [<span class="number">0</span>, <span class="number">2</span>]] = xy[:, [<span class="number">0</span>, <span class="number">2</span>]].clip(<span class="number">0</span>, width)</span><br><span class="line">        xy[:, [<span class="number">1</span>, <span class="number">3</span>]] = xy[:, [<span class="number">1</span>, <span class="number">3</span>]].clip(<span class="number">0</span>, height)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># filter candidates</span></span><br><span class="line">        i = box_candidates(box1=targets[:, :<span class="number">4</span>].T * s, box2=xy.T)</span><br><span class="line">        targets = targets[i]</span><br><span class="line">        targets[:, :<span class="number">4</span>] = xy[i]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> img, targets</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">box_candidates</span>(<span class="params">box1, box2, wh_thr=<span class="number">2</span>, ar_thr=<span class="number">20</span>, area_thr=<span class="number">0.2</span></span>):</span></span><br><span class="line">    <span class="comment"># box1(4,n), box2(4,n)</span></span><br><span class="line">    <span class="comment"># Compute candidate boxes which include follwing 5 things:</span></span><br><span class="line">    <span class="comment"># box1 before augment, box2 after augment, wh_thr (pixels), aspect_ratio_thr, area_ratio</span></span><br><span class="line">    w1, h1 = box1[<span class="number">2</span>] - box1[<span class="number">0</span>], box1[<span class="number">3</span>] - box1[<span class="number">1</span>]</span><br><span class="line">    w2, h2 = box2[<span class="number">2</span>] - box2[<span class="number">0</span>], box2[<span class="number">3</span>] - box2[<span class="number">1</span>]</span><br><span class="line">    ar = np.maximum(w2 / (h2 + <span class="number">1e-16</span>), h2 / (w2 + <span class="number">1e-16</span>))  <span class="comment"># aspect ratio</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">            (w2 &gt; wh_thr)</span><br><span class="line">            &amp; (h2 &gt; wh_thr)</span><br><span class="line">            &amp; (w2 * h2 / (w1 * h1 + <span class="number">1e-16</span>) &gt; area_thr)</span><br><span class="line">            &amp; (ar &lt; ar_thr)</span><br><span class="line">    )  <span class="comment"># candidates</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adjust_box_anns</span>(<span class="params">bbox, scale_ratio, padw, padh, w_max, h_max</span>):</span></span><br><span class="line">    bbox[:, <span class="number">0</span>::<span class="number">2</span>] = np.clip(bbox[:, <span class="number">0</span>::<span class="number">2</span>] * scale_ratio + padw, <span class="number">0</span>, w_max)</span><br><span class="line">    bbox[:, <span class="number">1</span>::<span class="number">2</span>] = np.clip(bbox[:, <span class="number">1</span>::<span class="number">2</span>] * scale_ratio + padh, <span class="number">0</span>, h_max)</span><br><span class="line">    <span class="keyword">return</span> bbox</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MasaicDataset</span>(<span class="params">Dataset</span>):</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">        self, dataset, input_size=(<span class="params"><span class="number">640</span>,<span class="number">640</span></span>),mosaic=<span class="literal">True</span>, preproc=<span class="literal">None</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        degrees=<span class="number">10.0</span>, translate=<span class="number">0.1</span>, mosaic_scale=(<span class="params"><span class="number">0.5</span>, <span class="number">1.5</span></span>),</span></span></span><br><span class="line"><span class="params"><span class="function">        mixup_scale=(<span class="params"><span class="number">0.5</span>, <span class="number">1.5</span></span>), shear=<span class="number">2.0</span>, perspective=<span class="number">0.0</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">        enable_mixup=<span class="literal">True</span>, mosaic_prob=<span class="number">1.0</span>, mixup_prob=<span class="number">1.0</span>, *args</span></span></span><br><span class="line"><span class="params"><span class="function">    </span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Args:</span></span><br><span class="line"><span class="string">            dataset(Dataset) : Pytorch dataset object.</span></span><br><span class="line"><span class="string">            img_size (tuple):</span></span><br><span class="line"><span class="string">            mosaic (bool): enable mosaic augmentation or not.</span></span><br><span class="line"><span class="string">            preproc (func):</span></span><br><span class="line"><span class="string">            degrees (float):</span></span><br><span class="line"><span class="string">            translate (float):</span></span><br><span class="line"><span class="string">            mosaic_scale (tuple):</span></span><br><span class="line"><span class="string">            mixup_scale (tuple):</span></span><br><span class="line"><span class="string">            shear (float):</span></span><br><span class="line"><span class="string">            perspective (float):</span></span><br><span class="line"><span class="string">            enable_mixup (bool):</span></span><br><span class="line"><span class="string">            *args(tuple) : Additional arguments for mixup random sampler.</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self._dataset = dataset</span><br><span class="line">        self.input_dim=input_size</span><br><span class="line">        self.preproc = preproc</span><br><span class="line">        self.degrees = degrees</span><br><span class="line">        self.translate = translate</span><br><span class="line">        self.scale = mosaic_scale</span><br><span class="line">        self.shear = shear</span><br><span class="line">        self.perspective = perspective</span><br><span class="line">        self.mixup_scale = mixup_scale</span><br><span class="line">        self.enable_mosaic = mosaic</span><br><span class="line">        self.enable_mixup = enable_mixup</span><br><span class="line">        self.mosaic_prob = mosaic_prob</span><br><span class="line">        self.mixup_prob = mixup_prob</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__len__</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">len</span>(self._dataset)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, idx</span>):</span></span><br><span class="line">        <span class="keyword">if</span> self.enable_mosaic <span class="keyword">and</span> random.random() &lt; self.mosaic_prob:</span><br><span class="line">            mosaic_labels = []</span><br><span class="line"></span><br><span class="line">            input_h, input_w = self.input_dim[<span class="number">0</span>], self.input_dim[<span class="number">1</span>]</span><br><span class="line">            <span class="comment"># input_h,input_w=2600,4624</span></span><br><span class="line">            <span class="comment"># yc, xc = s, s  # mosaic center x, y</span></span><br><span class="line">            <span class="comment"># 画布大小为input_h,input_w</span></span><br><span class="line">            <span class="comment"># yc = int(random.uniform(0.5 * input_h, 1.5 * input_h))</span></span><br><span class="line">            <span class="comment"># xc = int(random.uniform(0.5 * input_w, 1.5 * input_w))</span></span><br><span class="line">            yc=<span class="number">640</span></span><br><span class="line">            xc=<span class="number">640</span></span><br><span class="line">            <span class="comment"># 3 additional image indices</span></span><br><span class="line">            indices = [idx] + [random.randint(<span class="number">0</span>, <span class="built_in">len</span>(self._dataset) - <span class="number">1</span>) <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>)]</span><br><span class="line"></span><br><span class="line">            <span class="keyword">for</span> i_mosaic, index <span class="keyword">in</span> <span class="built_in">enumerate</span>(indices):</span><br><span class="line">                img, target = self._dataset.pull_item(index)</span><br><span class="line">                _labels=target[<span class="string">&#x27;labels&#x27;</span>]</span><br><span class="line"></span><br><span class="line">                h0, w0 = target[<span class="string">&#x27;image_info&#x27;</span>]  <span class="comment"># orig hw</span></span><br><span class="line">                scale = <span class="built_in">min</span>(<span class="number">1.</span> * input_h / h0, <span class="number">1.</span> * input_w / w0)</span><br><span class="line">                <span class="comment"># img 放大到input size</span></span><br><span class="line">                img = cv2.resize(</span><br><span class="line">                    img, (<span class="built_in">int</span>(w0 * scale), <span class="built_in">int</span>(h0 * scale)), interpolation=cv2.INTER_LINEAR</span><br><span class="line">                )</span><br><span class="line">                <span class="comment"># generate output mosaic image</span></span><br><span class="line">                (h, w, c) = img.shape[:<span class="number">3</span>]</span><br><span class="line"></span><br><span class="line">                <span class="comment"># draw_box(</span></span><br><span class="line">                <span class="comment">#     img, _labels[:, :4],</span></span><br><span class="line">                <span class="comment">#     classes=_labels[:, -1],</span></span><br><span class="line">                <span class="comment">#     category_index=self._dataset.name2num,</span></span><br><span class="line">                <span class="comment">#     scores=np.ones(shape=(len(_labels[:, -1]))),</span></span><br><span class="line">                <span class="comment">#     thresh=0</span></span><br><span class="line">                <span class="comment"># )</span></span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> i_mosaic == <span class="number">0</span>:</span><br><span class="line">                    mosaic_img = np.full((input_h * <span class="number">2</span>, input_w * <span class="number">2</span>, c), <span class="number">114</span>, dtype=np.uint8)</span><br><span class="line"></span><br><span class="line">                <span class="comment"># suffix l means large image, while s means small image in mosaic aug.</span></span><br><span class="line">                (l_x1, l_y1, l_x2, l_y2), (s_x1, s_y1, s_x2, s_y2) = get_mosaic_coordinate(</span><br><span class="line">                    mosaic_img, i_mosaic, xc, yc, w, h, input_h, input_w</span><br><span class="line">                )</span><br><span class="line"></span><br><span class="line">                mosaic_img[l_y1:l_y2, l_x1:l_x2] = img[s_y1:s_y2, s_x1:s_x2]</span><br><span class="line"></span><br><span class="line">                padw, padh = l_x1 - s_x1, l_y1 - s_y1</span><br><span class="line"></span><br><span class="line">                labels = _labels.copy()</span><br><span class="line">                <span class="comment"># Normalized xywh to pixel xyxy format</span></span><br><span class="line">                <span class="keyword">if</span> _labels.size &gt; <span class="number">0</span>:</span><br><span class="line">                    labels[:, <span class="number">0</span>] = scale * _labels[:, <span class="number">0</span>] + padw</span><br><span class="line">                    labels[:, <span class="number">1</span>] = scale * _labels[:, <span class="number">1</span>] + padh</span><br><span class="line">                    labels[:, <span class="number">2</span>] = scale * _labels[:, <span class="number">2</span>] + padw</span><br><span class="line">                    labels[:, <span class="number">3</span>] = scale * _labels[:, <span class="number">3</span>] + padh</span><br><span class="line"></span><br><span class="line">                mosaic_labels.append(labels)</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(mosaic_labels):</span><br><span class="line">                mosaic_labels = np.concatenate(mosaic_labels, <span class="number">0</span>)</span><br><span class="line">                np.clip(mosaic_labels[:, <span class="number">0</span>], <span class="number">0</span>, <span class="number">2</span> * input_w, out=mosaic_labels[:, <span class="number">0</span>])</span><br><span class="line">                np.clip(mosaic_labels[:, <span class="number">1</span>], <span class="number">0</span>, <span class="number">2</span> * input_h, out=mosaic_labels[:, <span class="number">1</span>])</span><br><span class="line">                np.clip(mosaic_labels[:, <span class="number">2</span>], <span class="number">0</span>, <span class="number">2</span> * input_w, out=mosaic_labels[:, <span class="number">2</span>])</span><br><span class="line">                np.clip(mosaic_labels[:, <span class="number">3</span>], <span class="number">0</span>, <span class="number">2</span> * input_h, out=mosaic_labels[:, <span class="number">3</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            mosaic_img, mosaic_labels = random_perspective(</span><br><span class="line">                mosaic_img,</span><br><span class="line">                mosaic_labels,</span><br><span class="line">                degrees=self.degrees,</span><br><span class="line">                translate=self.translate,</span><br><span class="line">                scale=self.scale,</span><br><span class="line">                shear=self.shear,</span><br><span class="line">                perspective=self.perspective,</span><br><span class="line">                border=[-input_h // <span class="number">2</span>, -input_w // <span class="number">2</span>],</span><br><span class="line">            )  <span class="comment"># border to remove</span></span><br><span class="line"></span><br><span class="line">            <span class="comment"># -----------------------------------------------------------------</span></span><br><span class="line">            <span class="comment"># CopyPaste: https://arxiv.org/abs/2012.07177</span></span><br><span class="line">            <span class="comment"># -----------------------------------------------------------------</span></span><br><span class="line">            <span class="keyword">if</span> (</span><br><span class="line">                self.enable_mixup</span><br><span class="line">                <span class="keyword">and</span> <span class="keyword">not</span> <span class="built_in">len</span>(mosaic_labels) == <span class="number">0</span></span><br><span class="line">                <span class="keyword">and</span> random.random() &lt; self.mixup_prob</span><br><span class="line">            ):</span><br><span class="line">                mosaic_img, mosaic_labels = self.mixup(mosaic_img, mosaic_labels, self.input_dim)</span><br><span class="line">            <span class="comment"># mix_img, padded_labels = self.preproc(mosaic_img, mosaic_labels, self.input_dim)</span></span><br><span class="line">            img_info = (mosaic_img.shape[<span class="number">1</span>], mosaic_img.shape[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">            draw_box(</span><br><span class="line">                mosaic_img, mosaic_labels[:, :<span class="number">4</span>],</span><br><span class="line">                classes=mosaic_labels[:, -<span class="number">1</span>],</span><br><span class="line">                category_index=self._dataset.num2name,</span><br><span class="line">                scores=np.ones(shape=(<span class="built_in">len</span>(mosaic_labels[:, -<span class="number">1</span>]))),</span><br><span class="line">                thresh=<span class="number">0</span></span><br><span class="line">            )</span><br><span class="line">            <span class="comment"># 想怎么输出怎么输出</span></span><br><span class="line">            <span class="keyword">return</span> mosaic_img, mosaic_labels,img_info</span><br><span class="line"></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            img, target = self._dataset.pull_item(idx)</span><br><span class="line">            <span class="comment"># img, label = self.preproc(img, label, self.input_dim)</span></span><br><span class="line">            <span class="keyword">return</span> img, target</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mixup</span>(<span class="params">self, origin_img, origin_labels, input_dim</span>):</span></span><br><span class="line">        jit_factor = random.uniform(*self.mixup_scale)</span><br><span class="line">        FLIP = random.uniform(<span class="number">0</span>, <span class="number">1</span>) &gt; <span class="number">0.5</span></span><br><span class="line">        cp_labels = []</span><br><span class="line">        img=<span class="literal">None</span></span><br><span class="line">        <span class="keyword">while</span> <span class="built_in">len</span>(cp_labels) == <span class="number">0</span>:</span><br><span class="line">            cp_index = random.randint(<span class="number">0</span>, self.__len__() - <span class="number">1</span>)</span><br><span class="line">            img,target = self._dataset.pull_item(cp_index)</span><br><span class="line">            cp_labels=target[<span class="string">&#x27;labels&#x27;</span>]</span><br><span class="line"></span><br><span class="line">        draw_box(img,cp_labels[:,:<span class="number">4</span>],cp_labels[:,-<span class="number">1</span>],self._dataset.num2name,scores=np.ones(<span class="built_in">len</span>(cp_labels[:,-<span class="number">1</span>])))</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(img.shape) == <span class="number">3</span>:</span><br><span class="line">            cp_img = np.ones((input_dim[<span class="number">0</span>], input_dim[<span class="number">1</span>], <span class="number">3</span>), dtype=np.uint8) * <span class="number">114</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            cp_img = np.ones(input_dim, dtype=np.uint8) * <span class="number">114</span></span><br><span class="line"></span><br><span class="line">        cp_scale_ratio = <span class="built_in">min</span>(input_dim[<span class="number">0</span>] / img.shape[<span class="number">0</span>], input_dim[<span class="number">1</span>] / img.shape[<span class="number">1</span>])</span><br><span class="line">        resized_img = cv2.resize(</span><br><span class="line">            img,</span><br><span class="line">            (<span class="built_in">int</span>(img.shape[<span class="number">1</span>] * cp_scale_ratio), <span class="built_in">int</span>(img.shape[<span class="number">0</span>] * cp_scale_ratio)),</span><br><span class="line">            interpolation=cv2.INTER_LINEAR,</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        cp_img[</span><br><span class="line">            : <span class="built_in">int</span>(img.shape[<span class="number">0</span>] * cp_scale_ratio), : <span class="built_in">int</span>(img.shape[<span class="number">1</span>] * cp_scale_ratio)</span><br><span class="line">        ] = resized_img</span><br><span class="line"></span><br><span class="line">        cp_img = cv2.resize(</span><br><span class="line">            cp_img,</span><br><span class="line">            (<span class="built_in">int</span>(cp_img.shape[<span class="number">1</span>] * jit_factor), <span class="built_in">int</span>(cp_img.shape[<span class="number">0</span>] * jit_factor)),</span><br><span class="line">        )</span><br><span class="line">        cp_scale_ratio *= jit_factor</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> FLIP:</span><br><span class="line">            cp_img = cp_img[:, ::-<span class="number">1</span>, :]</span><br><span class="line"></span><br><span class="line">        origin_h, origin_w = cp_img.shape[:<span class="number">2</span>]</span><br><span class="line">        target_h, target_w = origin_img.shape[:<span class="number">2</span>]</span><br><span class="line">        padded_img = np.zeros(</span><br><span class="line">            (<span class="built_in">max</span>(origin_h, target_h), <span class="built_in">max</span>(origin_w, target_w), <span class="number">3</span>), dtype=np.uint8</span><br><span class="line">        )</span><br><span class="line">        padded_img[:origin_h, :origin_w] = cp_img</span><br><span class="line"></span><br><span class="line">        x_offset, y_offset = <span class="number">0</span>, <span class="number">0</span></span><br><span class="line">        <span class="keyword">if</span> padded_img.shape[<span class="number">0</span>] &gt; target_h:</span><br><span class="line">            y_offset = random.randint(<span class="number">0</span>, padded_img.shape[<span class="number">0</span>] - target_h - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> padded_img.shape[<span class="number">1</span>] &gt; target_w:</span><br><span class="line">            x_offset = random.randint(<span class="number">0</span>, padded_img.shape[<span class="number">1</span>] - target_w - <span class="number">1</span>)</span><br><span class="line">        padded_cropped_img = padded_img[</span><br><span class="line">            y_offset: y_offset + target_h, x_offset: x_offset + target_w</span><br><span class="line">        ]</span><br><span class="line"></span><br><span class="line">        cp_bboxes_origin_np = adjust_box_anns(</span><br><span class="line">            cp_labels[:, :<span class="number">4</span>].copy(), cp_scale_ratio, <span class="number">0</span>, <span class="number">0</span>, origin_w, origin_h</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> FLIP:</span><br><span class="line">            cp_bboxes_origin_np[:, <span class="number">0</span>::<span class="number">2</span>] = (</span><br><span class="line">                origin_w - cp_bboxes_origin_np[:, <span class="number">0</span>::<span class="number">2</span>][:, ::-<span class="number">1</span>]</span><br><span class="line">            )</span><br><span class="line">        cp_bboxes_transformed_np = cp_bboxes_origin_np.copy()</span><br><span class="line">        cp_bboxes_transformed_np[:, <span class="number">0</span>::<span class="number">2</span>] = np.clip(</span><br><span class="line">            cp_bboxes_transformed_np[:, <span class="number">0</span>::<span class="number">2</span>] - x_offset, <span class="number">0</span>, target_w</span><br><span class="line">        )</span><br><span class="line">        cp_bboxes_transformed_np[:, <span class="number">1</span>::<span class="number">2</span>] = np.clip(</span><br><span class="line">            cp_bboxes_transformed_np[:, <span class="number">1</span>::<span class="number">2</span>] - y_offset, <span class="number">0</span>, target_h</span><br><span class="line">        )</span><br><span class="line">        keep_list = box_candidates(cp_bboxes_origin_np.T, cp_bboxes_transformed_np.T, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> keep_list.<span class="built_in">sum</span>() &gt;= <span class="number">1.0</span>:</span><br><span class="line">            cls_labels = cp_labels[keep_list, <span class="number">4</span>:<span class="number">5</span>].copy()</span><br><span class="line">            box_labels = cp_bboxes_transformed_np[keep_list]</span><br><span class="line">            labels = np.hstack((box_labels, cls_labels))</span><br><span class="line">            origin_labels = np.vstack((origin_labels, labels))</span><br><span class="line">            origin_img = origin_img.astype(np.float32)</span><br><span class="line">            origin_img = <span class="number">0.5</span> * origin_img + <span class="number">0.5</span> * padded_cropped_img.astype(np.float32)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> origin_img.astype(np.uint8), origin_labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line">    <span class="comment"># vocdataset=VocDataSet(voc_root=r&#x27;E:\py_exercise\Dataset\pear_dataset\voc&#x27;,)</span></span><br><span class="line">    vocdataset=VocDataSet(</span><br><span class="line">        voc_root=<span class="string">r&#x27;E:\py_exercise\deep-learning-for-image-processing\pytorch_object_detection\faster_rcnn\taboca\Tobacco&#x27;</span>,</span><br><span class="line">        image_folder_name=<span class="string">&#x27;JPEGImages&#x27;</span></span><br><span class="line">    )</span><br><span class="line">    dataset=MasaicDataset(</span><br><span class="line">        dataset=vocdataset,</span><br><span class="line">    )</span><br><span class="line">    <span class="built_in">next</span>(<span class="built_in">iter</span>(dataset))</span><br></pre></td></tr></table></figure>
+</article><div class="essaySuffix-box"> <div class="essaySuffix-box-left"> <img src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" onerror="onerror=null;src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"></div><div class="essaySuffix-box-right"> <span class="essaySuffix-right-title">本文作者：</span><strong> <span><a href="https:dummerfu.top" target="_blank" one-link-mark="yes">dummerfu</a></span></strong><br><span class="essaySuffix-right-title">本文链接：</span><a href="https://dummerfu.top/p/45458.html">https://dummerfu.top/p/45458.html</a><br><span class="essaySuffix-right-title">版权声明: </span>
+本博客所有文章除特别声明外，均采用<a rel="noopener" target="_blank" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0许可协议</a>
+转载请注明出处！</div></div><div class="tag_share"><div class="post_share"></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/p/49629.html"><img class="prev-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/3.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">2021数模国赛反思</div></div></a></div><div class="next-post pull-right"><a href="/p/61367.html"><img class="next-cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/6.jpg" src="/img/lazyload.svg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Unity 基本属性（占坑）</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> Related Articles</span></div><div class="relatedPosts-list"><div><a href="/p/27272.html" title="Long Tail Classification Review"><img class="cover" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/cover/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2021-09-16</div><div class="title">Long Tail Classification Review</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> Comment</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" data-src="https://cdn.jsdelivr.net/gh/dummerchen/cdn@master/img/custom/avatar.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='https://cdn.jsdelivr.net/gh/dummerchen/cdn/img/other/default_avatar.jpg'" alt="avatar"/><div class="author-info__name">dummerfu</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">45</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">Tags</div><div class="length-num">18</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">Categories</div><div class="length-num">6</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/dummerchen"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/dummerchen" target="_blank" title="Github"><svg class="icon faa-tada" aria-hidden="true"><use xlink:href="#icon-rat"></use></svg></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>Announcement</span></div><div class="announcement_content">本博客由博客园<a href="https://www.cnblogs.com/cherrypill/" target=" _blank">cherrypill</a>迁移</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mosaic"><span class="toc-number">2.</span> <span class="toc-text">Mosaic</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90"><span class="toc-number">2.1.</span> <span class="toc-text">源码分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E9%83%A8%E5%88%86-%E5%9B%BE%E7%89%87%E6%8B%BC%E6%8E%A5"><span class="toc-number">2.1.1.</span> <span class="toc-text">第一部分 图片拼接</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Mix-up"><span class="toc-number">3.</span> <span class="toc-text">Mix up</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%87%AA%E7%94%A8%E4%BB%A3%E7%A0%81"><span class="toc-number">4.</span> <span class="toc-text">自用代码</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/p/49081.html" title="【论文复现】Restormer"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】Restormer"/></a><div class="content"><a class="title" href="/p/49081.html" title="【论文复现】Restormer">【论文复现】Restormer</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/3640.html" title="【论文复现】SwinIR"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145155.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】SwinIR"/></a><div class="content"><a class="title" href="/p/3640.html" title="【论文复现】SwinIR">【论文复现】SwinIR</a><time datetime="2022-07-30T00:00:00.000Z" title="Created 2022-07-30 00:00:00">2022-07-30</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/63048.html" title="图像理解与计算机视觉笔记"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145212.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="图像理解与计算机视觉笔记"/></a><div class="content"><a class="title" href="/p/63048.html" title="图像理解与计算机视觉笔记">图像理解与计算机视觉笔记</a><time datetime="2022-06-18T00:00:00.000Z" title="Created 2022-06-18 00:00:00">2022-06-18</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/42559.html" title="代码审计工具"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212145136.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="代码审计工具"/></a><div class="content"><a class="title" href="/p/42559.html" title="代码审计工具">代码审计工具</a><time datetime="2022-05-20T00:00:00.000Z" title="Created 2022-05-20 00:00:00">2022-05-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"><img data-src="https://cdn.jsdelivr.net/gh/dummerchen/My_Image_Bed03@image_bed_001/img/20211212120605.jpg" src="/img/lazyload.svg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation"/></a><div class="content"><a class="title" href="/p/44311.html" title="【论文复现】卷积网络可视化Grad-cam和Guide backpropagation">【论文复现】卷积网络可视化Grad-cam和Guide backpropagation</a><time datetime="2022-05-16T00:00:00.000Z" title="Created 2022-05-16 00:00:00">2022-05-16</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2022 By dummerfu</div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&amp;logo=hexo"/></a><a class="github-badge" target="_blank" href="https://butterfly.js.org/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&amp;logo=bitdefender"/></a><a class="github-badge" target="_blank" href="https://www.jsdelivr.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&amp;logo=jsDelivr"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&amp;logo=GitHub"/></a></p></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="Toggle Between Traditional Chinese And Simplified Chinese">简</button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></div><div id="local-search"><div class="search-dialog"><div class="search-dialog__title" id="local-search-title">Local search</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div></div><hr/><div id="local-search-results"></div><span class="search-close-button"><i class="fas fa-times"></i></span></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script async="async">var preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+
+  }
+}
+window.addEventListener('load',preloader.endLoading())
+setTimeout(function(){preloader.endLoading();}, 5000);</script></div><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    loader: {
+      source: {
+        '[tex]/amsCd': '[tex]/amscd'
+      }
+    },
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        addClass: [200,() => {
+          document.querySelectorAll('mjx-container:not([display=\'true\']').forEach( node => {
+            const target = node.parentNode
+            if (!target.classList.contains('has-jax')) {
+              target.classList.add('mathjax-overflow')
+            }
+          })
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.min.js"></script><link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/contrib/copy-tex.css"><script>(() => {
+  document.querySelectorAll('#article-container span.katex-display').forEach(item => {
+    btf.wrap(item, 'div', '', 'katex-wrap')
+  })
+})()</script><script>(()=>{
+  const $countDom = document.getElementById('twikoo-count')
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai'
+    }, null))
+  }
+
+  const getCount = () => {
+    twikoo.getCommentsCount({
+      envId: 'twikoo-8g53l3ue41b208dc',
+      region: 'ap-shanghai',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      $countDom.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const loadTwikoo = (bool = false) => {
+    if (typeof twikoo === 'object') {
+      init()
+      bool && $countDom && setTimeout(getCount,0)
+    } else {
+      getScript('https://cdn.jsdelivr.net/npm/twikoo@1.4.15/dist/twikoo.all.min.js').then(()=> {
+        init()
+        bool && $countDom && setTimeout(getCount,0)
+      })
+    }
+  }
+
+  if ('Twikoo' === 'Twikoo' || !true) {
+    if (true) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo(true)
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><script>var gitcalendar = new Vue({
+  el: '#gitcalendar',
+  data: {
+    simplemode: false, 
+    user: 'dummerchen',
+    fixed: 'fixed',
+    px: 'px',
+    x: '',
+    y: '',
+    span1: '',
+    span2: '',
+    month: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
+    monthchange: [],
+    oneyearbeforeday: '',
+    thisday: '',
+    amonthago: '',
+    aweekago: '',
+    weekdatacore: 0,
+    datacore: 0,
+    total: 0,
+    datadate: '',
+    data: [],
+    positionplusdata: [],
+    firstweek: [],
+    lastweek: [],
+    beforeweek: [],
+    thisweekdatacore: 0,
+    mounthbeforeday: 0,
+    mounthfirstindex: 0,
+    crispedges: 'crispedges',
+    thisdayindex: 0,
+    amonthagoindex: 0,
+    amonthagoweek: [],
+    firstdate: [],
+    first2date: [],
+    montharrbefore: [],
+    monthindex: 0,
+    color: ['#e4dfd7', '#f9f4dc', '#f7e8aa', '#f7e8aa', '#f8df72', '#fcd217', '#fcc515', '#f28e16', '#fb8b05', '#d85916', '#f43e06']
+  },
+  methods: {
+    selectStyle(data, event) {
+      document.querySelector('.angle-wrapper').style.display = 'block'
+      this.span1 = data.date;
+      this.span2 = data.count;
+      this.x = event.clientX - 100;
+      this.y = event.clientY - 60
+    },
+    outStyle() {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    },
+    thiscolor(x) {
+      if (x === 0) {
+        let i = parseInt(x / 2);
+        return this.color[0]
+      } else if (x < 2) {
+        return this.color[1]
+      } else if (x < 20) {
+        let i = parseInt(x / 2);
+        return this.color[i]
+      } else {
+        return this.color[9]
+      }
+    },
+  }
+});
+var apiurl = 'github-calendar-api.vercel.app' ? 'https://github-calendar-api.vercel.app/api?' : 'https://githubapi.ryanchristian.dev/user/'
+var githubapiurl = apiurl + gitcalendar.user;
+//canvas绘图
+function responsiveChart() {
+  let c = document.getElementById("gitcanvas");
+  if (c) {
+    let cmessage = document.getElementById("gitmessage");
+    let ctx = c.getContext("2d");
+    c.width = document.getElementById("gitcalendarcanvasbox").offsetWidth;
+    let linemaxwitdh = 0.96 * c.width / gitcalendar.data.length;
+    c.height = 9 * linemaxwitdh;
+    let lineminwitdh = 0.8 * linemaxwitdh;
+    let setposition = {
+      x: 0.02 * c.width,
+      y: 0.025 * c.width
+    };
+    for (let week in gitcalendar.data) {
+      weekdata = gitcalendar.data[week];
+      for (let day in weekdata) {
+        let dataitem = {
+          date: "",
+          count: "",
+          x: 0,
+          y: 0
+        };
+        gitcalendar.positionplusdata.push(dataitem);
+        ctx.fillStyle = gitcalendar.thiscolor(weekdata[day].count);
+        setposition.y = Math.round(setposition.y * 100) / 100;
+        dataitem.date = weekdata[day].date;
+        dataitem.count = weekdata[day].count;
+        dataitem.x = setposition.x;
+        dataitem.y = setposition.y;
+        ctx.fillRect(setposition.x, setposition.y, lineminwitdh, lineminwitdh);
+        setposition.y = setposition.y + linemaxwitdh
+      };
+      setposition.y = 0.025 * c.width;
+      setposition.x = setposition.x + linemaxwitdh
+    };
+    ctx.font = "600  Arial";
+    ctx.fillStyle = '#aaa';
+    ctx.fillText("日", 0, 1.9 * linemaxwitdh);
+    ctx.fillText("二", 0, 3.9 * linemaxwitdh);
+    ctx.fillText("四", 0, 5.9 * linemaxwitdh);
+    ctx.fillText("六", 0, 7.9 * linemaxwitdh);
+    let monthindexlist = c.width / 24;
+    for (let index in gitcalendar.monthchange) {
+      ctx.fillText(gitcalendar.monthchange[index], monthindexlist, 0.7 * linemaxwitdh);
+      monthindexlist = monthindexlist + c.width / 12
+    };
+    cmessage.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+    };
+    c.onmousemove = function(event) {
+      document.querySelector('.angle-wrapper').style.display = 'none'
+      getMousePos(c, event);
+    };
+
+    function getMousePos(canvas, event) {
+      var rect = canvas.getBoundingClientRect();
+      var x = event.clientX - rect.left * (canvas.width / rect.width);
+      var y = event.clientY - rect.top * (canvas.height / rect.height);
+      //console.log("x:"+x+",y:"+y);
+      for (let item of gitcalendar.positionplusdata) {
+        let lenthx = x - item.x;
+        let lenthy = y - item.y;
+        //console.log(lenthx,lenthy);
+        if (0 < lenthx && lenthx < lineminwitdh) {
+          if (0 < lenthy && lenthy < lineminwitdh) {
+            //console.log(item.date,item.count)
+            document.querySelector('.angle-wrapper').style.display = 'block'
+            gitcalendar.span1 = item.date;
+            gitcalendar.span2 = item.count;
+            gitcalendar.x = event.clientX - 100;
+            gitcalendar.y = event.clientY - 60
+          }
+        }
+        //if(0< x - item.x <lineminwitdh&&0< y - item.y <lineminwitdh){
+        //console.log(item.count,item.date);
+        //}
+      }
+    }
+  }
+}
+//数据统计算法
+function addlastmonth() {
+  if (gitcalendar.thisdayindex === 0) {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweekcore(48);
+    gitcalendar.thisweekdatacore += gitcalendar.firstdate[6].count;
+    gitcalendar.amonthago = gitcalendar.firstdate[6].date
+  } else {
+    thisweekcore(52);
+    thisweekcore(51);
+    thisweekcore(50);
+    thisweekcore(49);
+    thisweek2core();
+    gitcalendar.amonthago = gitcalendar.first2date[gitcalendar.thisdayindex - 1].date
+  }
+};
+
+function thisweek2core() {
+  for (let i = gitcalendar.thisdayindex - 1; i < gitcalendar.first2date.length; i++) {
+    gitcalendar.thisweekdatacore += gitcalendar.first2date[i].count
+  }
+};
+
+function thisweekcore(index) {
+  for (let item of gitcalendar.data[index]) {
+    gitcalendar.thisweekdatacore += item.count
+  }
+};
+
+function addlastweek() {
+  for (let item of gitcalendar.lastweek) {
+    gitcalendar.weekdatacore += item.count
+  }
+};
+
+function addbeforeweek() {
+  for (let i = gitcalendar.thisdayindex; i < gitcalendar.beforeweek.length; i++) {
+    gitcalendar.weekdatacore += gitcalendar.beforeweek[i].count
+  }
+};
+
+function addweek(data) {
+  if (gitcalendar.thisdayindex === 6) {
+    gitcalendar.aweekago = gitcalendar.lastweek[0].date;
+    addlastweek()
+  } else {
+    lastweek = data.contributions[51];
+    gitcalendar.aweekago = lastweek[gitcalendar.thisdayindex + 1].date;
+    addlastweek();
+    addbeforeweek()
+  }
+}
+
+fetch(githubapiurl)
+  .then(data => data.json())
+  .then(data => {
+    gitcalendar.data = data.contributions;
+    gitcalendar.total = data.total;
+    gitcalendar.first2date = gitcalendar.data[48];
+    gitcalendar.firstdate = gitcalendar.data[47];
+    gitcalendar.firstweek = data.contributions[0];
+    gitcalendar.lastweek = data.contributions[52];
+    gitcalendar.beforeweek = data.contributions[51];
+    gitcalendar.thisdayindex = gitcalendar.lastweek.length - 1;
+    gitcalendar.thisday = gitcalendar.lastweek[gitcalendar.thisdayindex].date;
+    gitcalendar.oneyearbeforeday = gitcalendar.firstweek[0].date;
+    gitcalendar.monthindex = gitcalendar.thisday.substring(5, 7) * 1;
+    gitcalendar.montharrbefore = gitcalendar.month.splice(gitcalendar.monthindex, 12 - gitcalendar.monthindex);
+    gitcalendar.monthchange = gitcalendar.montharrbefore.concat(gitcalendar.month);
+    addweek(data);
+    addlastmonth();
+    responsiveChart();
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
+
+//手机版更换为svg绘制
+if (document.getElementById("gitcalendarcanvasbox") && (document.getElementById("gitcalendarcanvasbox").offsetWidth < 500)) {
+  gitcalendar.simplemode = false
+}
+//当改变窗口大小时重新绘制canvas
+window.onresize = function() {
+  if (gitcalendar.simplemode) responsiveChart()
+}
+
+//解决滚动滑轮时出现的标签显示
+window.onscroll = function() {
+  if (document.querySelector('.angle-wrapper')) {
+    document.querySelector('.angle-wrapper').style.display = 'none'
+  }
+};</script></div><script defer src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script defer src="https://cdn.jsdelivr.net/npm/hexo-theme-volantis@latest/source/js/issues.min.js"></script><script src="/js/moments.js"></script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/dist/fireworks.min.js"></script><div class="js-pjax"><script async="async">var arr = document.getElementsByClassName('recent-post-item');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '1s');
+    arr[i].setAttribute('data-wow-delay', '0');
+    arr[i].setAttribute('data-wow-offset', '0');
+    arr[i].setAttribute('data-wow-iteration', '1');
+  }</script><script async="async">var arr = document.getElementsByClassName('card-widget');
+for(var i = 0;i<arr.length;i++){
+    arr[i].classList.add('wow');
+    arr[i].classList.add('animate__zoomIn');
+    arr[i].setAttribute('data-wow-duration', '');
+    arr[i].setAttribute('data-wow-delay', '');
+    arr[i].setAttribute('data-wow-offset', '');
+    arr[i].setAttribute('data-wow-iteration', '');
+  }</script></div><script defer="defer" src="https://cdn.jsdelivr.net/gh/graingert/wow@1.3.0/dist/wow.min.js"></script><script defer="defer" src="/js/custom/wow_init.js"></script><div class="app-refresh" id="app-refresh" style="position: fixed;top: -2.2rem;left: 0;right: 0;z-index: 99999;padding: 0 1rem;font-size: 15px;height: 2.2rem;transition: all 0.3s ease;"><div class="app-refresh-wrap" style=" display: flex;color: #fff;height: 100%;align-items: center;justify-content: center;"><label>✨ 有文章更新啦！ 👉</label><a href="javascript:void(0)" onclick="location.reload()"><span style="color: #fff;text-decoration: underline;cursor: pointer;">🍭查看新品🍬</span></a></div></div><script>if ('serviceWorker' in navigator) {
+if (navigator.serviceWorker.controller) {
+navigator.serviceWorker.addEventListener('controllerchange', function() {
+showNotification()
+})
+}
+window.addEventListener('load', function() {
+navigator.serviceWorker.register('/sw.js')
+})
+}
+function showNotification() {
+if (GLOBAL_CONFIG.Snackbar) {
+var snackbarBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+GLOBAL_CONFIG.Snackbar.bgLight :
+GLOBAL_CONFIG.Snackbar.bgDark
+var snackbarPos = GLOBAL_CONFIG.Snackbar.position
+Snackbar.show({
+text: '✨ 有文章更新啦！ 👉',
+backgroundColor: snackbarBg,
+duration: 500000,
+pos: snackbarPos,
+actionText: '🍭查看新品🍬',
+actionTextColor: '#fff',
+onActionClick: function(e) {
+location.reload()
+},
+})
+} else {
+var showBg =
+document.documentElement.getAttribute('data-theme') === 'light' ?
+'#49b1f5' :
+'#1f1f1f'
+var cssText = `top: 0; background: ${showBg};`
+document.getElementById('app-refresh').style.cssText = cssText
+}
+}</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

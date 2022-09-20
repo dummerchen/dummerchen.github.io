@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Sakura        Momoko</title>
+  
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://dummerfu.top/"/>
+  <updated>2022-07-30T00:00:00.000Z</updated>
+  <id>https://dummerfu.top/</id>
+  
+  <author>
+    <name>dummerfu</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文复现】Restormer</title>
+    <link href="https://dummerfu.top/p/49081.html"/>
+    <id>https://dummerfu.top/p/49081.html</id>
+    <published>2022-07-30T00:00:00.000Z</published>
+    <updated>2022-07-30T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      超分论文解读
+    
+    </summary>
+    
+      <category term="论文" scheme="https://dummerfu.top/categories/%E8%AE%BA%E6%96%87/"/>
+    
+    
+      <category term="论文" scheme="https://dummerfu.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【论文复现】SwinIR</title>
+    <link href="https://dummerfu.top/p/3640.html"/>
+    <id>https://dummerfu.top/p/3640.html</id>
+    <published>2022-07-30T00:00:00.000Z</published>
+    <updated>2022-07-30T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      超分论文解读
+    
+    </summary>
+    
+      <category term="论文" scheme="https://dummerfu.top/categories/%E8%AE%BA%E6%96%87/"/>
+    
+    
+      <category term="论文" scheme="https://dummerfu.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>图像理解与计算机视觉笔记</title>
+    <link href="https://dummerfu.top/p/63048.html"/>
+    <id>https://dummerfu.top/p/63048.html</id>
+    <published>2022-06-18T00:00:00.000Z</published>
+    <updated>2022-06-18T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      水博客
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>代码审计工具</title>
+    <link href="https://dummerfu.top/p/42559.html"/>
+    <id>https://dummerfu.top/p/42559.html</id>
+    <published>2022-05-20T00:00:00.000Z</published>
+    <updated>2022-05-20T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      代码审计
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【论文复现】卷积网络可视化Grad-cam和Guide backpropagation</title>
+    <link href="https://dummerfu.top/p/44311.html"/>
+    <id>https://dummerfu.top/p/44311.html</id>
+    <published>2022-05-16T00:00:00.000Z</published>
+    <updated>2022-05-16T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      cnn可视化
+    
+    </summary>
+    
+      <category term="论文" scheme="https://dummerfu.top/categories/%E8%AE%BA%E6%96%87/"/>
+    
+    
+      <category term="论文" scheme="https://dummerfu.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【杂谈】 西电保研二三事</title>
+    <link href="https://dummerfu.top/p/37004.html"/>
+    <id>https://dummerfu.top/p/37004.html</id>
+    <published>2022-05-16T00:00:00.000Z</published>
+    <updated>2022-05-16T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      保研人值得一看，西电人更不容错过的干货内幕。
+    
+    </summary>
+    
+      <category term="论文" scheme="https://dummerfu.top/categories/%E8%AE%BA%E6%96%87/"/>
+    
+    
+      <category term="论文" scheme="https://dummerfu.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【论文复现】SRGan</title>
+    <link href="https://dummerfu.top/p/39020.html"/>
+    <id>https://dummerfu.top/p/39020.html</id>
+    <published>2022-05-08T00:00:00.000Z</published>
+    <updated>2022-05-08T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      超分论文复现
+    
+    </summary>
+    
+      <category term="论文" scheme="https://dummerfu.top/categories/%E8%AE%BA%E6%96%87/"/>
+    
+    
+      <category term="论文" scheme="https://dummerfu.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>记一次使用VB操作excel</title>
+    <link href="https://dummerfu.top/p/35344.html"/>
+    <id>https://dummerfu.top/p/35344.html</id>
+    <published>2022-04-27T00:00:00.000Z</published>
+    <updated>2022-04-27T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      vb写的，看看就好，别当真
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>c++ onnxruntime部署避坑记录</title>
+    <link href="https://dummerfu.top/p/10043.html"/>
+    <id>https://dummerfu.top/p/10043.html</id>
+    <published>2022-03-28T00:00:00.000Z</published>
+    <updated>2022-04-20T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      c++部署模型上线，效率超高的
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="c++,机器学习" scheme="https://dummerfu.top/tags/c-%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>放下鼠标，更高效的工作</title>
+    <link href="https://dummerfu.top/p/11693.html"/>
+    <id>https://dummerfu.top/p/11693.html</id>
+    <published>2022-03-15T00:00:00.000Z</published>
+    <updated>2022-04-20T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      鼠标手好痛苦啊
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>百面机器学习</title>
+    <link href="https://dummerfu.top/p/44332.html"/>
+    <id>https://dummerfu.top/p/44332.html</id>
+    <published>2022-02-17T00:00:00.000Z</published>
+    <updated>2022-03-05T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      面试临时抱佛脚
+    
+    </summary>
+    
+      <category term="面试" scheme="https://dummerfu.top/categories/%E9%9D%A2%E8%AF%95/"/>
+    
+    
+      <category term="面试" scheme="https://dummerfu.top/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最巧妙的算法之一--快速傅里叶变换</title>
+    <link href="https://dummerfu.top/p/33310.html"/>
+    <id>https://dummerfu.top/p/33310.html</id>
+    <published>2021-12-01T00:00:00.000Z</published>
+    <updated>2021-12-01T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      水博客
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>算法设计技巧与分析笔记</title>
+    <link href="https://dummerfu.top/p/26814.html"/>
+    <id>https://dummerfu.top/p/26814.html</id>
+    <published>2021-11-25T00:00:00.000Z</published>
+    <updated>2021-12-07T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      水博客
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Unity 基本属性（占坑）</title>
+    <link href="https://dummerfu.top/p/61367.html"/>
+    <id>https://dummerfu.top/p/61367.html</id>
+    <published>2021-11-15T00:00:00.000Z</published>
+    <updated>2021-11-20T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      闲来无事学学unity,占坑
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="随笔" scheme="https://dummerfu.top/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mosaic And Mixup 实现源码分析</title>
+    <link href="https://dummerfu.top/p/45458.html"/>
+    <id>https://dummerfu.top/p/45458.html</id>
+    <published>2021-09-25T00:00:00.000Z</published>
+    <updated>2021-09-25T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      这大概是最细的Mosaic And Mixup 实现源码分析了吧
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="trick" scheme="https://dummerfu.top/tags/trick/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2021数模国赛反思</title>
+    <link href="https://dummerfu.top/p/49629.html"/>
+    <id>https://dummerfu.top/p/49629.html</id>
+    <published>2021-09-17T00:00:00.000Z</published>
+    <updated>2021-12-01T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      数模反思
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="数模" scheme="https://dummerfu.top/tags/%E6%95%B0%E6%A8%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Long Tail Classification Review</title>
+    <link href="https://dummerfu.top/p/27272.html"/>
+    <id>https://dummerfu.top/p/27272.html</id>
+    <published>2021-09-16T00:00:00.000Z</published>
+    <updated>2021-09-16T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      实际上是各种review
+    
+    </summary>
+    
+      <category term="随笔" scheme="https://dummerfu.top/categories/%E9%9A%8F%E7%AC%94/"/>
+    
+    
+      <category term="trick" scheme="https://dummerfu.top/tags/trick/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【论文】深度学习CV方向论文解读</title>
+    <link href="https://dummerfu.top/p/61340.html"/>
+    <id>https://dummerfu.top/p/61340.html</id>
+    <published>2021-09-01T00:00:00.000Z</published>
+    <updated>2022-01-11T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      按时间线（大概）整理CV方向论文
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="论文" scheme="https://dummerfu.top/tags/%E8%AE%BA%E6%96%87/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数模】2020B 穿越沙漠</title>
+    <link href="https://dummerfu.top/p/54346.html"/>
+    <id>https://dummerfu.top/p/54346.html</id>
+    <published>2021-08-18T00:00:00.000Z</published>
+    <updated>2021-08-18T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      ACMer&amp;数模 双厨狂喜，不要错过。
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="数模" scheme="https://dummerfu.top/tags/%E6%95%B0%E6%A8%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Logistic回归</title>
+    <link href="https://dummerfu.top/p/40721.html"/>
+    <id>https://dummerfu.top/p/40721.html</id>
+    <published>2021-07-27T00:00:00.000Z</published>
+    <updated>2021-07-27T00:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      随便写写逻辑回归(o゜▽゜)o☆，模型评估方法才是重点
+    
+    </summary>
+    
+      <category term="技术" scheme="https://dummerfu.top/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="机器学习" scheme="https://dummerfu.top/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+</feed>
